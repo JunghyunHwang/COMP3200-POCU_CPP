@@ -1,3 +1,4 @@
+#include <cstdio>
 #include "MyString.h"
 
 namespace assignment1
