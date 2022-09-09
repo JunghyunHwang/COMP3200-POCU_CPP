@@ -1,10 +1,11 @@
 #pragma once
+#include <cassert>
+
 namespace assignment1
 {
 	class MyString
 	{
 	public:
-		static const int DEFAULT_CAPACITY = 20;
 		MyString(const char* s);
 		MyString(const MyString& other);
 		~MyString();
@@ -27,6 +28,40 @@ namespace assignment1
 		void ToLower();
 		void ToUpper();
 	private:
+		void strCopy(char* dest, const char* origin)
+		{
+			assert(dest != nullptr);
+			assert(origin != nullptr);
+
+			char* pDest = dest;
+			const char* pOrigin = origin;
+
+			while (*pOrigin != '\0')
+			{
+				*pDest++ = *pOrigin++;
+			}
+
+			*pDest = '\0';
+		}
+
+		bool equals(const char* str1, const char* str2) const
+		{
+			while (*str1 != '\0' && *str1 == *str2)
+			{
+				++str1;
+				++str2;
+			}
+
+			if (*str1 != '\0')
+			{
+				return false;
+			}
+
+			return true;
+		}
+	private:
+		const int DEFAULT_CAPACITY = 20;
+		const unsigned int ALPHA_MASK = 1 << 5;
 		char* mStr;
 		int mCount;
 		int mCapacity;

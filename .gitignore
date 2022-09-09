@@ -4,8 +4,7 @@
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
 .vscode
-main.dSYM/
-main
+*.dSYM/
 
 # User-specific files
 *.suo
@@ -293,3 +292,4 @@ __pycache__/
 
 # Executables
 *.exe
+*.out

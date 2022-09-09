@@ -66,6 +66,11 @@ namespace assignment1
 
 	void MyString::Append(const char* s)
 	{
+		if (*s == '\0')
+		{
+			return;
+		}
+
 		const char* pS = s;
 		int sLength = 0;
 
@@ -79,6 +84,8 @@ namespace assignment1
 			mCapacity = (mCount + sLength) * 2;
 
 			char* tmp = new char[mCapacity];
+			assert(tmp != nullptr);
+
 			char* pTmp = tmp;
 			const char* pStr = mStr;
 
@@ -101,22 +108,305 @@ namespace assignment1
 		mStr[mCount] = '\0';
 	}
 
-	bool MyString::operator==(const MyString& rhs) const
+	MyString MyString::operator+(const MyString& rhs) const
 	{
-		const char* pStr = mStr;
-		const char* pRhs = rhs.mStr;
+		MyString result(*this);
 
-		while (*pStr != '\0' && *pStr == *pRhs)
+		result.Append(rhs.mStr);
+
+		return result;
+	}
+
+	int MyString::IndexOf(const char* s)
+	{
+		if (*s == '\0')
 		{
-			++pStr;
-			++pRhs;
+			return -1;
 		}
 
-		if (*pStr != '\0')
+		int result = -1;
+		const char* pStr = mStr;
+		const char* pS = s;
+
+		while (*pStr != '\0')
+		{
+			if (MyString::equals(pS, pStr))
+			{
+				result = pStr - mStr;
+				break;
+			}
+
+			++pStr;
+		}
+	
+		return result;
+	}
+
+	int MyString::LastIndexOf(const char* s)
+	{
+		if (*s == '\0')
+		{
+			return -1;
+		}
+
+		int result = -1;
+		const char* pStr = mStr;
+		const char* pS = s;
+
+		while (*pStr != '\0')
+		{
+			if (MyString::equals(pS, pStr))
+			{
+				result = pStr - mStr;
+			}
+
+			++pStr;
+		}
+	
+		return result;
+	}
+
+	void MyString::Interleave(const char* s)
+	{
+		if (*s == '\0')
+		{
+			return;
+		}
+
+		char* interleaveResult;
+		const char* pS = s;
+		int sLength = 0;
+
+		while (*pS++ != '\0')
+		{
+			++sLength;
+		}
+
+		const int TOTAL_LENGTH = mCount + sLength;
+
+		if (mCapacity < TOTAL_LENGTH + 1)
+		{
+			mCapacity = TOTAL_LENGTH * 2;
+		}
+
+		interleaveResult = new char[mCapacity];
+
+		const char* pStr = mStr;
+		pS = s;
+		
+		for (unsigned int i = 0; i <= TOTAL_LENGTH; ++i)
+		{
+			if (i % 2 == 0)
+			{
+				if (*pStr == '\0')
+				{
+					interleaveResult[i] = *pS++;
+					continue;
+				}
+
+				interleaveResult[i] = *pStr++;
+				continue;
+			}
+
+			if (*pS == '\0')
+			{
+				interleaveResult[i] = *pStr++;
+				continue;
+			}
+
+			interleaveResult[i] = *pS++;
+		}
+
+		mCount = TOTAL_LENGTH;
+		interleaveResult[mCount] = '\0';
+
+		delete[] mStr;
+		mStr = interleaveResult;
+	}
+
+	bool MyString::RemoveAt(unsigned int i)
+	{
+		if (i >= mCount)
 		{
 			return false;
 		}
 
+		char* pStr = mStr + i;
+
+		while (*pStr != '\0')
+		{
+			*pStr = *(pStr + 1);
+			++pStr;
+		}
+
+		--mCount;
+
 		return true;
+	}
+
+	void MyString::PadRight(unsigned int totalLength)
+	{
+		MyString::PadRight(totalLength, ' ');
+	}
+
+	void MyString::PadRight(unsigned int totalLength, const char c)
+	{
+		if (totalLength <= mCount)
+		{
+			return;
+		}
+
+		if (totalLength > mCapacity)
+		{
+			mCapacity *= 2;
+
+			char* tmp = new char[mCapacity];
+
+			MyString::strCopy(tmp, mStr);
+
+			delete[] mStr;
+			mStr = tmp;
+		}
+
+		char* pStr = mStr + mCount;
+
+		for (unsigned int i = 0; i < totalLength - mCount; ++i)
+		{
+			*pStr++ = c;
+		}
+
+		mCount = totalLength;
+		mStr[mCount] = '\0';
+
+		assert(totalLength == mCount);
+	}
+
+	void MyString::PadLeft(unsigned int totalLength)
+	{
+		MyString::PadLeft(totalLength, ' ');
+	}
+
+	void MyString::PadLeft(unsigned int totalLength, const char c)
+	{
+		if (totalLength <= mCount)
+		{
+			return;
+		}
+
+		if (totalLength > mCapacity)
+		{
+			mCapacity *= 2;
+
+			char* tmp = new char[mCapacity];
+
+			MyString::strCopy(tmp, mStr);
+
+			delete[] mStr;
+			mStr = tmp;
+		}
+
+		char* tmpOrigin = new char[mCount + 1];
+		MyString::strCopy(tmpOrigin, mStr);
+
+		char* pStr = mStr;
+		unsigned int i = 0;
+
+		while (i < totalLength - mCount)
+		{
+			*pStr++ = c;
+			++i;
+		}
+
+		const char* pTmp = tmpOrigin;
+
+		while (*pTmp != '\0')
+		{
+			*pStr++ = *pTmp++;
+		}
+
+		delete[] tmpOrigin;
+
+		*pStr = '\0';
+
+		mCount = totalLength;
+	}
+
+	void MyString::ToLower()
+	{
+		char* pStr = mStr;
+
+		while (*pStr != '\0')
+		{
+			char c = *pStr;
+
+			if ('A' <= c && c <= 'Z')
+			{
+				*pStr ^= ALPHA_MASK;
+			}
+
+			++pStr;
+		}
+	}
+
+	void MyString::ToUpper()
+	{
+		char* pStr = mStr;
+
+		while (*pStr != '\0')
+		{
+			char c = *pStr;
+
+			if ('a' <= c && c <= 'z')
+			{
+				c ^= ALPHA_MASK;
+				*pStr = c;
+			}
+
+			++pStr;
+		}
+	}
+
+	void MyString::Reverse()
+	{
+		char* pStrStart = mStr;
+		char* pStrEnd = mStr;
+
+		while (*pStrEnd != '\0')
+		{
+			++pStrEnd;
+		}
+
+		--pStrEnd;
+
+		while (pStrStart < pStrEnd)
+		{
+			char tmp = *pStrStart;
+			*pStrStart = *pStrEnd;
+			*pStrEnd = tmp;
+
+			++pStrStart;
+			--pStrEnd;
+		}
+	}
+
+	bool MyString::operator==(const MyString& rhs) const
+	{
+		return MyString::equals(mStr, rhs.mStr);
+	}
+
+	MyString& MyString::operator=(const MyString& rhs)
+	{
+		if (rhs.mCount > mCapacity)
+		{
+			char* tmp = new char[rhs.mCapacity];
+			assert(tmp != nullptr);
+
+			delete[] mStr;
+			mStr = tmp;
+		}
+
+		MyString::strCopy(mStr, rhs.mStr);
+
+		return *this;
 	}
 }
