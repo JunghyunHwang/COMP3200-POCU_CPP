@@ -167,6 +167,9 @@ void testLastIndexOf()
 
 	i = str1.LastIndexOf(" old");
 	assert(i == -1);
+
+	i = str1.LastIndexOf("d");
+	assert(i == str1.GetLength() - 1);
 }
 
 void testInterleave()
@@ -181,6 +184,11 @@ void testInterleave()
 
 	s1.Interleave("i");
 	assert(strcmp(s1.GetCString(), "Hi eWlolrold") == 0);
+
+	MyString s2("Season change and our love went cold");
+
+	s2.Interleave("     ");
+	assert(strcmp(s2.GetCString(), "S e a s o n change and our love went cold") == 0);
 }
 
 void testRemoveAt()
