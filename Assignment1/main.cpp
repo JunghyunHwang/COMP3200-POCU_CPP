@@ -100,7 +100,8 @@ void testEquals()
 
 	assert(str1 == str2);
 
-	str1.Append(" Ja Hwang");
+	str1.RemoveAt(str1.GetLength() - 1);
+	str1.Append(",");
 
 	assert(!(str1 == str2));
 }

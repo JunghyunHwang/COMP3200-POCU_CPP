@@ -85,13 +85,7 @@ namespace assignment1
 			char* tmp = new char[mCapacity];
 			assert(tmp != nullptr);
 
-			char* pTmp = tmp;
-			const char* pStr = mStr;
-
-			while (*pStr != '\0')
-			{
-				*pTmp++ = *pStr++;
-			}
+			MyString::strCopy(tmp, mStr);
 
 			delete[] mStr;
 			mStr = tmp;
@@ -390,12 +384,17 @@ namespace assignment1
 
 	bool MyString::operator==(const MyString& rhs) const
 	{
+		if (mCount == 0 && rhs.mCount == 0)
+		{
+			return true;
+		}
+
 		return MyString::equals(mStr, rhs.mStr);
 	}
 
 	MyString& MyString::operator=(const MyString& rhs)
 	{
-		if (rhs.mCount > mCapacity)
+		if (rhs.mCount + 1 > mCapacity)
 		{
 			char* tmp = new char[rhs.mCapacity];
 			assert(tmp != nullptr);
@@ -405,6 +404,8 @@ namespace assignment1
 		}
 
 		MyString::strCopy(mStr, rhs.mStr);
+
+		mCount = rhs.mCount;
 
 		return *this;
 	}
