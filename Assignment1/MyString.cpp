@@ -119,14 +119,27 @@ namespace assignment1
 
 		int result = -1;
 		const char* pStr = mStr;
-		const char* pS = s;
 
 		while (*pStr != '\0')
 		{
-			if (MyString::equals(pS, pStr))
+			const char* pS = s;
+
+			if (*pStr == *pS)
 			{
-				result = pStr - mStr;
-				break;
+				++pS;
+				size_t i = 1;
+
+				while (*pS != '\0' && *pS == *(pStr + i))
+				{
+					++pS;
+					++i;
+				}
+
+				if (*pS == '\0')
+				{
+					result = pStr - mStr;
+					break;
+				}
 			}
 
 			++pStr;
@@ -144,13 +157,26 @@ namespace assignment1
 
 		int result = -1;
 		const char* pStr = mStr;
-		const char* pS = s;
 
 		while (*pStr != '\0')
 		{
-			if (MyString::equals(pS, pStr))
+			const char* pS = s;
+
+			if (*pStr == *pS)
 			{
-				result = pStr - mStr;
+				++pS;
+				size_t i = 1;
+
+				while (*pS != '\0' && *pS == *(pStr + i))
+				{
+					++pS;
+					++i;
+				}
+
+				if (*pS == '\0')
+				{
+					result = pStr - mStr;
+				}
 			}
 
 			++pStr;
@@ -384,12 +410,21 @@ namespace assignment1
 
 	bool MyString::operator==(const MyString& rhs) const
 	{
-		if (mCount == 0 && rhs.mCount == 0)
+		const char* pStr = mStr;
+		const char* pRhsStr = rhs.mStr;
+
+		while (*pStr != '\0' && *pStr == *pRhsStr)
+		{
+			++pStr;
+			++pRhsStr;
+		}
+
+		if (*pStr == *pRhsStr)
 		{
 			return true;
 		}
 
-		return MyString::equals(mStr, rhs.mStr);
+		return false;
 	}
 
 	MyString& MyString::operator=(const MyString& rhs)

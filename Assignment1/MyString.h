@@ -43,22 +43,6 @@ namespace assignment1
 
 			*pDest = '\0';
 		}
-
-		bool equals(const char* str1, const char* str2) const
-		{
-			while (*str1 != '\0' && *str1 == *str2)
-			{
-				++str1;
-				++str2;
-			}
-
-			if (*str1 != '\0')
-			{
-				return false;
-			}
-
-			return true;
-		}
 	private:
 		const unsigned int DEFAULT_CAPACITY = 20;
 		const unsigned int ALPHA_MASK = 1 << 5;
