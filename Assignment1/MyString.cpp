@@ -114,7 +114,7 @@ namespace assignment1
 	{
 		if (*s == '\0')
 		{
-			return -1;
+			return 0;
 		}
 
 		int result = -1;
@@ -152,7 +152,7 @@ namespace assignment1
 	{
 		if (*s == '\0')
 		{
-			return -1;
+			return 0;
 		}
 
 		int result = -1;

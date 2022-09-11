@@ -139,38 +139,31 @@ void testReverse()
 void testIndexOf()
 {
 	MyString str1("Season change and our love went cold");
+	string str(str1.GetCString());
 
-	int i = str1.IndexOf("son");
-	assert(i == 3);
+	size_t result = str.find("");
+	result = str.find("z");
 
-	i = str1.IndexOf("n ");
-	assert(5);
-
-	i = str1.IndexOf(" a");
-	assert(13);
-
-	i = str1.IndexOf("Hello");
-	assert(-1);
+	assert(str1.IndexOf("son") == str.find("son"));
+	assert(str1.IndexOf("n ") == str.find("n "));
+	assert(str1.IndexOf(" a") == str.find(" a"));
+	assert(str1.IndexOf("Hello") == str.find("Hello"));
+	assert(str1.IndexOf("Season change and our love went cold") == str.find("Season change and our love went cold"));
+	assert(str1.IndexOf("") == str.find(""));
 }
 
 void testLastIndexOf()
 {
 	MyString str1("old sold cold hold");
+	string str(str1.GetCString());
 
-	int i = str1.LastIndexOf("old");
-	assert(i == 15);
-
-	i = str1.LastIndexOf("sold");
-	assert(i == 4);
-
-	i = str1.LastIndexOf("old ");
-	assert(i == 10);
-
-	i = str1.LastIndexOf(" old");
-	assert(i == -1);
-
-	i = str1.LastIndexOf("d");
-	assert(i == str1.GetLength() - 1);
+	assert(str1.LastIndexOf("old") == str.rfind("old"));
+	assert(str1.LastIndexOf("sold") == str.rfind("sold"));
+	assert(str1.LastIndexOf("old ") == str.rfind("old "));
+	assert(str1.LastIndexOf(" old") == str.rfind(" old"));
+	assert(str1.LastIndexOf("d") == str.rfind("d"));
+	assert(str1.LastIndexOf("old sold cold hold") == str.rfind("old sold cold hold"));
+	assert(str1.LastIndexOf("") == str.rfind(""));
 }
 
 void testInterleave()
