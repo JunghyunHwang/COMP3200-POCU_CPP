@@ -60,10 +60,10 @@ namespace assignment1
 			return true;
 		}
 	private:
-		const int DEFAULT_CAPACITY = 20;
+		const unsigned int DEFAULT_CAPACITY = 20;
 		const unsigned int ALPHA_MASK = 1 << 5;
 		char* mStr;
-		int mCount;
-		int mCapacity;
+		unsigned int mCount;
+		unsigned int mCapacity;
 	};
 }

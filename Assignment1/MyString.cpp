@@ -72,7 +72,7 @@ namespace assignment1
 		}
 
 		const char* pS = s;
-		int sLength = 0;
+		size_t sLength = 0;
 
 		while (*pS++ != '\0')
 		{
@@ -175,14 +175,14 @@ namespace assignment1
 
 		char* interleaveResult;
 		const char* pS = s;
-		int sLength = 0;
+		size_t sLength = 0;
 
 		while (*pS++ != '\0')
 		{
 			++sLength;
 		}
 
-		const int TOTAL_LENGTH = mCount + sLength;
+		const size_t TOTAL_LENGTH = mCount + sLength;
 
 		if (mCapacity < TOTAL_LENGTH + 1)
 		{
@@ -194,7 +194,7 @@ namespace assignment1
 		const char* pStr = mStr;
 		pS = s;
 		
-		for (unsigned int i = 0; i <= TOTAL_LENGTH; ++i)
+		for (size_t i = 0; i <= TOTAL_LENGTH; ++i)
 		{
 			if (i % 2 == 0)
 			{
