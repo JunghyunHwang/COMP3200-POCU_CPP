@@ -157,6 +157,9 @@ void testLastIndexOf()
 	MyString str1("old sold cold hold");
 	string str(str1.GetCString());
 
+	size_t result = str.rfind("");
+	result = str.rfind("z");
+
 	assert(str1.LastIndexOf("old") == str.rfind("old"));
 	assert(str1.LastIndexOf("sold") == str.rfind("sold"));
 	assert(str1.LastIndexOf("old ") == str.rfind("old "));

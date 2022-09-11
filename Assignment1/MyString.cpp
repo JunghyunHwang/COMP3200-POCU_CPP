@@ -152,7 +152,7 @@ namespace assignment1
 	{
 		if (*s == '\0')
 		{
-			return 0;
+			return mCount;
 		}
 
 		int result = -1;
