@@ -13,7 +13,7 @@ namespace testvirtual
         strcpy(mName, name);
     }
 
-    Cat::Speak()
+    void Cat::Speak()
     {
         std::cout << "Hi I'm " << mName << std::endl;
     }
