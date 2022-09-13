@@ -1,28 +1,29 @@
+#include <iomanip>
 #include <fstream>
+#include <string>
 
 #include "lab2.h"
 
+using namespace std;
+
 int main()
 {
-	std::ifstream fin;
-	std::ofstream fout;
+	ifstream fin;
+	ofstream fout;
 
-	fin.open("inputInt.txt");
-	fout.open("resultInt.txt");
+	string happyPathfileName = "HappyPath.txt";
+	string fileName1 = "inputInt1.txt";
+	string fileName2 = "inputInt2.txt";
+	string fileName3 = "inputInt3.txt";
+	string fileName4 = "inputInt4.txt";
+
+	fin.open(fileName1);
+	fout.open("Result_" + fileName1);
 	{
 		lab2::PrintIntegers(fin, fout);
 	}
-	fout.close();
 	fin.close();
-
-
-	fin.open("inputFloat.txt");
-	fout.open("resultFloat.txt");
-	{
-		lab2::PrintMaxFloat(fin, fout);
-	}
 	fout.close();
-	fin.close();
 
 	return 0;
 }
