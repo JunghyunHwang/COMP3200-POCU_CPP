@@ -87,6 +87,8 @@ void testPrintMaxFloat()
 
     string floatTest1 = "inputFloat1.txt";
 	string floatTest2 = "inputFloat2.txt";
+	string floatTest3 = "inputFloat3.txt";
+	string floatTest4 = "inputFloat4.txt";
 	string empty = "Empty.txt";
 
     fin.open(floatTest1);
@@ -107,6 +109,22 @@ void testPrintMaxFloat()
 
 	fin.open(floatTest2);
 	fout.open("Result_" + floatTest2);
+	{
+		lab2::PrintMaxFloat(fin, fout);
+	}
+	fin.close();
+	fout.close();
+
+	fin.open(floatTest3);
+	fout.open("Result_" + floatTest3);
+	{
+		lab2::PrintMaxFloat(fin, fout);
+	}
+	fin.close();
+	fout.close();
+
+	fin.open(floatTest4);
+	fout.open("Result_" + floatTest4);
 	{
 		lab2::PrintMaxFloat(fin, fout);
 	}

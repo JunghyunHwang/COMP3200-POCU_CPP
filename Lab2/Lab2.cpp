@@ -1,6 +1,6 @@
-#include <iostream>
 #include <iomanip>
 #include <string>
+#include <limits.h>
 
 #include "Lab2.h"
 
@@ -50,8 +50,8 @@ namespace lab2
     {
         string trash;
         float inputNumber;
-        float maxNumber = FLT_MIN;
-        int num;
+        const int MAX_NUMBER = INT_MIN;
+        float maxNumber = MAX_NUMBER;
 
         while (!in.eof())
         {
