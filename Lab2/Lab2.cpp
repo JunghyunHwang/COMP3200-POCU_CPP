@@ -47,6 +47,27 @@ namespace lab2
 
     void PrintMaxFloat(std::istream& in, std::ostream& out)
     {
+        string trash;
+        float floatNumber;
+        float maxNumber = __FLT_MIN__;
 
+        while (!in.eof())
+        {
+            in >> floatNumber;
+
+            if (in.fail())
+            {
+                in.clear();
+                cin >> trash;
+            }
+            else
+            {
+                out << setw(5) << " " << setw(15) << showpos << floatNumber << endl;
+
+                maxNumber = maxNumber < floatNumber ? floatNumber : maxNumber;
+            }
+        }
+
+        out << setw(5) << left << "max: " << setw(15) << showpos << maxNumber << endl;
     }
 }
