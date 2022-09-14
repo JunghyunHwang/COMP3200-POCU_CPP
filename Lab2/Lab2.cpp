@@ -50,7 +50,7 @@ namespace lab2
     {
         string trash;
         float inputNumber;
-        float maxNumber = __FLT_MIN__;
+        float maxNumber = FLT_MIN;
         int num;
 
         while (!in.eof())
@@ -60,6 +60,7 @@ namespace lab2
             if (in.fail())
             {
                 in.clear();
+                in >> trash;
             }
             else
             {
