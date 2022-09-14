@@ -1,3 +1,4 @@
+#include <iostream>
 #include <iomanip>
 #include <string>
 
@@ -14,7 +15,7 @@ namespace lab2
     void PrintIntegers(std::istream& in, std::ostream& out)
     {
         std::string trash;
-        int number;
+        int inputNumber;
 
         // Print header
         out << setw(OCT_WIDTH) << "oct"
@@ -29,7 +30,7 @@ namespace lab2
 
         while (!in.eof())
         {
-            in >> number;
+            in >> inputNumber;
 
             if (in.fail())
             {
@@ -38,9 +39,9 @@ namespace lab2
             }
             else
             {
-                out << setw(OCT_WIDTH) << oct << number
-                    << setw(DEC_WIDTH) << dec << number
-                    << setw(HEX_WIDTH) << uppercase << hex << number << endl;
+                out << setw(OCT_WIDTH) << oct << inputNumber
+                    << setw(DEC_WIDTH) << dec << inputNumber
+                    << setw(HEX_WIDTH) << uppercase << hex << inputNumber << endl;
             }
         }
     }
@@ -48,26 +49,30 @@ namespace lab2
     void PrintMaxFloat(std::istream& in, std::ostream& out)
     {
         string trash;
-        float floatNumber;
+        float inputNumber;
         float maxNumber = __FLT_MIN__;
+        int num;
 
         while (!in.eof())
         {
-            in >> floatNumber;
+            in >> inputNumber;
 
             if (in.fail())
             {
                 in.clear();
-                cin >> trash;
             }
             else
             {
-                out << setw(5) << " " << setw(15) << showpos << floatNumber << endl;
+                out << setw(5) << " " << setw(15) << showpos << internal;
 
-                maxNumber = maxNumber < floatNumber ? floatNumber : maxNumber;
+                out << fixed;
+                out.precision(3);
+                out << inputNumber << endl;
+
+                maxNumber = maxNumber < inputNumber ? inputNumber : maxNumber;
             }
         }
 
-        out << setw(5) << left << "max: " << setw(15) << showpos << maxNumber << endl;
+        out << setw(5) << left << "max: " << setw(15) << showpos << internal << maxNumber << endl;
     }
 }

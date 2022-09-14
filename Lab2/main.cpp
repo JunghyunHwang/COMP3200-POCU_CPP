@@ -6,39 +6,79 @@
 
 using namespace std;
 
+void testPrintIntegers();
+void testPrintMaxFloat();
+
 int main()
 {
-	ifstream fin;
+    // testPrintIntegers();
+    // testPrintMaxFloat();
+    float testNumber;
+    cin >> testNumber;
+
+    cout << "No prob";
+
+	return 0;
+}
+
+void testPrintIntegers()
+{
+    ifstream fin;
 	ofstream fout;
 
-	string happyPathfileName = "HappyPath.txt";
-	string fileName1 = "inputInt1.txt";
-	string fileName2 = "inputInt2.txt";
-	string fileName3 = "inputInt3.txt";
-	string fileName4 = "inputInt4.txt";
+    string empty = "Empty.txt";
+	string IntTest1 = "inputInt1.txt";
+	string IntTest2 = "inputInt2.txt";
+	string IntTest3 = "inputInt3.txt";
+	string IntTest4 = "inputInt4.txt";
+	string IntTest5 = "inputInt5.txt";
 
-	fin.open(fileName4);
-	fout.open("Result_" + fileName4);
+	fin.open(IntTest5);
+	fout.open("Result_" + IntTest5);
 	{
 		lab2::PrintIntegers(fin, fout);
 	}
 	fin.close();
 	fout.close();
 
-    string fileName5 = "inputFloat1.txt";
-	string fileName6 = "inputFloat2.txt";
-	string fileName7 = "inputFloat3.txt";
-	string fileName8 = "inputFloat4.txt";
+    fin.open(empty);
+	fout.open("Result_" + empty);
+	{
+		lab2::PrintIntegers(fin, fout);
+	}
+	fin.close();
+	fout.close();
+}
 
-    fin.open(fileName5);
-    fout.open("Result_" + fileName5);
+void testPrintMaxFloat()
+{
+    ifstream fin;
+	ofstream fout;
+
+    string floatTest1 = "inputFloat1.txt";
+    fin.open(floatTest1);
+    fout.open("Result_" + floatTest1);
     {
         lab2::PrintMaxFloat(fin, fout);
     }
     fin.close();
 	fout.close();
 
-    cout << "No prob";
+    string floatTest2 = "inputFloat2.txt";
+    fin.open(floatTest2);
+    fout.open("Result_" + floatTest2);
+    {
+        lab2::PrintMaxFloat(fin, fout);
+    }
+    fin.close();
+	fout.close();
 
-	return 0;
+    string empty = "Empty.txt";
+    fin.open(empty);
+	fout.open("Result_" + empty);
+	{
+		lab2::PrintMaxFloat(fin, fout);
+	}
+	fin.close();
+	fout.close();
 }
