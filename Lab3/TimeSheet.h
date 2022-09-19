@@ -18,10 +18,10 @@ namespace lab3
 		TimeSheet& operator=(const TimeSheet& rhs);
 
 	private:
-	   unsigned int mCount;
-	   unsigned int mMaxEntries;
-	   unsigned int mTotalTime;
-	   unsigned int* mTimes;
-	   std::string mName;
+		unsigned int mCount;
+		unsigned int mMaxEntries;
+		unsigned int mTotalTime;
+		unsigned int* mTimes;
+		std::string mName;
 	};
 }

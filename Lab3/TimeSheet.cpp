@@ -99,7 +99,7 @@ namespace lab3
 		}
 
 		float average = GetAverageTime();
-		float deviation = squaredSum / (float)mCount - average * average;
+		float deviation = squaredSum / static_cast<float>(mCount) - average * average;
 
 		return sqrt(deviation);
 	}
