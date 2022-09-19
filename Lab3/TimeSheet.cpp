@@ -81,7 +81,7 @@ namespace lab3
 			return 0.0;
 		}
 		
-		return mTotalTime / (float)mCount;
+		return mTotalTime / static_cast<float>(mCount);
 	}
 
 	float TimeSheet::GetStandardDeviation() const
