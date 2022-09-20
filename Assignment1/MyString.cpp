@@ -444,4 +444,20 @@ namespace assignment1
 
 		return *this;
 	}
+
+	void MyString::strCopy(char* dest, const char* origin)
+	{
+		assert(dest != nullptr);
+		assert(origin != nullptr);
+
+		char* pDest = dest;
+		const char* pOrigin = origin;
+
+		while (*pOrigin != '\0')
+		{
+			*pDest++ = *pOrigin++;
+		}
+
+		*pDest = '\0';
+	}
 }

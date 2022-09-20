@@ -27,22 +27,10 @@ namespace assignment1
 		MyString& operator=(const MyString& rhs);
 		void ToLower();
 		void ToUpper();
+		
 	private:
-		void strCopy(char* dest, const char* origin)
-		{
-			assert(dest != nullptr);
-			assert(origin != nullptr);
+		void strCopy(char* dest, const char* origin);
 
-			char* pDest = dest;
-			const char* pOrigin = origin;
-
-			while (*pOrigin != '\0')
-			{
-				*pDest++ = *pOrigin++;
-			}
-
-			*pDest = '\0';
-		}
 	private:
 		const unsigned int DEFAULT_CAPACITY = 20;
 		const unsigned int ALPHA_MASK = 1 << 5;

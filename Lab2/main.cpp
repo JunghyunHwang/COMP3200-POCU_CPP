@@ -4,8 +4,6 @@
 
 #include "Lab2.h"
 
-using namespace std;
-
 void testPrintIntegers();
 void testPrintMaxFloat();
 
@@ -14,22 +12,27 @@ int main()
 	testPrintIntegers();
 	testPrintMaxFloat();
 
-	cout << "No prob";
+	char name[] = "JaHwang";
+
+	std::cout << name << std::endl;
+	std::cout << sizeof(name) << std::endl;
+
+	std::cout << "No prob" << std::endl;
 
 	return 0;
 }
 
 void testPrintIntegers()
 {
-	ifstream fin;
-	ofstream fout;
+	std::ifstream fin;
+	std::ofstream fout;
 
-	string empty = "Empty.txt";
-	string IntTest1 = "inputInt1.txt";
-	string IntTest2 = "inputInt2.txt";
-	string IntTest3 = "inputInt3.txt";
-	string IntTest4 = "inputInt4.txt";
-	string IntTest5 = "inputInt5.txt";
+	std::string empty = "Empty.txt";
+	std::string IntTest1 = "inputInt1.txt";
+	std::string IntTest2 = "inputInt2.txt";
+	std::string IntTest3 = "inputInt3.txt";
+	std::string IntTest4 = "inputInt4.txt";
+	std::string IntTest5 = "inputInt5.txt";
 
 	fin.open(IntTest1);
 	fout.open("Result_" + IntTest1);
@@ -82,14 +85,14 @@ void testPrintIntegers()
 
 void testPrintMaxFloat()
 {
-	ifstream fin;
-	ofstream fout;
+	std::ifstream fin;
+	std::ofstream fout;
 
-	string floatTest1 = "inputFloat1.txt";
-	string floatTest2 = "inputFloat2.txt";
-	string floatTest3 = "inputFloat3.txt";
-	string floatTest4 = "inputFloat4.txt";
-	string empty = "Empty.txt";
+	std::string floatTest1 = "inputFloat1.txt";
+	std::string floatTest2 = "inputFloat2.txt";
+	std::string floatTest3 = "inputFloat3.txt";
+	std::string floatTest4 = "inputFloat4.txt";
+	std::string empty = "Empty.txt";
 
 	fin.open(floatTest1);
 	fout.open("Result_" + floatTest1);
