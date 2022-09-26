@@ -23,7 +23,7 @@ namespace point
 
     void Point::SetY(int y)
     {
-        mY= y;
+        mY = y;
     }
 
     int Point::GetX() const
