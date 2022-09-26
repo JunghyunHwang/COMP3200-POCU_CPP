@@ -30,7 +30,7 @@ namespace lab3
 
 	TimeSheet& TimeSheet::operator=(const TimeSheet& rhs)
 	{
-		if (mTimes == rhs.mTimes)
+		if (&rhs == this)
 		{
 			return *this;
 		}
