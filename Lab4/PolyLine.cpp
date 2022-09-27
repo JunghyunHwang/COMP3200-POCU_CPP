@@ -59,6 +59,11 @@ namespace lab4
 		mPoints[i] = nullptr;
 		--mSize;
 
+		for (size_t idx = i; idx < mSize; ++idx)
+		{
+			mPoints[idx] = mPoints[idx + 1];
+		}
+
 		return true;
 	}
 
@@ -97,5 +102,12 @@ namespace lab4
 
 		*outMin = *outMin + minPoint;
 		*outMax = *outMax + maxPoint;
+
+		return true;
+	}
+
+	const Point* PolyLine::operator[](unsigned int i) const
+	{
+		return mPoints[i];
 	}
 }

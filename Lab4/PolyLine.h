@@ -4,10 +4,10 @@
 
 namespace lab4
 {
-    enum
-    {
-        POINTS_CAPACITY = 10
-    };
+	enum
+	{
+		POINTS_CAPACITY = 10
+	};
 
 	class PolyLine
 	{
@@ -15,7 +15,7 @@ namespace lab4
 		PolyLine();
 		PolyLine(const PolyLine& other);
 		~PolyLine();
-	
+
 		bool AddPoint(float x, float y);
 		bool AddPoint(const Point* point);
 		bool RemovePoint(unsigned int i);
@@ -23,8 +23,8 @@ namespace lab4
 
 		const Point* operator[](unsigned int i) const;
 
-    private:
-        const Point* mPoints[POINTS_CAPACITY] { nullptr, };
-        unsigned int mSize;
+	private:
+		const Point* mPoints[POINTS_CAPACITY]{ nullptr, };
+		unsigned int mSize;
 	};
 }
