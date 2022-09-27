@@ -4,6 +4,7 @@ namespace lab4
 {
 	class Point
 	{
+		friend Point operator*(float operand, const Point& point);
 	public:
 		Point(float x, float y);
 		Point(const Point& other);

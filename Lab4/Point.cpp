@@ -14,6 +14,10 @@ namespace lab4
 	{
 	}
 
+	Point::~Point()
+	{
+	}
+
 	Point Point::operator+(const Point& other) const
 	{
 		Point result(*this);
@@ -36,7 +40,7 @@ namespace lab4
 
 	float Point::Dot(const Point& other) const
 	{
-		return mX * other.mX + mY + other.mY;
+		return mX * other.mX + mY * other.mY;
 	}
 
 	Point Point::operator*(const float operand) const
@@ -49,12 +53,22 @@ namespace lab4
 		return result;
 	}
 
+	Point operator*(float operand, const Point& point)
+	{
+		Point result(point);
+
+		result.mX *= operand;
+		result.mY *= operand;
+
+		return result;
+	}
+
 	float Point::GetX() const
 	{
 		return mX;
 	}
 
-	float Point::GetX() const
+	float Point::GetY() const
 	{
 		return mY;
 	}
