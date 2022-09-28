@@ -63,6 +63,20 @@ namespace lab4
 		return result;
 	}
 
+	Point& Point::operator=(const Point& rhs)
+	{
+		if (this == &rhs)
+		{
+			return *this;
+		}
+
+		mX = rhs.mX;
+		mY = rhs.mY;
+
+		return *this;
+	}
+
+
 	float Point::GetX() const
 	{
 		return mX;

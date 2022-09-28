@@ -1,5 +1,6 @@
 #pragma once
 
+#include <cassert>
 #include "Point.h"
 
 namespace lab4
@@ -22,9 +23,10 @@ namespace lab4
 		bool TryGetMinBoundingRectangle(Point* outMin, Point* outMax) const;
 
 		const Point* operator[](unsigned int i) const;
+		PolyLine& operator=(const PolyLine& rhs);
 
 	private:
-		const Point* mPoints[POINTS_CAPACITY]{ nullptr, };
+		const Point* mPoints[POINTS_CAPACITY];
 		unsigned int mSize;
 	};
 }

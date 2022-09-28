@@ -8,8 +8,8 @@ int main()
 {
     testcase::TestOfficial();
     testcase::TestPointOperator();
-    testcase::TestMinBoundingRectangle();
     testcase::TestPolyLineOperator();
+    testcase::TestMinBoundingRectangle();
 
     std::cout << "No prob" << std::endl;
 

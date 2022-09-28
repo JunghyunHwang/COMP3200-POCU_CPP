@@ -6,6 +6,6 @@ namespace testcase
 
     void TestOfficial();
     void TestPointOperator();
-    void TestMinBoundingRectangle();
     void TestPolyLineOperator();
+    void TestMinBoundingRectangle();
 }

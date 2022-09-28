@@ -61,6 +61,29 @@ namespace testcase
         assert(maxP.GetY() == 5);
     }
 
+    void TestPolyLineOperator()
+    {
+        lab4::PolyLine pl1;
+
+        pl1.AddPoint(new lab4::Point(1, 1));
+        pl1.AddPoint(new lab4::Point(2, 2));
+        pl1.AddPoint(new lab4::Point(3, 3));
+        pl1.AddPoint(new lab4::Point(4, 4));
+        pl1.AddPoint(new lab4::Point(5, 5));
+
+        assert(pl1.RemovePoint(5) == false);
+
+        lab4::PolyLine pl2;
+
+        pl2 = pl1;
+
+        for (size_t i = 0; i < 5; ++i)
+        {
+            assert(pl1[i]->GetX() == i + 1);
+            assert(pl1[i]->GetY() == i + 1);
+        }
+    }
+
     void TestPointOperator()
     {
         const lab4::Point p1(2, 2);
@@ -103,22 +126,5 @@ namespace testcase
 
         assert(max.GetX() == 1);
         assert(max.GetY() == 2);
-    }
-
-    void TestPolyLineOperator()
-    {
-        lab4::PolyLine pl1;
-
-        pl1.AddPoint(new lab4::Point(1, 1));
-        pl1.AddPoint(new lab4::Point(2, 2));
-        pl1.AddPoint(new lab4::Point(3, 3));
-        pl1.AddPoint(new lab4::Point(4, 4));
-        pl1.AddPoint(new lab4::Point(5, 5));
-
-        for (size_t i = 0; i < 5; ++i)
-        {
-            assert(pl1[i]->GetX() == i + 1);
-            assert(pl1[i]->GetY() == i + 1);
-        }
     }
 }

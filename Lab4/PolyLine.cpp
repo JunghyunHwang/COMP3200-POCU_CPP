@@ -24,7 +24,29 @@ namespace lab4
 			delete mPoints[i];
 		}
 	}
-	
+
+	PolyLine& PolyLine::operator=(const PolyLine& rhs)
+	{
+		if (this == &rhs)
+		{
+			return *this;
+		}
+
+		for (size_t i = 0; i < mSize; ++i)
+		{
+			delete mPoints[i];
+		}
+
+		mSize = rhs.mSize;
+
+		for (size_t i = 0; i < mSize; ++i)
+		{
+			mPoints[i] = rhs.mPoints[i];
+		}
+
+		return *this;
+	}
+
 	bool PolyLine::AddPoint(float x, float y)
 	{
 		if (mSize >= POINTS_CAPACITY)
@@ -39,6 +61,7 @@ namespace lab4
 
 	bool PolyLine::AddPoint(const Point* point)
 	{
+		assert(mSize <= POINTS_CAPACITY);
 		if (mSize >= POINTS_CAPACITY)
 		{
 			return false;
@@ -51,7 +74,7 @@ namespace lab4
 
 	bool PolyLine::RemovePoint(unsigned int i)
 	{
-		if (i > mSize)
+		if (i >= mSize)
 		{
 			return false;
 		}
@@ -69,6 +92,9 @@ namespace lab4
 
 	bool PolyLine::TryGetMinBoundingRectangle(Point* outMin, Point* outMax) const
 	{
+		assert(outMin != nullptr);
+		assert(outMax != nullptr);
+
 		if (mSize <= 1)
 		{
 			return false;

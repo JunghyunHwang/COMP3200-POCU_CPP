@@ -14,6 +14,7 @@ namespace lab4
 		Point operator-(const Point& other) const;
 		float Dot(const Point& other) const;
 		Point operator*(float operand) const;
+		Point& operator=(const Point& rhs);
 
 		float GetX() const;
 		float GetY() const;
