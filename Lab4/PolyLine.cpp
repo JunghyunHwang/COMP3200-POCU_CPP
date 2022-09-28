@@ -19,10 +19,6 @@ namespace lab4
 
 	PolyLine::~PolyLine()
 	{
-		for (size_t i = 0; i < mSize; ++i)
-		{
-			delete mPoints[i];
-		}
 	}
 
 	PolyLine& PolyLine::operator=(const PolyLine& rhs)
@@ -30,11 +26,6 @@ namespace lab4
 		if (this == &rhs)
 		{
 			return *this;
-		}
-
-		for (size_t i = 0; i < mSize; ++i)
-		{
-			delete mPoints[i];
 		}
 
 		mSize = rhs.mSize;
@@ -79,7 +70,9 @@ namespace lab4
 			return false;
 		}
 
+		delete mPoints[i];
 		mPoints[i] = nullptr;
+
 		--mSize;
 
 		for (size_t idx = i; idx < mSize; ++idx)
