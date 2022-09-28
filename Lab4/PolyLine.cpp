@@ -27,6 +27,11 @@ namespace lab4
 		{
 			return *this;
 		}
+		
+		for (size_t i = 0; i < mSize; ++i)
+		{
+			delete mPoints[i];
+		}
 
 		mSize = rhs.mSize;
 
