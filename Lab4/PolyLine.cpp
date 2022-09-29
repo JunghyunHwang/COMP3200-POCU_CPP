@@ -13,12 +13,16 @@ namespace lab4
 	{
 		for (size_t i = 0; i < mSize; ++i)
 		{
-			mPoints[i] = other.mPoints[i];
+			mPoints[i] = new Point(*other.mPoints[i]);
 		}
 	}
 
 	PolyLine::~PolyLine()
 	{
+		for (size_t i = 0; i < mSize; ++i)
+		{
+			delete mPoints[i];
+		}
 	}
 
 	PolyLine& PolyLine::operator=(const PolyLine& rhs)
@@ -37,7 +41,7 @@ namespace lab4
 
 		for (size_t i = 0; i < mSize; ++i)
 		{
-			mPoints[i] = rhs.mPoints[i];
+			mPoints[i] = new Point(*rhs.mPoints[i]);
 		}
 
 		return *this;
@@ -57,7 +61,6 @@ namespace lab4
 
 	bool PolyLine::AddPoint(const Point* point)
 	{
-		assert(mSize <= POINTS_CAPACITY);
 		if (mSize >= POINTS_CAPACITY)
 		{
 			return false;
@@ -76,7 +79,6 @@ namespace lab4
 		}
 
 		delete mPoints[i];
-		mPoints[i] = nullptr;
 
 		--mSize;
 
@@ -123,11 +125,6 @@ namespace lab4
 
 			minX = POINT_X < minX ? POINT_X : minX;
 			minY = POINT_Y < minY ? POINT_Y : minY;
-		}
-
-		if (minX == maxX || minY == maxY)
-		{
-			return false;
 		}
 
 		const Point minPoint(minX, minY);
