@@ -106,8 +106,8 @@ namespace lab4
 
 		for (size_t i = 0; i < mSize; ++i)
 		{
-			const int POINT_X = mPoints[i]->GetX();
-			const int POINT_Y = mPoints[i]->GetY();
+			const float POINT_X = mPoints[i]->GetX();
+			const float POINT_Y = mPoints[i]->GetY();
 
 			maxX = POINT_X > maxX ? POINT_X : maxX;
 			maxY = POINT_Y > maxY ? POINT_Y : maxY;
