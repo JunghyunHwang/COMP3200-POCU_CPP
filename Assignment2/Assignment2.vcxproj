@@ -70,7 +70,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Airplane.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Person.cpp" />
+    <ClCompile Include="Vehicle.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Airplane.h" />
+    <ClInclude Include="IDivable.h" />
+    <ClInclude Include="IDrivable.h" />
+    <ClInclude Include="IFlyable.h" />
+    <ClInclude Include="ISailable.h" />
+    <ClInclude Include="Person.h" />
+    <ClInclude Include="Vehicle.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
