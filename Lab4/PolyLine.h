@@ -26,7 +26,7 @@ namespace lab4
 		PolyLine& operator=(const PolyLine& rhs);
 
 	private:
-		const Point* mPoints[POINTS_CAPACITY];
+		const Point* mPoints[POINTS_CAPACITY] { nullptr, };
 		unsigned int mSize;
 	};
 }

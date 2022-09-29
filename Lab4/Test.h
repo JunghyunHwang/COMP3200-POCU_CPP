@@ -8,4 +8,5 @@ namespace testcase
 	void TestPointOperator();
 	void TestPolyLineOperator();
 	void TestMinBoundingRectangle();
+	void TestCaseMain();
 }

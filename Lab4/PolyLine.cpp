@@ -85,6 +85,8 @@ namespace lab4
 			mPoints[idx] = mPoints[idx + 1];
 		}
 
+		mPoints[mSize] = nullptr;
+
 		return true;
 	}
 
@@ -93,16 +95,23 @@ namespace lab4
 		assert(outMin != nullptr);
 		assert(outMax != nullptr);
 
-		if (mSize <= 1)
+		if (mSize == 0)
 		{
 			return false;
 		}
+		else if (mSize == 1)
+		{
+			*outMin = *mPoints[0];
+			*outMax = *mPoints[0];
 
-		int minX = std::numeric_limits<int>::max();
-		int minY = std::numeric_limits<int>::max();
+			return true;
+		}
 
-		int maxX = std::numeric_limits<int>::min();
-		int maxY = std::numeric_limits<int>::min();
+		float minX = std::numeric_limits<float>::max();
+		float minY = std::numeric_limits<float>::max();
+
+		float maxX = std::numeric_limits<float>::lowest();
+		float maxY = std::numeric_limits<float>::lowest();
 
 		for (size_t i = 0; i < mSize; ++i)
 		{
@@ -124,14 +133,19 @@ namespace lab4
 		const Point minPoint(minX, minY);
 		const Point maxPoint(maxX, maxY);
 
-		*outMin = *outMin + minPoint;
-		*outMax = *outMax + maxPoint;
+		*outMin = minPoint;
+		*outMax = maxPoint;
 
 		return true;
 	}
 
 	const Point* PolyLine::operator[](unsigned int i) const
 	{
+		if (i >= mSize)
+		{
+			return nullptr;
+		}
+
 		return mPoints[i];
 	}
 }

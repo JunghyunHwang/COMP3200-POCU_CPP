@@ -10,6 +10,7 @@ int main()
     testcase::TestPointOperator();
     testcase::TestPolyLineOperator();
     testcase::TestMinBoundingRectangle();
+    testcase::TestCaseMain();
 
     std::cout << "No prob" << std::endl;
 
