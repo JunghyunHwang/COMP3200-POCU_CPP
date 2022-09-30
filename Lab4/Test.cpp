@@ -84,6 +84,9 @@ namespace testcase
 		{
 			assert(pl1[i]->GetX() == i + 1);
 			assert(pl1[i]->GetY() == i + 1);
+
+			assert(pl2[i]->GetX() == i + 1);
+			assert(pl2[i]->GetY() == i + 1);
 		}
 	}
 
