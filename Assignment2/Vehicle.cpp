@@ -4,21 +4,21 @@
 namespace assignment2
 {
 	Vehicle::Vehicle(unsigned int maxPassengersCount)
-		: mMaxPassengerCount(maxPassengersCount)
-		, mPassengerCount(0)
+		: mMaxPassengersCount(maxPassengersCount)
+		, mPassengersCount(0)
 	{
-		mPassengers = new const Person*[mMaxPassengerCount];
+		mPassengers = new const Person*[mMaxPassengersCount];
 	}
 
 	Vehicle::Vehicle(const Vehicle& other)
-		: mMaxPassengerCount(other.mMaxPassengerCount)
-		, mPassengerCount(other.mPassengerCount)
+		: mMaxPassengersCount(other.mMaxPassengersCount)
+		, mPassengersCount(other.mPassengersCount)
 	{
-		assert(mPassengerCount <= mMaxPassengerCount);
+		assert(mPassengersCount <= mMaxPassengersCount);
 
-		mPassengers = new const Person*[mMaxPassengerCount];
+		mPassengers = new const Person*[mMaxPassengersCount];
 
-		for (size_t i = 0; i < mPassengerCount; ++i)
+		for (size_t i = 0; i < mPassengersCount; ++i)
 		{
 			mPassengers[i] = new Person(*other.mPassengers[i]);
 		}
@@ -26,7 +26,7 @@ namespace assignment2
 
 	Vehicle::~Vehicle()
 	{
-		for (size_t i = 0; i < mPassengerCount; ++i)
+		for (size_t i = 0; i < mPassengersCount; ++i)
 		{
 			delete mPassengers[i];
 		}
@@ -38,19 +38,19 @@ namespace assignment2
 	{
 		assert(person != nullptr);
 
-		if (mPassengerCount >= mMaxPassengerCount)
+		if (mPassengersCount >= mMaxPassengersCount)
 		{
 			return false;
 		}
 
-		mPassengers[mPassengerCount++] = person;
+		mPassengers[mPassengersCount++] = person;
 
 		return true;
 	}
 
 	bool Vehicle::RemovePassenger(unsigned int i)
 	{
-		if (i >= mPassengerCount)
+		if (i >= mPassengersCount)
 		{
 			return false;
 		}
@@ -58,33 +58,43 @@ namespace assignment2
 		assert(mPassengers[i] != nullptr);
 
 		delete mPassengers[i];
-		--mPassengerCount;
+		--mPassengersCount;
 
-		for (size_t idx = i; idx < mPassengerCount; ++idx)
+		for (size_t idx = i; idx < mPassengersCount; ++idx)
 		{
 			mPassengers[idx] = mPassengers[idx + 1];
 		}
 
-		mPassengers[mPassengerCount] = nullptr;
+		mPassengers[mPassengersCount] = nullptr;
 
 		return true;
 	}
 
+	void Vehicle::Clear()
+	{
+		for (size_t i = 0; i < mPassengersCount; ++i)
+		{
+			delete mPassengers[i];
+		}
+
+		mPassengersCount = 0;
+	}
+
 	unsigned int Vehicle::GetPassengersCount() const
 	{
-		return mPassengerCount;
+		return mPassengersCount;
 	}
 
 	unsigned int Vehicle::GetMaxPassengersCount() const
 	{
-		return mMaxPassengerCount;
+		return mMaxPassengersCount;
 	}
 
 	unsigned int Vehicle::GetTotalWeight() const
 	{
 		unsigned int totalWeight = 0;
 
-		for (size_t i = 0; i < mPassengerCount; ++i)
+		for (size_t i = 0; i < mPassengersCount; ++i)
 		{
 			totalWeight += mPassengers[i]->GetWeight();
 		}
@@ -94,7 +104,7 @@ namespace assignment2
 
 	const Person* Vehicle::GetPassenger(unsigned int i) const
 	{
-		if (i >= mPassengerCount)
+		if (i >= mPassengersCount)
 		{
 			return nullptr;
 		}

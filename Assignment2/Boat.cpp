@@ -3,6 +3,7 @@
 namespace assignment2
 {
 	Boat::Boat(unsigned int maxPassengersCount)
+		: Vehicle(maxPassengersCount)
 	{
 	}
 
@@ -10,9 +11,35 @@ namespace assignment2
 	{
 	}
 
+	unsigned int Boat::GetMaxSpeed() const
+	{
+		return GetSailSpeed();
+	}
+
+	unsigned int Boat::GetSailSpeed() const
+	{
+		unsigned int speed = 800 - 10 * GetTotalWeight();
+		return (speed > MIN_SAIL_SPEED ? speed : MIN_SAIL_SPEED);
+	}
+
 	Boatplane Boat::operator+(Airplane& plane)
 	{
-		Boatplane bp(5);
+		Boatplane bp(plane.GetMaxPassengersCount() + mMaxPassengersCount);
+
+		for (size_t i = 0; i < plane.GetPassengersCount(); ++i)
+		{
+			bp.AddPassenger(new Person(*plane.GetPassenger(i)));
+		}
+
+		plane.Clear();
+
+		for (size_t i = 0; i < mPassengersCount; ++i)
+		{
+			bp.AddPassenger(new Person(*mPassengers[i]));
+		}
+
+		Clear();
+
 		return bp;
 	}
 }

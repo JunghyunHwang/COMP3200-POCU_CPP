@@ -5,6 +5,11 @@
 
 namespace assignment2
 {
+	enum
+	{
+		MIN_SAIL_SPEED = 20
+	};
+
 	class Vehicle
 	{
 	public:
@@ -16,14 +21,15 @@ namespace assignment2
 
 		bool AddPassenger(const Person* person);
 		bool RemovePassenger(unsigned int i);
+		void Clear();
 		const Person* GetPassenger(unsigned int i) const;
 		unsigned int GetPassengersCount() const;
 		unsigned int GetMaxPassengersCount() const;
 		unsigned int GetTotalWeight() const;
 
 	protected:
-		unsigned int mMaxPassengerCount;
-		unsigned int mPassengerCount;
+		const unsigned int mMaxPassengersCount;
+		unsigned int mPassengersCount;
 		const Person** mPassengers;
 	};
 }

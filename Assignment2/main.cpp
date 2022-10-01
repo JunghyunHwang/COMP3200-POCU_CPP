@@ -4,6 +4,7 @@
 int main()
 {
 	assignment2::TestVehicleSpeed();
+	assignment2::TestBoatplane();
 
 	return 0;
 }

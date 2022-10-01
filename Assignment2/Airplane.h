@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Vehicle.h"
+#include "Boat.h"
 #include "IFlyable.h"
 #include "IDrivable.h"
 #include "Boatplane.h"
@@ -15,9 +16,9 @@ namespace assignment2
 		Airplane(unsigned int maxPassengersCount);
 		virtual ~Airplane();
 
+		unsigned int GetMaxSpeed() const;
 		unsigned int GetFlySpeed() const;
 		unsigned int GetDriveSpeed() const;
-		unsigned int GetMaxSpeed() const;
 
 		Boatplane operator+(Boat& boat);
 	};
