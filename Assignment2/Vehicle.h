@@ -1,5 +1,6 @@
 #pragma once
 
+#include <math.h>
 #include "Person.h"
 
 namespace assignment2
@@ -20,7 +21,7 @@ namespace assignment2
 		unsigned int GetMaxPassengersCount() const;
 		unsigned int GetTotalWeight() const;
 
-	private:
+	protected:
 		unsigned int mMaxPassengerCount;
 		unsigned int mPassengerCount;
 		const Person** mPassengers;
