@@ -14,8 +14,6 @@ namespace assignment2
 		: mMaxPassengersCount(other.mMaxPassengersCount)
 		, mPassengersCount(other.mPassengersCount)
 	{
-		assert(mPassengersCount <= mMaxPassengersCount);
-
 		mPassengers = new const Person*[mMaxPassengersCount];
 
 		for (size_t i = 0; i < mPassengersCount; ++i)
@@ -32,6 +30,29 @@ namespace assignment2
 		}
 
 		delete[] mPassengers;
+	}
+
+	Vehicle& Vehicle::operator=(const Vehicle& rhs)
+	{
+		if (this == &rhs)
+		{
+			return *this;
+		}
+
+		Clear();
+		delete[] mPassengers;
+
+		mMaxPassengersCount = rhs.mMaxPassengersCount;
+		mPassengersCount = rhs.mPassengersCount;
+
+		mPassengers = new const Person*[mMaxPassengersCount];
+
+		for (size_t i = 0; i < mPassengersCount; ++i)
+		{
+			mPassengers[i] = new Person(*rhs.mPassengers[i]);
+		}
+
+		return *this;
 	}
 
 	bool Vehicle::AddPassenger(const Person* person)

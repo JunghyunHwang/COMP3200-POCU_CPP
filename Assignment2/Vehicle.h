@@ -5,17 +5,13 @@
 
 namespace assignment2
 {
-	enum
-	{
-		MIN_SAIL_SPEED = 20
-	};
-
 	class Vehicle
 	{
 	public:
 		Vehicle(unsigned int maxPassengersCount);
 		Vehicle(const Vehicle& other);
 		virtual ~Vehicle();
+		Vehicle& operator=(const Vehicle& rhs);
 
 		virtual unsigned int GetMaxSpeed() const = 0;
 
@@ -28,7 +24,7 @@ namespace assignment2
 		unsigned int GetTotalWeight() const;
 
 	protected:
-		const unsigned int mMaxPassengersCount;
+		unsigned int mMaxPassengersCount;
 		unsigned int mPassengersCount;
 		const Person** mPassengers;
 	};
