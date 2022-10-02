@@ -28,6 +28,6 @@ namespace assignment2
 	{
 		unsigned int speed = 800 - 1.7 * GetTotalWeight();
 
-		return (speed > MIN_SAIL_SPEED ? speed : MIN_SAIL_SPEED);
+		return (speed > MIN_SPEED ? speed : MIN_SPEED);
 	}
 }

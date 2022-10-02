@@ -10,6 +10,7 @@
 
 namespace assignment2
 {
+	void TestAirplane();
 	void TestVehicleSpeed();
 	void TestBoatplane();
 }

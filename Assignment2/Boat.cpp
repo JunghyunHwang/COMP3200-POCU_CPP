@@ -19,7 +19,7 @@ namespace assignment2
 	unsigned int Boat::GetSailSpeed() const
 	{
 		unsigned int speed = 800 - 10 * GetTotalWeight();
-		return (speed > MIN_SAIL_SPEED ? speed : MIN_SAIL_SPEED);
+		return (speed > MIN_SPEED ? speed : MIN_SPEED);
 	}
 
 	Boatplane Boat::operator+(Airplane& plane)

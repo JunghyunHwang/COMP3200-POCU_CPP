@@ -127,11 +127,8 @@ namespace lab4
 			minY = POINT_Y < minY ? POINT_Y : minY;
 		}
 
-		const Point minPoint(minX, minY);
-		const Point maxPoint(maxX, maxY);
-
-		*outMin = minPoint;
-		*outMax = maxPoint;
+		*outMin = Point(minX, minY);
+		*outMax = Point(maxX, maxY);
 
 		return true;
 	}

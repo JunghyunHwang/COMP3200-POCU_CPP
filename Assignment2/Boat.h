@@ -19,5 +19,8 @@ namespace assignment2
 		unsigned int GetSailSpeed() const;
 
 		Boatplane operator+(Airplane& plane);
+
+	private:
+		const unsigned int MIN_SPEED = 20;
 	};
 }

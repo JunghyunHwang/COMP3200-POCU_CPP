@@ -15,5 +15,7 @@ namespace assignment2
 		unsigned int GetMaxSpeed() const;
 		unsigned int GetFlySpeed() const;
 		unsigned int GetSailSpeed() const;
+	private:
+		const unsigned int MIN_SPEED = 20;
 	};
 }
