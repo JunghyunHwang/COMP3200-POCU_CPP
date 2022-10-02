@@ -30,4 +30,15 @@ namespace assignment2
 
 		return (SAIL_SPEED > DIVE_SPEED ? SAIL_SPEED : DIVE_SPEED);
 	}
+
+	void UBoat::Move()
+	{
+		if (mCallMoveCount % UNIT_MOVEMENT > 1)
+		{
+			++mCallMoveCount;
+			return;
+		}
+
+		mTraveledKilometers += GetMaxSpeed();
+	}
 }

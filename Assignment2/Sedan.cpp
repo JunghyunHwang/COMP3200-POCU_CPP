@@ -110,4 +110,36 @@ namespace assignment2
 	{
 		return GetDriveSpeed();
 	}
+
+	void Sedan::Move()
+	{
+		bool bHasTrailer = mTrailer == nullptr ? false : true;
+
+		switch (bHasTrailer)
+		{
+		case true:
+			if (mCallMoveCount % UNIT_MOVEMENT_TRAILER >= 5)
+			{
+				++mCallMoveCount;
+				return;
+			}
+
+			mTraveledKilometers += GetMaxSpeed();
+			++mCallMoveCount;
+			break;
+		case false:
+			if (mCallMoveCount % UNIT_MOVEMENT == 5)
+			{
+				++mCallMoveCount;
+				return;
+			}
+
+			mTraveledKilometers += GetMaxSpeed();
+			++mCallMoveCount;
+			break;
+		default:
+			assert(false);
+			break;
+		}
+	}
 }

@@ -21,9 +21,12 @@ namespace assignment2
 
 		unsigned int GetDriveSpeed() const;
 		unsigned int GetMaxSpeed() const;
+		void Move();
 
 	private:
-		const unsigned int MAX_PASSENGERS_COUNT = 4;
 		const Trailer* mTrailer;
+		const static unsigned int MAX_PASSENGERS_COUNT = 4;
+		const static unsigned int UNIT_MOVEMENT = 6;
+		const static unsigned int UNIT_MOVEMENT_TRAILER = 7;
 	};
 }

@@ -1,4 +1,3 @@
-#include <cassert>
 #include "Vehicle.h"
 
 namespace assignment2
@@ -6,6 +5,8 @@ namespace assignment2
 	Vehicle::Vehicle(unsigned int maxPassengersCount)
 		: mMaxPassengersCount(maxPassengersCount)
 		, mPassengersCount(0)
+		, mCallMoveCount(0)
+		, mTraveledKilometers(0)
 	{
 		mPassengers = new const Person*[mMaxPassengersCount];
 	}
@@ -13,8 +14,12 @@ namespace assignment2
 	Vehicle::Vehicle(const Vehicle& other)
 		: mMaxPassengersCount(other.mMaxPassengersCount)
 		, mPassengersCount(other.mPassengersCount)
+		, mCallMoveCount(other.mCallMoveCount)
+		, mTraveledKilometers(other.mTraveledKilometers)
 	{
 		mPassengers = new const Person*[mMaxPassengersCount];
+
+		assert(mPassengersCount <= mMaxPassengersCount);
 
 		for (size_t i = 0; i < mPassengersCount; ++i)
 		{
@@ -44,8 +49,12 @@ namespace assignment2
 
 		mMaxPassengersCount = rhs.mMaxPassengersCount;
 		mPassengersCount = rhs.mPassengersCount;
+		mCallMoveCount = rhs.mCallMoveCount;
+		mTraveledKilometers = rhs.mTraveledKilometers;
 
 		mPassengers = new const Person*[mMaxPassengersCount];
+
+		assert(mPassengersCount <= mMaxPassengersCount);
 
 		for (size_t i = 0; i < mPassengersCount; ++i)
 		{
@@ -79,6 +88,7 @@ namespace assignment2
 		assert(mPassengers[i] != nullptr);
 
 		delete mPassengers[i];
+		mPassengers[i] = nullptr;
 		--mPassengersCount;
 
 		for (size_t idx = i; idx < mPassengersCount; ++idx)
@@ -121,6 +131,11 @@ namespace assignment2
 		}
 
 		return totalWeight;
+	}
+
+	unsigned int Vehicle::GetTraveledKilometers() const
+	{
+		return mTraveledKilometers;
 	}
 
 	const Person* Vehicle::GetPassenger(unsigned int i) const

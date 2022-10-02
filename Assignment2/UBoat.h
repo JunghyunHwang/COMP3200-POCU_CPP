@@ -15,8 +15,11 @@ namespace assignment2
 		unsigned int GetSailSpeed() const;
 		unsigned int GetDiveSpeed() const;
 		unsigned int GetMaxSpeed() const;
+		void Move();
+
 	private:
-		const unsigned int MAX_PASSENGERS_COUNT = 50;
-		const unsigned int MIN_SPEED = 200;
+		const static unsigned int MAX_PASSENGERS_COUNT = 50;
+		const static unsigned int MIN_SPEED = 200;
+		const static unsigned int UNIT_MOVEMENT = 6;
 	};
 }

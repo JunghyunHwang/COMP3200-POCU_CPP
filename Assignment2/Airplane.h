@@ -20,7 +20,11 @@ namespace assignment2
 		unsigned int GetFlySpeed() const;
 		unsigned int GetDriveSpeed() const;
 
+		void Move();
+
 		Boatplane operator+(Boat& boat);
+	private:
+		const static unsigned int UNIT_MOVEMENT = 4;
 	};
 }
 

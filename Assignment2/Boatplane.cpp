@@ -30,4 +30,16 @@ namespace assignment2
 
 		return (speed > MIN_SPEED ? speed : MIN_SPEED);
 	}
+
+	void Boatplane::Move()
+	{
+		if (mCallMoveCount % UNIT_MOVEMENT != 0)
+		{
+			++mCallMoveCount;
+			return;
+		}
+
+		mTraveledKilometers += GetMaxSpeed();
+		++mCallMoveCount;
+	}
 }
