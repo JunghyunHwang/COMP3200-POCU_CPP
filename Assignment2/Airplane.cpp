@@ -23,12 +23,12 @@ namespace assignment2
 
 	unsigned int Airplane::GetFlySpeed() const
 	{
-		return 200 * exp((-1 * static_cast<int>(GetTotalWeight()) + 800.0) / 500);
+		return 200 * exp((-1 * static_cast<int>(GetTotalWeight()) + 800.0) / 500) + 0.5;
 	}
 
 	unsigned int Airplane::GetDriveSpeed() const
 	{
-		return 4 * exp((-1 * static_cast<int>(GetTotalWeight()) + 400.0) / 70);
+		return 4 * exp((-1 * static_cast<int>(GetTotalWeight()) + 400.0) / 70) + 0.5;
 	}
 
 	void Airplane::Move()
