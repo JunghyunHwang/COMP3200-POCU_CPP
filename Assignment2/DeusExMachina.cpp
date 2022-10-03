@@ -75,9 +75,9 @@ namespace assignment2
 	const Vehicle* DeusExMachina::GetFurthestTravelled() const
 	{
 		unsigned int furthestIndex = 0;
-		unsigned int furthestKilometers = 0;
+		unsigned int furthestKilometers = mVehicles[0]->GetTraveledKilometers();
 
-		for (size_t i = 0; i < mVehiclesCount; ++i)
+		for (size_t i = 1; i < mVehiclesCount; ++i)
 		{
 			unsigned int tmpKilometers = mVehicles[i]->GetTraveledKilometers();
 

@@ -58,6 +58,7 @@ namespace assignment2
 		}
 
 		mTrailer = new Trailer(*trailer);
+		return true;
 	}
 
 	bool Sedan::RemoveTrailer()
