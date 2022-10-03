@@ -26,6 +26,7 @@ namespace assignment2
 		DeusExMachina& operator=(const DeusExMachina& rhs);
 
 	private:
+		static DeusExMachina* mInstance;
 		unsigned int mVehiclesCount;
 		Vehicle* mVehicles[MAX_VEHICLES_COUNT] = { nullptr };
 	};

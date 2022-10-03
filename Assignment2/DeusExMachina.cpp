@@ -2,6 +2,8 @@
 
 namespace assignment2
 {
+	DeusExMachina* DeusExMachina::mInstance = nullptr;
+
 	DeusExMachina::DeusExMachina()
 		: mVehiclesCount(0)
 	{
@@ -13,13 +15,18 @@ namespace assignment2
 		{
 			delete mVehicles[i];
 		}
+
+		delete mInstance;
 	}
 
 	DeusExMachina* DeusExMachina::GetInstance()
 	{
-		static DeusExMachina* instance = new DeusExMachina();
+		if (mInstance == nullptr)
+		{
+			mInstance = new DeusExMachina();
+		}
 
-		return instance;
+		return mInstance;
 	}
 
 	void DeusExMachina::Travel() const
