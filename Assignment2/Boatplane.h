@@ -16,7 +16,8 @@ namespace assignment2
 		unsigned int GetFlySpeed() const;
 		unsigned int GetSailSpeed() const;
 
-		void Move();
+		bool Move();
+
 	private:
 		const static unsigned int MIN_SPEED = 20;
 		const static unsigned int UNIT_MOVEMENT = 4;

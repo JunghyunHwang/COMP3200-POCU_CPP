@@ -204,8 +204,8 @@ namespace assignment2
 			assert(bp.GetPassenger(i)->GetName() == names[i]);
 		}
 		
-		assert(bp.GetFlySpeed() == 191);
-		assert(bp.GetSailSpeed() == 75);
-		assert(bp.GetMaxSpeed() == 191);
+		assert(bp.GetFlySpeed() == 192);
+		assert(bp.GetSailSpeed() == 76);
+		assert(bp.GetMaxSpeed() == 192);
 	}
 }

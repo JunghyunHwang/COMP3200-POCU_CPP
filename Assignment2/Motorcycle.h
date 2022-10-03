@@ -13,7 +13,7 @@ namespace assignment2
 
 		unsigned int GetMaxSpeed() const;
 		unsigned int GetDriveSpeed() const;
-		void Move();
+		bool Move();
 
 	private:
 		const static unsigned int MAX_PASSENGERS_COUNT = 2;

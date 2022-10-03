@@ -19,16 +19,18 @@ namespace assignment2
 		return (speed > MIN_SPEED ? speed : MIN_SPEED);
 	}
 
-	void Motorcycle::Move()
+	bool Motorcycle::Move()
 	{
 		if (mCallMoveCount % UNIT_MOVEMENT == 5)
 		{
 			++mCallMoveCount;
-			return;
+			return false;
 		}
 
 		mTraveledKilometers += GetMaxSpeed();
 		++mCallMoveCount;
+
+		return true;
 	}
 
 	unsigned int Motorcycle::GetMaxSpeed() const

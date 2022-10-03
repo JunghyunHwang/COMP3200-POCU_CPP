@@ -31,16 +31,18 @@ namespace assignment2
 		return 4 * exp((-1 * static_cast<int>(GetTotalWeight()) + 400.0) / 70) + 0.5;
 	}
 
-	void Airplane::Move()
+	bool Airplane::Move()
 	{
 		if (mCallMoveCount % UNIT_MOVEMENT != 0)
 		{
 			++mCallMoveCount;
-			return;
+			return false;
 		}
 
 		mTraveledKilometers += GetMaxSpeed();
 		++mCallMoveCount;
+
+		return true;
 	}
 
 	Boatplane Airplane::operator+(Boat& boat)

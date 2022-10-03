@@ -21,7 +21,7 @@ namespace assignment2
 
 		unsigned int GetDriveSpeed() const;
 		unsigned int GetMaxSpeed() const;
-		void Move();
+		bool Move();
 
 	private:
 		const Trailer* mTrailer;

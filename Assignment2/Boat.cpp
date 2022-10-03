@@ -22,16 +22,18 @@ namespace assignment2
 		return (speed > MIN_SPEED ? speed : MIN_SPEED);
 	}
 
-	void Boat::Move()
+	bool Boat::Move()
 	{
 		if (mCallMoveCount % UNIT_MOVEMENT == 2)
 		{
 			++mCallMoveCount;
-			return;
+			return false;
 		}
 
-		mTraveledKilometers = GetMaxSpeed();
+		mTraveledKilometers += GetMaxSpeed();
 		++mCallMoveCount;
+
+		return true;
 	}
 
 	Boatplane Boat::operator+(Airplane& plane)
