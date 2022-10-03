@@ -21,13 +21,12 @@ namespace assignment2
 
 	unsigned int Boatplane::GetFlySpeed() const
 	{
-		unsigned int tmp = GetTotalWeight();
-		return 150 * exp((-1 * static_cast<int>(GetTotalWeight()) + 500.0) / 300) + 0.5;
+		return static_cast<unsigned int>(150 * exp((-1 * static_cast<int>(GetTotalWeight()) + 500.0) / 300) + 0.5);
 	}
 
 	unsigned int Boatplane::GetSailSpeed() const
 	{
-		unsigned int speed = 800 - 1.7 * GetTotalWeight() + 0.5;
+		unsigned int speed = static_cast<unsigned int>(800 - 1.7 * GetTotalWeight() + 0.5);
 
 		return (speed > MIN_SPEED ? speed : MIN_SPEED);
 	}

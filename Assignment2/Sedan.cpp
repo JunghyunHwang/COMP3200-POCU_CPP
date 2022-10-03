@@ -83,11 +83,7 @@ namespace assignment2
 			totalWeigth += mTrailer->GetWeight();
 		}
 
-		if (totalWeigth <= 80)
-		{
-			return 480;
-		}
-		else if (totalWeigth > 350)
+		if (totalWeigth > 350)
 		{
 			return 300;
 		}
@@ -103,8 +99,10 @@ namespace assignment2
 		{
 			return 458;
 		}
-
-		assert(false);
+		else
+		{
+			return 480;
+		}
 	}
 
 	unsigned int Sedan::GetMaxSpeed() const

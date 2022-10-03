@@ -1,12 +1,14 @@
 #include <iostream>
 #include "Test.h"
 
+using namespace assignment2;
+
 int main()
 {
-	assignment2::TestOfficial();
-	assignment2::TestAirplane();
-	assignment2::TestVehicleSpeed();
-	assignment2::TestBoatplane();
+	TestOfficial();
+	TestAirplane();
+	TestVehicleSpeed();
+	TestBoatplane();
 
 	std::cout << "No prob" << std::endl;
 
