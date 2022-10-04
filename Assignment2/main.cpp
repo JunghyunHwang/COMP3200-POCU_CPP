@@ -10,17 +10,20 @@ int main()
 	Person* p2 = new Person("Baro", 83);
 	Person* p3 = new Person("Seok", 76);
 
-	Airplane a1(5);
-	a1.AddPassenger(p1);
-	a1.AddPassenger(p2);
-	a1.AddPassenger(p3);
+	Boat b1(5);
+	b1.AddPassenger(p1);
+	b1.AddPassenger(p2);
+	b1.AddPassenger(p3);
 
-	Airplane a2(a1);
-	assert(a2.GetPassengersCount() == 3);
+	Boat b2(b1);
+	assert(b2.GetPassengersCount() == 3);
 
-	assert(*a2.GetPassenger(0) == *p1);
-	assert(*a2.GetPassenger(1) == *p2);
-	assert(*a2.GetPassenger(2) == *p3);
+	assert(*b2.GetPassenger(0) == *p1);
+	assert(*b2.GetPassenger(1) == *p2);
+	assert(*b2.GetPassenger(2) == *p3);
+
+	const uint32_t speed = b1.GetMaxSpeed();
+	assert(b2.GetMaxSpeed() == 20);
 
 	TestOfficial();
 	TestBaro();

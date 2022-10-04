@@ -3,7 +3,7 @@
 namespace assignment2
 {
 	Motorcycle::Motorcycle()
-		: Vehicle(MAX_PASSENGERS_COUNT)
+		: Vehicle(eMaxPassengersCount::MOTORCYCLE)
 	{
 	}
 
@@ -15,13 +15,18 @@ namespace assignment2
 	{
 		const unsigned int TOTAL_WEIGHT = GetTotalWeight();
 		int speed = static_cast<int>(pow(-1 * (TOTAL_WEIGHT / 15.0), 3) + TOTAL_WEIGHT * 2 + 400 + 0.5);
-		
-		return (speed > MIN_SPEED ? speed : MIN_SPEED);
+
+		if (speed <= eMinSpeed::DRIVE)
+		{
+			return eMinSpeed::DRIVE;
+		}
+
+		return static_cast<unsigned int>(speed);
 	}
 
 	bool Motorcycle::Move()
 	{
-		if (mCallMoveCount % UNIT_MOVEMENT == 5)
+		if (mCallMoveCount % eUnitMovement::MOTORCYCLE_MOVEMENT == 5)
 		{
 			++mCallMoveCount;
 			return false;

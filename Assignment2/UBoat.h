@@ -16,10 +16,5 @@ namespace assignment2
 		unsigned int GetDiveSpeed() const;
 		unsigned int GetMaxSpeed() const;
 		bool Move();
-
-	private:
-		const static unsigned int MAX_PASSENGERS_COUNT = 50;
-		const static unsigned int MIN_SPEED = 200;
-		const static unsigned int UNIT_MOVEMENT = 6;
 	};
 }

@@ -23,8 +23,6 @@ namespace assignment2
 		bool Move();
 
 		Boatplane operator+(Boat& boat);
-	private:
-		const static unsigned int UNIT_MOVEMENT = 4;
 	};
 }
 

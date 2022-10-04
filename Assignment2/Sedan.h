@@ -25,8 +25,5 @@ namespace assignment2
 
 	private:
 		const Trailer* mTrailer;
-		const static unsigned int MAX_PASSENGERS_COUNT = 4;
-		const static unsigned int UNIT_MOVEMENT = 6;
-		const static unsigned int UNIT_MOVEMENT_TRAILER = 7;
 	};
 }

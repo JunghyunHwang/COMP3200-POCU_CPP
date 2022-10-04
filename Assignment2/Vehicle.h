@@ -4,6 +4,9 @@
 #include <cassert>
 
 #include "Person.h"
+#include "eMaxPassengersCount.h"
+#include "eMinSpeed.h"
+#include "eUnitMovement.h"
 #include "DeusExMachina.h"
 
 namespace assignment2

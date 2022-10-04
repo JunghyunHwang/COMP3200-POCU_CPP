@@ -19,13 +19,18 @@ namespace assignment2
 	unsigned int Boat::GetSailSpeed() const
 	{
 		int speed = 800 - 10 * GetTotalWeight();
-		
-		return (speed > MIN_SPEED ? speed : MIN_SPEED);
+
+		if (speed <= eMinSpeed::BOAT_SAIL)
+		{
+			return eMinSpeed::BOAT_SAIL;
+		}
+
+		return static_cast<unsigned int>(speed);
 	}
 
 	bool Boat::Move()
 	{
-		if (mCallMoveCount % UNIT_MOVEMENT == 2)
+		if (mCallMoveCount % eUnitMovement::BOAT_MOVEMENT == 2)
 		{
 			++mCallMoveCount;
 			return false;

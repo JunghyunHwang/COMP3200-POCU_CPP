@@ -3,7 +3,7 @@
 namespace assignment2
 {
 	Sedan::Sedan()
-		: Vehicle(MAX_PASSENGERS_COUNT)
+		: Vehicle(eMaxPassengersCount::SEDAN)
 		, mTrailer(nullptr)
 	{
 	}
@@ -114,7 +114,7 @@ namespace assignment2
 	{
 		if (mTrailer == nullptr)
 		{
-			if (mCallMoveCount % UNIT_MOVEMENT == 5)
+			if (mCallMoveCount % eUnitMovement::SEDAN_MOVEMENT == 5)
 			{
 				++mCallMoveCount;
 				return false;
@@ -127,7 +127,7 @@ namespace assignment2
 		}
 		else
 		{
-			if (mCallMoveCount % UNIT_MOVEMENT_TRAILER >= 5)
+			if (mCallMoveCount % eUnitMovement::SEDAN_TRAILER_MOVEMENT >= 5)
 			{
 				++mCallMoveCount;
 				return false;
