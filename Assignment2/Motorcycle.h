@@ -19,7 +19,7 @@ namespace assignment2
 		enum
 		{
 			MAX_PASSENGERS_COUNT = 2,
-			UNIT_MOVEMENT = 4,
+			UNIT_MOVEMENT = 6,
 			MIN_SPEED = 20
 		};
 	};
