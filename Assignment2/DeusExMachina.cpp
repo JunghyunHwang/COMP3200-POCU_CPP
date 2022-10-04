@@ -15,8 +15,15 @@ namespace assignment2
 		{
 			delete mVehicles[i];
 		}
+	}
 
-		delete mInstance;
+	void DeusExMachina::DeleteInstance()
+	{
+		if (mInstance != nullptr)
+		{
+			delete mInstance;
+			mInstance = nullptr;
+		}
 	}
 
 	DeusExMachina* DeusExMachina::GetInstance()
@@ -72,8 +79,23 @@ namespace assignment2
 		return true;
 	}
 
+	Vehicle* DeusExMachina::GetVehicleOrNull(unsigned int i)
+	{
+		if (i >= mVehiclesCount)
+		{
+			return nullptr;
+		}
+
+		return mVehicles[i];
+	}
+
 	const Vehicle* DeusExMachina::GetFurthestTravelled() const
 	{
+		if (mVehiclesCount == 0)
+		{
+			return nullptr;
+		}
+
 		unsigned int furthestIndex = 0;
 		unsigned int furthestKilometers = mVehicles[0]->GetTraveledKilometers();
 

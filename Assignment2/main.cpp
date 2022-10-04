@@ -6,6 +6,8 @@ using namespace assignment2;
 int main()
 {
 	TestOfficial();
+	TestWiki1();
+	TestBaro();
 	TestAirplane();
 	TestVehicleSpeed();
 	TestBoatplane();
