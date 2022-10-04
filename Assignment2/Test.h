@@ -2,7 +2,6 @@
 
 #include <cassert>
 #include <string>
-#include <iostream>
 
 #include "Airplane.h"
 #include "Boat.h"
@@ -18,7 +17,6 @@
 namespace assignment2
 {
 	void TestOfficial();
-	void TestWiki1();
 	void TestBaro();
 	void TestAirplane();
 	void TestVehicleSpeed();
