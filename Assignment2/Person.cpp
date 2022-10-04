@@ -12,6 +12,11 @@ namespace assignment2
 	{
 	}
 
+	bool Person::operator==(const Person& rhs) const
+	{
+		return (mWeight == rhs.mWeight && mName == rhs.mName);
+	}
+
 	const std::string& Person::GetName() const
 	{
 		return mName;
