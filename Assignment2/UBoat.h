@@ -16,5 +16,12 @@ namespace assignment2
 		unsigned int GetDiveSpeed() const;
 		unsigned int GetMaxSpeed() const;
 		bool Move();
+	private:
+		enum
+		{
+			MAX_PASSENGERS_COUNT = 20,
+			UNIT_MOVEMENT = 6,
+			MIN_SPEED = 200
+		};
 	};
 }

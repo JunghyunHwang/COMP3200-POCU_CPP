@@ -17,5 +17,11 @@ namespace assignment2
 		unsigned int GetSailSpeed() const;
 
 		bool Move();
+	private:
+		enum
+		{
+			UNIT_MOVEMENT = 4,
+			MIN_SPEED = 20
+		};
 	};
 }

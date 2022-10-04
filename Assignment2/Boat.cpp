@@ -20,9 +20,9 @@ namespace assignment2
 	{
 		int speed = 800 - 10 * GetTotalWeight();
 
-		if (speed <= eMinSpeed::BOAT_SAIL)
+		if (speed <= MIN_SPEED)
 		{
-			return eMinSpeed::BOAT_SAIL;
+			return MIN_SPEED;
 		}
 
 		return static_cast<unsigned int>(speed);
@@ -30,7 +30,7 @@ namespace assignment2
 
 	bool Boat::Move()
 	{
-		if (mCallMoveCount % eUnitMovement::BOAT_MOVEMENT == 2)
+		if (mCallMoveCount % UNIT_MOVEMENT == 2)
 		{
 			++mCallMoveCount;
 			return false;

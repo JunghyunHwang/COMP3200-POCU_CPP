@@ -9,15 +9,11 @@ namespace assignment2
 	class DeusExMachina
 	{
 	public:
-		enum
-		{
-			MAX_VEHICLES_COUNT = 10
-		};
-
 		~DeusExMachina();
 		static DeusExMachina* GetInstance();
 		static void DeleteInstance();
 		void Travel() const;
+		void Clear();
 		bool AddVehicle(Vehicle* vehicle);
 		bool RemoveVehicle(unsigned int i);
 		const Vehicle* GetFurthestTravelled() const;
@@ -29,6 +25,10 @@ namespace assignment2
 		DeusExMachina& operator=(const DeusExMachina& rhs);
 
 	private:
+		enum
+		{
+			MAX_VEHICLES_COUNT = 10
+		};
 		static DeusExMachina* mInstance;
 		unsigned int mVehiclesCount;
 		Vehicle* mVehicles[MAX_VEHICLES_COUNT] = { nullptr };

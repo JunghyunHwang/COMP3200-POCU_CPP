@@ -29,10 +29,7 @@ namespace assignment2
 
 	Vehicle::~Vehicle()
 	{
-		for (size_t i = 0; i < mPassengersCount; ++i)
-		{
-			delete mPassengers[i];
-		}
+		Clear();
 
 		delete[] mPassengers;
 	}
@@ -106,9 +103,20 @@ namespace assignment2
 		for (size_t i = 0; i < mPassengersCount; ++i)
 		{
 			delete mPassengers[i];
+			mPassengers[i] = nullptr;
 		}
 
 		mPassengersCount = 0;
+	}
+
+	void Vehicle::SetKilometersZero()
+	{
+		mTraveledKilometers = 0;
+	}
+
+	void Vehicle::SetCallMoveCountZero()
+	{
+		mCallMoveCount = 0;
 	}
 
 	unsigned int Vehicle::GetPassengersCount() const

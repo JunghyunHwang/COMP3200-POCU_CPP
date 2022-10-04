@@ -25,5 +25,12 @@ namespace assignment2
 
 	private:
 		const Trailer* mTrailer;
+		enum
+		{
+			MAX_PASSENGERS_COUNT = 4,
+			UNIT_MOVEMENT = 6,
+			UNIT_MOVEMENT_TRAILER = 7,
+			MIN_SPEED = 0
+		};
 	};
 }

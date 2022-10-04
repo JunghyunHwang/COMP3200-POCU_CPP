@@ -23,6 +23,11 @@ namespace assignment2
 		bool Move();
 
 		Boatplane operator+(Boat& boat);
+	private:
+		enum
+		{
+			UNIT_MOVEMENT = 4
+		};
 	};
 }
 

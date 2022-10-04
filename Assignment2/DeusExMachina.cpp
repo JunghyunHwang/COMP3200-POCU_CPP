@@ -11,10 +11,7 @@ namespace assignment2
 
 	DeusExMachina::~DeusExMachina()
 	{
-		for (size_t i = 0; i < mVehiclesCount; ++i)
-		{
-			delete mVehicles[i];
-		}
+		Clear();
 	}
 
 	void DeusExMachina::DeleteInstance()
@@ -44,12 +41,28 @@ namespace assignment2
 		}
 	}
 
+	void DeusExMachina::Clear()
+	{
+		for (size_t i = 0; i < mVehiclesCount; ++i)
+		{
+			delete mVehicles[i];
+			mVehicles[i] = nullptr;
+		}
+
+		mVehiclesCount = 0;
+	}
+
 	bool DeusExMachina::AddVehicle(Vehicle* vehicle)
 	{
+		assert(vehicle != nullptr);
+
 		if (mVehiclesCount >= MAX_VEHICLES_COUNT)
 		{
 			return false;
 		}
+
+		vehicle->SetKilometersZero();
+		vehicle->SetCallMoveCountZero();
 
 		mVehicles[mVehiclesCount++] = vehicle;
 

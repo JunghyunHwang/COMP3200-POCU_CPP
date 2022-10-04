@@ -19,7 +19,12 @@ namespace assignment2
 		unsigned int GetSailSpeed() const;
 
 		bool Move();
-
 		Boatplane operator+(Airplane& plane);
+	private:
+		enum
+		{
+			UNIT_MOVEMENT = 3,
+			MIN_SPEED = 20
+		};
 	};
 }

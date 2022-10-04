@@ -33,7 +33,7 @@ namespace assignment2
 
 	bool Airplane::Move()
 	{
-		if (mCallMoveCount % eUnitMovement::AIRPLANE_MOVEMENT != 0)
+		if (mCallMoveCount % UNIT_MOVEMENT != 0)
 		{
 			++mCallMoveCount;
 			return false;

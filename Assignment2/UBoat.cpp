@@ -3,7 +3,7 @@
 namespace assignment2
 {
 	UBoat::UBoat()
-		: Vehicle(eMaxPassengersCount::UBOAT)
+		: Vehicle(MAX_PASSENGERS_COUNT)
 	{
 	}
 
@@ -15,9 +15,9 @@ namespace assignment2
 	{
 		int speed = static_cast<unsigned int>(550 - GetTotalWeight() / 10.0 + 0.5);
 
-		if (speed <= eMinSpeed::UBOAT_SAIL)
+		if (speed <= MIN_SPEED)
 		{
-			return eMinSpeed::UBOAT_SAIL;
+			return MIN_SPEED;
 		}
 
 		return static_cast<unsigned int>(speed);
@@ -38,7 +38,7 @@ namespace assignment2
 
 	bool UBoat::Move()
 	{
-		if (mCallMoveCount % eUnitMovement::UBOAT_MOVEMENT > 1)
+		if (mCallMoveCount % UNIT_MOVEMENT > 1)
 		{
 			++mCallMoveCount;
 			return false;
