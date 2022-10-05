@@ -39,13 +39,13 @@ namespace lab5
 			result = 0;
 		}
 
-		result = (result + OVERPRICE) / 100;
+		result /= 100;
 
-		return static_cast<unsigned int>(result);
+		return static_cast<unsigned int>(result + OVERPRICE);
 	}
 
 	unsigned int Lawn::GetMinimumSodRollsCount() const
 	{
-		return static_cast<unsigned int>(GetArea() / UNIT_ROLL_AREA + 0.5);
+		return static_cast<unsigned int>(GetArea() / UNIT_ROLL_AREA + OVERPRICE);
 	}
 }
