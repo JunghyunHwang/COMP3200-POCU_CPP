@@ -2,6 +2,9 @@
 
 namespace assignment2
 {
+	const unsigned int Boat::UNIT_MOVEMENT = 3;
+	const unsigned int Boat::MIN_SPEED = 20;
+
 	Boat::Boat(unsigned int maxPassengersCount)
 		: Vehicle(maxPassengersCount)
 	{

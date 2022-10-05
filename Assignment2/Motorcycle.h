@@ -16,11 +16,8 @@ namespace assignment2
 		bool Move();
 
 	private:
-		enum
-		{
-			MAX_PASSENGERS_COUNT = 2,
-			UNIT_MOVEMENT = 6,
-			MIN_SPEED = 20
-		};
+		const static unsigned int MAX_PASSENGERS_COUNT;
+		const static unsigned int UNIT_MOVEMENT;
+		const static unsigned int MIN_SPEED;
 	};
 }

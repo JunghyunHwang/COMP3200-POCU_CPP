@@ -21,10 +21,7 @@ namespace assignment2
 		bool Move();
 		Boatplane operator+(Airplane& plane);
 	private:
-		enum
-		{
-			UNIT_MOVEMENT = 3,
-			MIN_SPEED = 20
-		};
+		const static unsigned int UNIT_MOVEMENT;
+		const static unsigned int MIN_SPEED;
 	};
 }

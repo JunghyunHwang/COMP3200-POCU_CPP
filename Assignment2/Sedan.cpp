@@ -2,6 +2,11 @@
 
 namespace assignment2
 {
+	const static unsigned int MAX_PASSENGERS_COUNT = 4;
+	const static unsigned int UNIT_MOVEMENT = 6;
+	const static unsigned int UNIT_MOVEMENT_TRAILER = 7;
+	const static unsigned int MIN_SPEED = 0;
+
 	Sedan::Sedan()
 		: Vehicle(MAX_PASSENGERS_COUNT)
 		, mTrailer(nullptr)

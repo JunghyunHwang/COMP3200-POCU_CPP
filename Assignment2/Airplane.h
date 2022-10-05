@@ -24,10 +24,7 @@ namespace assignment2
 
 		Boatplane operator+(Boat& boat);
 	private:
-		enum
-		{
-			UNIT_MOVEMENT = 4
-		};
+		const static unsigned int UNIT_MOVEMENT;
 	};
 }
 
