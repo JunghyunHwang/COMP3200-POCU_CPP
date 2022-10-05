@@ -18,7 +18,10 @@ namespace assignment2
 
 		bool Move();
 	private:
-		const static unsigned int UNIT_MOVEMENT;
-		const static unsigned int MIN_SPEED;
+		enum
+		{
+			UNIT_MOVEMENT = 4,
+			MIN_SPEED = 20
+		};
 	};
 }

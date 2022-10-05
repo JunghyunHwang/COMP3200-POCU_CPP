@@ -2,7 +2,6 @@
 
 namespace assignment2
 {
-	const unsigned int Airplane::UNIT_MOVEMENT = 4;
 	Airplane::Airplane(unsigned int maxPassengerCount)
 		: Vehicle(maxPassengerCount)
 	{

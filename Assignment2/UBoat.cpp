@@ -2,10 +2,6 @@
 
 namespace assignment2
 {
-	const unsigned int MAX_PASSENGERS_COUNT = 50;
-	const unsigned int UNIT_MOVEMENT = 6;
-	const unsigned int MIN_SPEED = 200;
-
 	UBoat::UBoat()
 		: Vehicle(MAX_PASSENGERS_COUNT)
 	{

@@ -2,10 +2,6 @@
 
 namespace assignment2
 {
-	const unsigned int Motorcycle::MAX_PASSENGERS_COUNT = 2;
-	const unsigned int Motorcycle::UNIT_MOVEMENT = 6;
-	const unsigned int Motorcycle::MIN_SPEED = 0;
-
 	Motorcycle::Motorcycle()
 		: Vehicle(MAX_PASSENGERS_COUNT)
 	{
