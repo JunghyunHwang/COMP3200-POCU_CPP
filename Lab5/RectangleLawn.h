@@ -12,10 +12,10 @@ namespace lab5
 		~RectangleLawn();
 
 		unsigned int GetArea() const;
-		unsigned int GetMinimumFencesCount() const;
-		unsigned int GetFencePrice(eFenceType fenceType) const;
+		virtual unsigned int GetMinimumFencesCount() const;
+		virtual unsigned int GetFencePrice(eFenceType fenceType) const;
 
-	private:
+	protected:
 		const unsigned int mWidth;
 		const unsigned int mHeight;
 	};
