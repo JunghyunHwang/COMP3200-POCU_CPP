@@ -61,9 +61,6 @@ namespace assignment2
 			return false;
 		}
 
-		vehicle->SetKilometersZero();
-		vehicle->SetCallMoveCountZero();
-
 		mVehicles[mVehiclesCount++] = vehicle;
 
 		return true;

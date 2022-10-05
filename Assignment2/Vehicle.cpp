@@ -32,6 +32,7 @@ namespace assignment2
 		Clear();
 
 		delete[] mPassengers;
+		mPassengers = nullptr;
 	}
 
 	Vehicle& Vehicle::operator=(const Vehicle& rhs)
@@ -42,7 +43,9 @@ namespace assignment2
 		}
 
 		Clear();
+		
 		delete[] mPassengers;
+		mPassengers = nullptr;
 
 		mMaxPassengersCount = rhs.mMaxPassengersCount;
 		mPassengersCount = rhs.mPassengersCount;

@@ -21,6 +21,7 @@ namespace assignment2
 	Sedan::~Sedan()
 	{
 		delete mTrailer;
+		mTrailer = nullptr;
 	}
 
 	Sedan& Sedan::operator=(const Sedan& rhs)
@@ -35,6 +36,7 @@ namespace assignment2
 		if (mTrailer != nullptr)
 		{
 			delete mTrailer;
+			mTrailer = nullptr;
 		}
 
 		if (rhs.mTrailer == nullptr)

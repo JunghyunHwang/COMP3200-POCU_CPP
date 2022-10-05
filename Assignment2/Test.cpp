@@ -105,6 +105,81 @@ namespace assignment2
 		assert(deusExMachina1->GetFurthestTravelled() == boat);
 	}
 	
+	void TestCreateVehicle()
+	{
+		const unsigned int VEHICLE_COUNT = 7;
+
+		Person* p1 = new Person("Bob", 85);
+		Person* p2 = new Person("James", 75);
+		Person* p3 = new Person("Tina", 52);
+		Person* p4 = new Person("Ja", 89);
+		Person* p5 = new Person("Baro", 82);
+		Person* p6 = new Person("Seok", 78);
+		Person* p7 = new Person("Jamm", 90);
+
+		Person* people[7] = { p1, p2, p3, p4, p5, p6, p7 };
+
+		Airplane* a = new Airplane(3);
+		Boat* b = new Boat(3);
+		Boatplane* bp = new Boatplane(3);
+		Motorcycle* m = new Motorcycle();
+		Sedan* s1 = new Sedan();
+		Sedan* s2 = new Sedan();
+		Trailer* t = new Trailer(250);
+		UBoat* ub = new UBoat();
+		Vehicle* vehicles1[7] = { a, b, bp, m, s1, s2, ub };
+		s2->AddTrailer(t);
+
+		a->AddPassenger(p1);
+		b->AddPassenger(p2);
+		bp->AddPassenger(p3);
+		m->AddPassenger(p4);
+		s1->AddPassenger(p5);
+		s2->AddPassenger(p6);
+		ub->AddPassenger(p7);
+
+		Airplane* a2 = new Airplane(*a);
+		Boat* b2 = new Boat(*b);
+		Boatplane* bp2 = new Boatplane(*bp);
+		Motorcycle* m2 = new Motorcycle(*m);
+		Sedan* s3 = new Sedan(*s1);
+		Sedan* s4 = new Sedan(*s2);
+		Trailer* t2 = new Trailer(*t);
+		UBoat* ub2 = new UBoat(*ub);
+		Vehicle* vehicles2[7] = { a2, b2, bp2, m2, s3, s4, ub2 };
+
+		for (size_t i = 0; i < VEHICLE_COUNT; ++i)
+		{
+			assert(vehicles1[i] != vehicles2[i]);
+			assert(vehicles1[i]->GetPassenger(0) != vehicles2[i]->GetPassenger(0));
+			assert(*vehicles1[i]->GetPassenger(0) == *vehicles2[i]->GetPassenger(0));
+		}
+
+		Airplane* a3 = a2;
+		Boat* b3 = b2;
+		Boatplane* bp3 = bp2;
+		Motorcycle* m3 = m2;
+		Sedan* s5 = s3;
+		Sedan* s6 = s4;
+		Trailer* t3 = t2;
+		UBoat* ub3 = ub2;
+		Vehicle* vehicles3[7] = { a3, b3, bp3, m3, s5, s6, ub3 };
+
+		for (size_t i = 0; i < VEHICLE_COUNT; ++i)
+		{
+			assert(vehicles2[i] != vehicles3[i]);
+			assert(vehicles2[i]->GetPassenger(0) != vehicles3[i]->GetPassenger(0));
+			assert(*vehicles2[i]->GetPassenger(0) == *vehicles3[i]->GetPassenger(0));
+		}
+
+		for (size_t i = 0; i < VEHICLE_COUNT; ++i)
+		{
+			delete vehicles1[i];
+			delete vehicles2[i];
+			delete vehicles3[i];
+		}
+	}
+
 	void TestBaro()
 	{
 		DeusExMachina::DeleteInstance();

@@ -17,6 +17,7 @@
 namespace assignment2
 {
 	void TestOfficial();
+	void TestCreateVehicle();
 	void TestBaro();
 	void TestAirplane();
 	void TestVehicleSpeed();
