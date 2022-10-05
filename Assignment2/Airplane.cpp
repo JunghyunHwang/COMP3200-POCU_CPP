@@ -16,9 +16,7 @@ namespace assignment2
 		unsigned int maxFlySpeed = GetFlySpeed();
 		unsigned int maxDriveSpeed = GetDriveSpeed();
 
-		unsigned int result = maxDriveSpeed > maxFlySpeed ? maxDriveSpeed : maxFlySpeed;
-
-		return result;
+		return (maxDriveSpeed > maxFlySpeed ? maxDriveSpeed : maxFlySpeed);
 	}
 
 	unsigned int Airplane::GetFlySpeed() const

@@ -109,16 +109,6 @@ namespace assignment2
 		mPassengersCount = 0;
 	}
 
-	void Vehicle::SetKilometersZero()
-	{
-		mTraveledKilometers = 0;
-	}
-
-	void Vehicle::SetCallMoveCountZero()
-	{
-		mCallMoveCount = 0;
-	}
-
 	unsigned int Vehicle::GetPassengersCount() const
 	{
 		return mPassengersCount;
