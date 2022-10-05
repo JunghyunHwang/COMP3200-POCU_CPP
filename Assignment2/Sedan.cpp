@@ -36,6 +36,7 @@ namespace assignment2
 		if (mTrailer != nullptr)
 		{
 			delete mTrailer;
+			mTrailer = nullptr;
 		}
 
 		if (rhs.mTrailer == nullptr)

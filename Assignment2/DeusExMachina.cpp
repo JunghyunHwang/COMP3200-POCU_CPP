@@ -46,7 +46,7 @@ namespace assignment2
 		for (size_t i = 0; i < mVehiclesCount; ++i)
 		{
 			delete mVehicles[i];
-			mVehicles[i] = nullptr;
+			// mVehicles[i] = nullptr;
 		}
 
 		mVehiclesCount = 0;
