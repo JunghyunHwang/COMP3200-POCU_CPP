@@ -1,6 +1,7 @@
 #pragma once
 
 #include "eFenceType.h"
+#include "eFencePrice.h"
 
 namespace lab5
 {
