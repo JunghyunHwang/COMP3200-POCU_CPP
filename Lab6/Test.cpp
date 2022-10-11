@@ -23,7 +23,7 @@ void lab6::TestOfficial()
 	assert(average == 6.83333349f);
 	assert(numWithMaxOccurence == 4);
 
-	for (int i = 0; i < (int)v.size() - 1; ++i)
+	for (int i = 0; i < static_cast<int>(v.size()) - 1; ++i)
 	{
 		assert(v[i] >= v[i + 1]);
 	}
