@@ -16,5 +16,4 @@ namespace lab6
 	float Average(const std::vector<int>& v);
 	int NumberWithMaxOccurrence(const std::vector<int>& v);
 	void SortDescending(std::vector<int>& v);
-	void QuickSortRecursive(std::vector<int>& v);
 }

@@ -7,6 +7,7 @@
 namespace lab6
 {
 	void TestOfficial();
-
 	void TestMinMax();
+	void TestSortDesceding();
+	void TestMaxOccurrence();
 }
