@@ -20,7 +20,7 @@ namespace lab6
 
 	int Min(const std::vector<int>& v)
 	{
-		int result = MAX;
+		int result = INT_MAX;
 
 		for (std::vector<int>::const_iterator it = v.begin(); it != v.end(); ++it)
 		{
@@ -35,7 +35,7 @@ namespace lab6
 
 	int Max(const std::vector<int>& v)
 	{
-		int result = MIN;
+		int result = INT_MIN;
 
 		for (std::vector<int>::const_iterator it = v.begin(); it != v.end(); ++it)
 		{

@@ -4,12 +4,6 @@
 
 namespace lab6
 {
-	enum
-	{
-		MIN = 0x80000000,
-		MAX = 0x7fffffff
-	};
-
 	int Sum(const std::vector<int>& v);
 	int Min(const std::vector<int>& v);
 	int Max(const std::vector<int>& v);
