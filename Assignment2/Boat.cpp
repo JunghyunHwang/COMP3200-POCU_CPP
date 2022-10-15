@@ -51,14 +51,14 @@ namespace assignment2
 			bp.AddPassenger(new Person(*plane.GetPassenger(i)));
 		}
 
-		plane.Clear();
+		plane.ClearPassenger();
 
 		for (size_t i = 0; i < mPassengersCount; ++i)
 		{
 			bp.AddPassenger(new Person(*mPassengers[i]));
 		}
 
-		Clear();
+		ClearPassenger();
 
 		return bp;
 	}

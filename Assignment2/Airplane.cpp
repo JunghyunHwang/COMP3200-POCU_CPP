@@ -52,14 +52,14 @@ namespace assignment2
 			bp.AddPassenger(new Person(*mPassengers[i]));
 		}
 
-		Clear();
+		ClearPassenger();
 
 		for (size_t i = 0; i < boat.GetPassengersCount(); ++i)
 		{
 			bp.AddPassenger(new Person(*boat.GetPassenger(i)));
 		}
 
-		boat.Clear();
+		boat.ClearPassenger();
 
 		return bp;
 	}
