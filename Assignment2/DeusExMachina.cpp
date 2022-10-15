@@ -11,16 +11,13 @@ namespace assignment2
 
 	DeusExMachina::~DeusExMachina()
 	{
-		Clear();
+		ClearVehicles();
 	}
 
 	void DeusExMachina::DeleteInstance()
 	{
-		if (mInstance != nullptr)
-		{
-			delete mInstance;
-			mInstance = nullptr;
-		}
+		delete mInstance;
+		mInstance = nullptr;
 	}
 
 	DeusExMachina* DeusExMachina::GetInstance()
@@ -41,12 +38,12 @@ namespace assignment2
 		}
 	}
 
-	void DeusExMachina::Clear()
+	void DeusExMachina::ClearVehicles()
 	{
 		for (size_t i = 0; i < mVehiclesCount; ++i)
 		{
 			delete mVehicles[i];
-			// mVehicles[i] = nullptr;
+			mVehicles[i] = nullptr;
 		}
 
 		mVehiclesCount = 0;
@@ -76,7 +73,6 @@ namespace assignment2
 		assert(mVehicles[i] != nullptr);
 
 		delete mVehicles[i];
-		mVehicles[i] = nullptr;
 		--mVehiclesCount;
 
 		for (size_t idx = i; idx < mVehiclesCount; ++idx)

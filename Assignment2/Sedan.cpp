@@ -33,12 +33,6 @@ namespace assignment2
 
 		Vehicle::operator=(rhs);
 
-		if (mTrailer != nullptr)
-		{
-			delete mTrailer;
-			mTrailer = nullptr;
-		}
-
 		if (rhs.mTrailer == nullptr)
 		{
 			delete mTrailer;
@@ -47,6 +41,7 @@ namespace assignment2
 			return *this;
 		}
 
+		delete mTrailer;
 		mTrailer = new Trailer(*rhs.mTrailer);
 
 		return *this;

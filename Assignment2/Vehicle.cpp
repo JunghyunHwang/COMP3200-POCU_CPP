@@ -29,7 +29,7 @@ namespace assignment2
 
 	Vehicle::~Vehicle()
 	{
-		Clear();
+		ClearPassenger();
 
 		delete[] mPassengers;
 		mPassengers = nullptr;
@@ -42,7 +42,7 @@ namespace assignment2
 			return *this;
 		}
 
-		Clear();
+		ClearPassenger();
 		
 		delete[] mPassengers;
 		mPassengers = nullptr;
@@ -88,7 +88,6 @@ namespace assignment2
 		assert(mPassengers[i] != nullptr);
 
 		delete mPassengers[i];
-		mPassengers[i] = nullptr;
 		--mPassengersCount;
 
 		for (size_t idx = i; idx < mPassengersCount; ++idx)
@@ -101,7 +100,7 @@ namespace assignment2
 		return true;
 	}
 
-	void Vehicle::Clear()
+	void Vehicle::ClearPassenger()
 	{
 		for (size_t i = 0; i < mPassengersCount; ++i)
 		{

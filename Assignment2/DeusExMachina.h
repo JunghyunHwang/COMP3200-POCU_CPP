@@ -13,7 +13,7 @@ namespace assignment2
 		static DeusExMachina* GetInstance();
 		static void DeleteInstance();
 		void Travel() const;
-		void Clear();
+		void ClearVehicles();
 		bool AddVehicle(Vehicle* vehicle);
 		bool RemoveVehicle(unsigned int i);
 		const Vehicle* GetFurthestTravelled() const;

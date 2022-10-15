@@ -21,7 +21,7 @@ namespace assignment2
 
 		bool AddPassenger(const Person* person);
 		bool RemovePassenger(unsigned int i);
-		void Clear();
+		void ClearPassenger();
 
 		const Person* GetPassenger(unsigned int i) const;
 		unsigned int GetPassengersCount() const;
