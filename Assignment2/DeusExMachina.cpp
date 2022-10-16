@@ -14,12 +14,6 @@ namespace assignment2
 		ClearVehicles();
 	}
 
-	void DeusExMachina::DeleteInstance()
-	{
-		delete mInstance;
-		mInstance = nullptr;
-	}
-
 	DeusExMachina* DeusExMachina::GetInstance()
 	{
 		if (mInstance == nullptr)
@@ -28,6 +22,12 @@ namespace assignment2
 		}
 
 		return mInstance;
+	}
+
+	void DeusExMachina::DeleteInstance()
+	{
+		delete mInstance;
+		mInstance = nullptr;
 	}
 
 	void DeusExMachina::Travel() const
@@ -75,9 +75,9 @@ namespace assignment2
 		delete mVehicles[i];
 		--mVehiclesCount;
 
-		for (size_t idx = i; idx < mVehiclesCount; ++idx)
+		for (size_t j = i; j < mVehiclesCount; ++j)
 		{
-			mVehicles[idx] = mVehicles[idx + 1];
+			mVehicles[j] = mVehicles[j + 1];
 		}
 
 		mVehicles[mVehiclesCount] = nullptr;
@@ -85,12 +85,14 @@ namespace assignment2
 		return true;
 	}
 
-	Vehicle* DeusExMachina::GetVehicleOrNull(unsigned int i)
+	const Vehicle* DeusExMachina::GetVehicleOrNull(unsigned int i) const
 	{
 		if (i >= mVehiclesCount)
 		{
 			return nullptr;
 		}
+
+		assert(mVehicles[i] != nullptr);
 
 		return mVehicles[i];
 	}

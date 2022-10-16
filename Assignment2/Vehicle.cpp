@@ -90,9 +90,9 @@ namespace assignment2
 		delete mPassengers[i];
 		--mPassengersCount;
 
-		for (size_t idx = i; idx < mPassengersCount; ++idx)
+		for (size_t j = i; j < mPassengersCount; ++j)
 		{
-			mPassengers[idx] = mPassengers[idx + 1];
+			mPassengers[j] = mPassengers[j + 1];
 		}
 
 		mPassengers[mPassengersCount] = nullptr;

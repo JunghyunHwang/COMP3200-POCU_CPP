@@ -17,7 +17,7 @@ namespace assignment2
 		bool AddVehicle(Vehicle* vehicle);
 		bool RemoveVehicle(unsigned int i);
 		const Vehicle* GetFurthestTravelled() const;
-		Vehicle* GetVehicleOrNull(unsigned int i);
+		const Vehicle* GetVehicleOrNull(unsigned int i) const;
 
 	private:
 		DeusExMachina();
