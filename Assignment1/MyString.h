@@ -35,7 +35,7 @@ namespace assignment1
 		const unsigned int DEFAULT_CAPACITY = 20;
 		const unsigned int ALPHA_MASK = 1 << 5;
 		char* mStr;
-		unsigned int mCount;
+		unsigned int mSize;
 		unsigned int mCapacity;
 	};
 }
