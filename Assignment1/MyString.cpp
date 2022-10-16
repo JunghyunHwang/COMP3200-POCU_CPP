@@ -236,12 +236,13 @@ namespace assignment1
 		}
 
 		char* pStr = mStr + i;
+		const char* pStrNext = pStr + 1;
 
-		while (*pStr != '\0')
+		while (*pStrNext != '\0')
 		{
-			*pStr = *(pStr + 1);
-			++pStr;
+			*pStr++ = *pStrNext++;
 		}
+		*pStr = '\0';
 
 		--mSize;
 
