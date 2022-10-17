@@ -76,6 +76,11 @@ namespace lab4
 		return *this;
 	}
 
+	std::ostream& operator<<(std::ostream& os, const Point& p)
+	{
+		os << p.mX << ", " << p.mY << std::endl;
+		return os;
+	}
 
 	float Point::GetX() const
 	{

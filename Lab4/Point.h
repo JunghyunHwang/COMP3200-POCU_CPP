@@ -1,10 +1,13 @@
 #pragma once
 
+#include <iostream>
+
 namespace lab4
 {
 	class Point
 	{
 		friend Point operator*(float operand, const Point& point);
+		friend std::ostream& operator<<(std::ostream& os, const Point& p);
 	public:
 		Point(float x, float y);
 		Point(const Point& other);
