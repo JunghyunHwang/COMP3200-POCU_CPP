@@ -1,27 +1,16 @@
 #include "Foo.h"
 
-unsigned int Foo::mCount = 0;
+int Foo::mX = 0;
 
-Foo::Foo(int x)
-	: mX(x)
+Foo::Foo()
 {
 }
 
 Foo::~Foo()
 {
-	++mCount;
 }
 
-Foo Foo::operator+(const Foo& f) const
+void Foo::DoSomething()
 {
-	Foo x(*this);
-
-	x.mX += f.mX;
-
-	return x;
-}
-
-unsigned int Foo::GetCount()
-{
-	return mCount;
+	mX++;
 }

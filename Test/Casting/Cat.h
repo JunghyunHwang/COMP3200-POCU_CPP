@@ -10,10 +10,13 @@ namespace test
     {
     public:
         Cat(unsigned int age, const char* name);
-        virtual ~Cat();
+        Cat(const Cat& other);
+        ~Cat();
 
+        Cat& operator=(const Cat& rhs);
         void Speak() const;
+
     private:
-        std::string mName;
+        char* mName;
     };
 }

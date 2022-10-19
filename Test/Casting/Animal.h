@@ -6,7 +6,7 @@ namespace test
     {
     public:
         Animal(unsigned int age);
-        virtual ~Animal();
+        ~Animal();
 
         virtual void Speak() const = 0;
         inline unsigned int GetAge() const;
@@ -19,5 +19,3 @@ namespace test
         return mAge;
     }
 }
-
-// Cat Animal

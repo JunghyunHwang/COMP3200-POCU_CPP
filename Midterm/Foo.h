@@ -3,13 +3,11 @@
 class Foo
 {
 public:
-	Foo(int x);
-	~Foo();
-	Foo operator+(const Foo& f) const;
-	static unsigned int GetCount();
+	Foo();
+	virtual ~Foo();
+	virtual void DoSomething();
 
-private:
-	int mX;
-	static unsigned int mCount;
+protected:
+	static int mX;
 };
 
