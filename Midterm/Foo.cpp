@@ -1,7 +1,5 @@
 #include "Foo.h"
 
-int Foo::mX = 0;
-
 Foo::Foo()
 {
 }
@@ -10,7 +8,7 @@ Foo::~Foo()
 {
 }
 
-void Foo::DoSomething()
+void Foo::DoMagic() const
 {
-	mX++;
+	std::cout << "Foo magic" << std::endl;
 }

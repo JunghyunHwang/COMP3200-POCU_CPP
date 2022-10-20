@@ -133,6 +133,7 @@
     <ClInclude Include="Base.h" />
     <ClInclude Include="Baz.h" />
     <ClInclude Include="Cat.h" />
+    <ClInclude Include="Dog.h" />
     <ClInclude Include="Foo.h" />
     <ClInclude Include="Point.h" />
     <ClInclude Include="PolyLine.h" />
@@ -145,6 +146,7 @@
     <ClCompile Include="Base.cpp" />
     <ClCompile Include="Baz.cpp" />
     <ClCompile Include="Cat.cpp" />
+    <ClCompile Include="Dog.cpp" />
     <ClCompile Include="Foo.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Point.cpp" />

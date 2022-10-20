@@ -1,11 +1,13 @@
 #include "Animal.h"
 
-Animal::Animal(const char* name)
-	: mName(name)
+std::string Animal::mName = "";
+
+Animal::Animal(int age, std::string name)
+	: mAge(age)
 {
+	mName = name;
 }
 
 Animal::~Animal()
 {
-	delete mName;
 }

@@ -1,12 +1,19 @@
 #include <iostream>
-#include <iomanip>
-#include <string>
 
-#include "A.h"
+#include "Foo.h"
+#include "Bar.h"
 
 int main()
 {
-	A a(10, 20);
-	int* arr = (int*)&a;
-	std::cout << arr[2] << std::endl;
+	Bar* b = new Bar();
+
+	Foo* foo1 = reinterpret_cast<Foo*>(b);
+	Foo* foo2 = static_cast<Foo*>(b);
+
+	foo1->DoMagic();
+	foo2->DoMagic();
+
+	delete b;
+
+	return 0;
 }

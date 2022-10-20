@@ -1,13 +1,16 @@
 #pragma once
 
+#include <string>
+
 class Animal
 {
 public:
-	Animal(const char* name);
-	~Animal();
-	virtual void PrintName() const = 0;
+	Animal(int age, std::string name);
+	virtual ~Animal();
+	
+	virtual void Speak() const = 0;
 
 protected:
-	const char* mName;
+	int mAge;
+	static std::string mName;
 };
-

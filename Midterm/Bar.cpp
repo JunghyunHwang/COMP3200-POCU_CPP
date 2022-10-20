@@ -8,7 +8,12 @@ Bar::~Bar()
 {
 }
 
-void Bar::DoSomething()
+void Bar::DoMagic() const
 {
-	mX += 2;
+	std::cout << "Bar magic" << std::endl;
+}
+
+void Bar::BlackMagic() const
+{
+	std::cout << mX << std::endl;
 }

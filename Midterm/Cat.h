@@ -1,14 +1,17 @@
 #pragma once
 
 #include <iostream>
+#include <string>
 #include "Animal.h"
 
-class Cat
+class Cat : public Animal
 {
+	friend class Dog;
 public:
-	Cat();
-	int GetCount() const;
-private:
-	static int mCount;
+	Cat(int age, std::string name);
+	virtual ~Cat();
+	
+	void SetName(std::string name);
+	std::string GetName() const;
+	void Speak() const;
 };
-

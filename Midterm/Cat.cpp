@@ -1,12 +1,25 @@
 #include "Cat.h"
 
-int Cat::mCount = 10;
-Cat::Cat()
+Cat::Cat(int age, std::string name)
+	: Animal(age, name)
 {
-	mCount++;
 }
 
-int Cat::GetCount() const
+Cat::~Cat()
 {
-	return mCount / 3;
+}
+
+void Cat::SetName(std::string name)
+{
+	mName = name;
+}
+
+std::string Cat::GetName() const
+{
+	return mName;
+}
+
+void Cat::Speak() const
+{
+	std::cout << "My name is " << mName << std::endl;
 }

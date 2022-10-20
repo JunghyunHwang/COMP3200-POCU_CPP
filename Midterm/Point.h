@@ -7,7 +7,8 @@ public:
 	Point(const Point& other);
 	~Point();
 
-	static unsigned int mCount;
+	inline int GetX() const;
+	inline int GetY() const;
 
 private:
 	int mX;

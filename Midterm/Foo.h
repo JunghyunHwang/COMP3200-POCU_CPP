@@ -1,13 +1,11 @@
 #pragma once
 
+#include <iostream>
 class Foo
 {
 public:
 	Foo();
 	virtual ~Foo();
-	virtual void DoSomething();
-
-protected:
-	static int mX;
+	virtual void DoMagic() const;
 };
 
