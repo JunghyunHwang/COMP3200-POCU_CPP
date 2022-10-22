@@ -1,17 +1,23 @@
 #pragma once
 
+#include <string>
+class B;
+
 class A
 {
 public:
-	int mData[2];
-	A(int x, int y)
-	{
-		mData[0] = x;
-		mData[1] = y;
-	}
-	virtual void f()
-	{
+	A();
+	virtual ~A();
+	void Increase() const;
 
-	}
+private:
+	int mInt;
+	unsigned int mUi;
+	float mFloat;
+	double mDouble;
+	std::string mStr;
+	int* mP;
+	B* mB;
+	static unsigned int mCount;
 };
 
