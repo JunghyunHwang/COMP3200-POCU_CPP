@@ -3,14 +3,16 @@
 class Point
 {
 public:
-	Point(int x, int y);
+	Point();
 	Point(const Point& other);
 	~Point();
 
-	inline int GetX() const;
-	inline int GetY() const;
+	int GetX() const;
+	int GetY() const;
+	static int GetCount();
 
 private:
 	int mX;
 	int mY;
+	static int mCount;
 };

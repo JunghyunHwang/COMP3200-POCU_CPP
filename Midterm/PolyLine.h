@@ -1,11 +1,13 @@
 #pragma once
+
 #include "Point.h"
+
 class PolyLine
 {
 public:
-	PolyLine(Point p1, Point p2);
-	PolyLine(const PolyLine& other);
 	~PolyLine();
+	Point GetP1() const;
+	Point GetP2() const;
 
 private:
 	Point mP1;

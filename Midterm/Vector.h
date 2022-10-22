@@ -1,23 +1,15 @@
 #pragma once
+
+#include <iostream>
+
 class Vector
 {
 public:
+	Vector(int x);
+	virtual ~Vector();
+	void Print() const;
+
+private:
 	int mX;
-	int mY;
+	int& mRef;
 };
-
-Vector operator*(Vector& v, int x)
-{
-	Vector a;
-	a.mX = v.mX * x;
-	a.mY = v.mY * x;
-	return a;
-}
-
-Vector operator/(Vector& v, int x)
-{
-	Vector a;
-	a.mX = v.mX / x;
-	a.mY = v.mY / x;
-	return a;
-}

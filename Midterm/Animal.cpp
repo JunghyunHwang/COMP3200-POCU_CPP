@@ -1,11 +1,9 @@
 #include "Animal.h"
 
-std::string Animal::mName = "";
-
-Animal::Animal(int age, std::string name)
+Animal::Animal(unsigned int age, std::string name)
 	: mAge(age)
+	, mName(name)
 {
-	mName = name;
 }
 
 Animal::~Animal()
