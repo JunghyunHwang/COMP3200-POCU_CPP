@@ -2,14 +2,14 @@
 #include <iostream>
 #include <iomanip>
 
-#include "A.h"
-#include "B.h"
+#include "Cat.h"
 
 using namespace std;
 
 int main()
 {
-	A a;
+	Animal* a1 = new Cat(3, "Phang");
+	Animal a2(*a1);
 
 	return 0;
 }

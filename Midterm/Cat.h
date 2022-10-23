@@ -6,7 +6,6 @@
 
 class Cat : public Animal
 {
-	friend class Dog;
 public:
 	Cat(int age, std::string name);
 	virtual ~Cat();

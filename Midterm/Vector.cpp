@@ -1,16 +1,11 @@
 #include "Vector.h"
 
-Vector::Vector(int x)
+Vector::Vector(int x, int y)
 	: mX(x)
-	, mRef(mX)
+	, mY(y)
 {
 }
 
 Vector::~Vector()
 {
-}
-
-void Vector::Print() const
-{
-	std::cout << mRef << std::endl;
 }

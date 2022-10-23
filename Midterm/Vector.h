@@ -5,11 +5,11 @@
 class Vector
 {
 public:
-	Vector(int x);
+	Vector(int x, int y);
 	virtual ~Vector();
-	void Print() const;
+	Vector& operator=(const Vector& rhs);
 
 private:
 	int mX;
-	int& mRef;
+	int mY;
 };
