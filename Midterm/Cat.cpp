@@ -1,7 +1,7 @@
 #include "Cat.h"
 
-Cat::Cat(int age, std::string name)
-	: Animal(age, name)
+Cat::Cat(const char* name)
+	: Animal(name)
 {
 }
 
@@ -9,17 +9,7 @@ Cat::~Cat()
 {
 }
 
-void Cat::SetName(std::string name)
+void Cat::PrintName() const
 {
-	mName = name;
-}
-
-std::string Cat::GetName() const
-{
-	return mName;
-}
-
-void Cat::Speak() const
-{
-	std::cout << "My name is " << mName << std::endl;
+	std::cout << "I'm cat named " << mName;
 }

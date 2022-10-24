@@ -1,15 +1,16 @@
-// main.cpp
 #include <iostream>
-#include <iomanip>
-
-#include "Cat.h"
-
-using namespace std;
+#include <string.h>
 
 int main()
 {
-	Animal* a1 = new Cat(3, "Phang");
-	Animal a2(*a1);
+	std::string strTempA = "A";
+	std::string strTempB = "B";
+
+	std::string result = "";
+	for (int i = 0; i < 5; ++i)
+	{
+		result += strTempA.c_str();
+	}
 
 	return 0;
 }

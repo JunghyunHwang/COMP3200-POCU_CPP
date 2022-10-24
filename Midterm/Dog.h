@@ -1,14 +1,12 @@
 #pragma once
 
 #include <iostream>
-#include "Cat.h"
-#include "Point.h"
-class Cat;
-class Point;
+#include "Animal.h"
 
-class Dog
+class Dog : public Animal
 {
 public:
-	Dog();
+	Dog(const char* name);
 	virtual ~Dog();
+	void PrintName() const;
 };

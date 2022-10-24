@@ -4,13 +4,12 @@
 
 class Animal
 {
+	friend std::ostream& operator<<(std::ostream& os, const Animal& rhs);
 public:
-	Animal(unsigned int age, std::string name);
+	Animal(const char* name);
 	virtual ~Animal();
-	
-	virtual void Speak() const = 0;
+	virtual void PrintName() const = 0;
 
 protected:
-	unsigned int mAge;
-	std::string mName;
+	char* mName;
 };
