@@ -51,6 +51,9 @@
     <ClInclude Include="B.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="Qux.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Foo.cpp">
@@ -90,6 +93,9 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="B.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Qux.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

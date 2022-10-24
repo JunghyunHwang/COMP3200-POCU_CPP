@@ -11,5 +11,5 @@ Dog::~Dog()
 
 void Dog::PrintName() const
 {
-    std::cout << "I'm dog named " << mName << std::endl;
+    std::cout << "I'm dog named " << mName;
 }

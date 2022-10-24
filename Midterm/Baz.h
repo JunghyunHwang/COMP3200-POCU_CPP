@@ -1,10 +1,11 @@
 #pragma once
-#include "Foo.h"
+#include "Bar.h"
 
-class Baz : public Foo
+class Baz : public Bar
 {
 public:
 	Baz();
 	virtual ~Baz();
+	void PrintBaz() const;
 };
 

@@ -138,6 +138,7 @@
     <ClInclude Include="Foo.h" />
     <ClInclude Include="Point.h" />
     <ClInclude Include="PolyLine.h" />
+    <ClInclude Include="Qux.h" />
     <ClInclude Include="Vector.h" />
   </ItemGroup>
   <ItemGroup>
@@ -153,6 +154,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Point.cpp" />
     <ClCompile Include="PolyLine.cpp" />
+    <ClCompile Include="Qux.cpp" />
     <ClCompile Include="Vector.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

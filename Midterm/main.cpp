@@ -1,16 +1,22 @@
 #include <iostream>
-#include <string.h>
+#include <string>
+
+#include "Foo.h"
+#include "Bar.h"
+#include "Baz.h"
+#include "Qux.h"
 
 int main()
 {
-	std::string strTempA = "A";
-	std::string strTempB = "B";
+	Foo* f = new Foo();
+	Bar* br = new Bar();
+	Baz* bz = new Baz();
+	Qux* q = new Qux();
 
-	std::string result = "";
-	for (int i = 0; i < 5; ++i)
-	{
-		result += strTempA.c_str();
-	}
+	Bar* qb = static_cast<Bar*>(q);
+
+	q->PrintBar();
+	qb->PrintBar();
 
 	return 0;
 }
