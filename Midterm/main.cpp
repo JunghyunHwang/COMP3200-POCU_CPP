@@ -1,22 +1,16 @@
 #include <iostream>
 #include <string>
 
-#include "Foo.h"
-#include "Bar.h"
-#include "Baz.h"
-#include "Qux.h"
+#include "MyString.h"
+using namespace practice;
 
 int main()
 {
-	Foo* f = new Foo();
-	Bar* br = new Bar();
-	Baz* bz = new Baz();
-	Qux* q = new Qux();
+	MyString s("Hello, World");
 
-	Bar* qb = static_cast<Bar*>(q);
+	s += " Hello, World";
 
-	q->PrintBar();
-	qb->PrintBar();
+	std::cout << s << std::endl;
 
 	return 0;
 }

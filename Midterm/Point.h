@@ -5,14 +5,12 @@ class Point
 public:
 	Point();
 	Point(const Point& other);
-	~Point();
+	virtual ~Point();
 
-	int GetX() const;
-	int GetY() const;
-	static int GetCount();
+	inline int GetX() const;
+	inline int GetY() const;
 
 private:
 	int mX;
 	int mY;
-	static int mCount;
 };
