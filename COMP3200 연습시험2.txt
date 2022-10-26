@@ -210,7 +210,18 @@ Boat& Boat::operator=(const Boat& rhs) ??????????????????????
 	}
 
 	delete[] mName;
-	
+
+	Vehilce::Vehicle(rhs);
+	const char* pName = rhs.mName;
+
+	while (*pName++ != '\0')
+	{
+	}
+
+	--pName;
+
+	mName = new char[pName - rhs.mName + 1];
+	memcpy(mName, rhs.mName, pName - rhs.mName + 1);
 }
 
 ---------------------------------------------------------
