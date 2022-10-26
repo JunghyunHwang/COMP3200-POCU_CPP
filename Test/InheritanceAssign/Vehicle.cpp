@@ -55,15 +55,7 @@ namespace practice
 
         --pName;
 
-        const unsigned int LENGTH = pName - rhs.mName;
-
-        mName = new char[LENGTH + 1];
-
-        for (size_t i = 0; i < LENGTH; ++i)
-        {
-            mName[i] = rhs.mName[i];
-        }
-
-        mName[LENGTH] = '\0';
+        mName = new char[pName - rhs.mName + 1];
+        memcpy(mName, rhs.mName, pName - rhs.mName + 1);
     }
 }

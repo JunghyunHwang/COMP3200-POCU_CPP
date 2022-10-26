@@ -33,8 +33,7 @@ namespace test
 
         const unsigned int NAME_LENGTH = pEnd - other.mName;
         mName = new char[NAME_LENGTH + 1];
-        memcpy(mName, other.mName, NAME_LENGTH);
-        mName[NAME_LENGTH] = '\0';
+        memcpy(mName, other.mName, NAME_LENGTH + 1);
     }
 
     Cat::~Cat()
@@ -49,6 +48,8 @@ namespace test
             return *this;
         }
 
+        Animal::operator=(rhs);
+
         delete[] mName;
 
         char* pEnd = rhs.mName;
@@ -61,12 +62,11 @@ namespace test
 
         const unsigned int NAME_LENGTH = pEnd - rhs.mName;
         mName = new char[NAME_LENGTH + 1];
-        memcpy(mName, rhs.mName, NAME_LENGTH);
-        mName[NAME_LENGTH] = '\0';
+        memcpy(mName, rhs.mName, NAME_LENGTH + 1);
     }
 
     void Cat::Speak() const
     {
-        std::cout << "Counting starts" << std::endl;
+        std::cout << "I'm cat my name " << mName << std::endl;
     }
 }

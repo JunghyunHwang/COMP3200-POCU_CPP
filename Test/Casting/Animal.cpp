@@ -10,4 +10,9 @@ namespace test
     Animal::~Animal()
     {
     }
+
+    void Animal::Speak() const
+    {
+        std::cout << "I'm animal" << std::endl;
+    }
 }
