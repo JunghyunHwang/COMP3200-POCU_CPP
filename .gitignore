@@ -5,6 +5,7 @@
 
 .vscode
 *.dSYM/
+main
 
 # User-specific files
 *.suo

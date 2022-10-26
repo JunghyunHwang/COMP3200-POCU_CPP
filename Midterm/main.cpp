@@ -1,15 +1,27 @@
+#include <cassert>
 #include <iostream>
 #include <iomanip>
 
-void output1()
-{
-    std::cout << std::showpos << std::uppercase << std::showbase << std::setw(10) << std::setprecision(4) << std::hex << std::setfill('?');
-    std::cout << 3.141592 << std::endl << std::setw(15) << 16;
-    std::cout << std::setw(5) << std::setfill('-') << ' ';
-}
-
-
 int main()
 {
-    output1();
+    int nums[] = { 1, 2, 3, 4 };
+    int* p = nums;
+
+    int*& pRef = p;
+
+    ++pRef;
+    *pRef += 1;
+
+    assert(*p == 3);
+    assert(*p == *(nums + 1));
+
+    for (size_t i = 0; i < 4; ++i)
+    {
+        printf("%d, ", nums[i]);
+    }
+
+    puts("");
+    
+    printf("No prob");
+    return 0;
 }
