@@ -22,6 +22,11 @@ namespace practice
 		Vector& operator--();
 		Vector operator--(int);
 
+		Vector& operator+=(const Vector& rhs);
+		Vector& operator+=(int rhs);
+		Vector& operator*=(const Vector& rhs);
+		Vector& operator*=(int rhs);
+
 	private:
 		int mX;
 		int mY;

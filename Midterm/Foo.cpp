@@ -1,9 +1,13 @@
 #include "Foo.h"
 
-Foo::Foo() {}
+Foo::Foo()
+	: mX(0)
+{
+}
+
 Foo::~Foo() {}
 
-void Foo::PrintFoo() const
+void Foo::Print() const
 {
 	std::cout << "Foo" << std::endl;
 }

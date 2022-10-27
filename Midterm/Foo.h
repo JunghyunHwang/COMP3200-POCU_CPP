@@ -7,5 +7,7 @@ class Foo
 public:
     Foo();
     virtual ~Foo();
-    void PrintFoo() const;
+    virtual void Print() const;
+protected:
+    int mX;
 };

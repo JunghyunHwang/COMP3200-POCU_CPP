@@ -2,26 +2,15 @@
 #include <iostream>
 #include <iomanip>
 
+#include "Base.h"
+#include "A.h"
+
 int main()
 {
-    int nums[] = { 1, 2, 3, 4 };
-    int* p = nums;
+	Base* b = new A();
+	b->baseMethod();
 
-    int*& pRef = p;
+	delete b;
 
-    ++pRef;
-    *pRef += 1;
-
-    assert(*p == 3);
-    assert(*p == *(nums + 1));
-
-    for (size_t i = 0; i < 4; ++i)
-    {
-        printf("%d, ", nums[i]);
-    }
-
-    puts("");
-    
-    printf("No prob");
-    return 0;
+	return 0;
 }

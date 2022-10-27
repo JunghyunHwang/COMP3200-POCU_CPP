@@ -2,60 +2,60 @@
 
 namespace practice
 {
-    Vehicle::Vehicle(int year, const char* name)
-        : mYear(year)
-    {
-        const char* pName = name;
+	Vehicle::Vehicle(int year, const char* name)
+		: mYear(year)
+	{
+		const char* pName = name;
 
-        while (*pName++ != '\0')
-        {
-        }
+		while (*pName++ != '\0')
+		{
+		}
 
-        --pName;
+		--pName;
 
-        mName = new char[pName - name + 1];
-        memcpy(mName, name, pName - name + 1);
-    }
+		mName = new char[pName - name + 1];
+		memcpy(mName, name, pName - name + 1);
+	}
 
-    Vehicle::Vehicle(const Vehicle& other)
-        : mYear(other.mYear)
-    {
-        const char* pName = other.mName;
+	Vehicle::Vehicle(const Vehicle& other)
+		: mYear(other.mYear)
+	{
+		const char* pName = other.mName;
 
-        while (*pName++ != '\0')
-        {
-        }
+		while (*pName++ != '\0')
+		{
+		}
 
-        --pName;
+		--pName;
 
-        mName = new char[pName - other.mName + 1];
-        memcpy(mName, other.mName, pName - other.mName + 1);
-    }
+		mName = new char[pName - other.mName + 1];
+		memcpy(mName, other.mName, pName - other.mName + 1);
+	}
 
-    Vehicle::~Vehicle()
-    {
-        delete[] mName;
-    }
+	Vehicle::~Vehicle()
+	{
+		delete[] mName;
+	}
 
-    Vehicle& Vehicle::operator=(const Vehicle& rhs)
-    {
-        if (this == &rhs)
-        {
-            return *this;
-        }
+	Vehicle& Vehicle::operator=(const Vehicle& rhs)
+	{
+		if (this == &rhs)
+		{
+			return *this;
+		}
 
-        mYear = rhs.mYear;
-        delete[] mName;
+		mYear = rhs.mYear;
 
-        const char* pName = rhs.mName;
+		delete[] mName;
 
-        while (*pName++ != '\0')
-        {
-        }
+		const char* pName = rhs.mName;
 
-        --pName;
+		while (*pName++ != '\0')
+		{
+		}
 
-        mName = new char[pName - rhs.mName + 1];
-        memcpy(mName, rhs.mName, pName - rhs.mName + 1);
-    }
+		--pName;
+		mName = new char[pName - rhs.mName + 1];
+		memcpy(mName, rhs.mName, pName - rhs.mName + 1);
+	}
 }

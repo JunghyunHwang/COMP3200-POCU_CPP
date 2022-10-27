@@ -7,6 +7,8 @@ class Bar : public Foo
 public:
 	Bar();
 	virtual ~Bar();
-	virtual void PrintBar() const;
+	void Print() const;
+private:
+	int mY;
 };
 

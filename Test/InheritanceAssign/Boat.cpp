@@ -2,59 +2,63 @@
 
 namespace practice
 {
-    Boat::Boat(int year, const char* name, const char* made)
-        : Vehicle(year, name)
-    {
-        const char* pMade = made;
+	Boat::Boat(int year, const char* name, const char* made)
+		: Vehicle(year, name)
+	{
+		const char* pMade = made;
 
-        while (*pMade++ != '\0')
-        {
-        }
+		while (*pMade++ != '\0')
+		{
+		}
 
-        --pMade;
-        mMade = new char[pMade - made + 1];
-        memcpy(mMade, made, pMade - made + 1);
-    }
+		--pMade;
 
-    Boat::~Boat()
-    {
-        delete[] mMade;
-    }
+		mMade = new char[pMade - made + 1];
+		memcpy(mMade, made, pMade - made + 1);
+	}
 
-    Boat::Boat(const Boat& other)
-        : Vehicle(other)
-    {
-        const char* pMade = other.mMade;
+	Boat::Boat(const Boat& other)
+		: Vehicle(other)
+	{
+		const char* pMade = other.mMade;
 
-        while (*pMade++ != '\0')
-        {
-        }
+		while (*pMade++ != '\0')
+		{
+		}
 
-        --pMade;
+		--pMade;
 
-        mMade = new char[pMade - other.mMade + 1];
-        memcpy(mMade, other.mMade, pMade - other.mMade + 1);
-    }
-    
-    Boat& Boat::operator=(const Boat& rhs)
-    {
-        if (this == &rhs)
-        {
-            return *this;
-        }
+		mMade = new char[pMade - other.mMade + 1];
+		memcpy(mMade, other.mMade, pMade - other.mMade + 1);
+	}
 
-        delete[] mMade;
-        Vehicle::operator=(rhs);
+	Boat::~Boat()
+	{
+		delete[] mMade;
+	}
 
-        const char* pMade = rhs.mMade;
+	Boat& Boat::operator=(const Boat& rhs)
+	{
+		if (this == &rhs)
+		{
+			return *this;
+		}
 
-        while (*pMade++ != '\0')
-        {
-        }
+		Vehicle::operator=(rhs);
 
-        --pMade;
+		delete[] mMade;
 
-        mMade = new char[pMade - rhs.mMade + 1];
-        memcpy(mMade, rhs.mMade, pMade - rhs.mMade + 1);
-    }
+		const char* pMade = rhs.mMade;
+
+		while (*pMade++ != '\0')
+		{
+		}
+
+		--pMade;
+
+		mMade = new char[pMade - rhs.mMade + 1];
+		memcpy(mMade, rhs.mMade, pMade - rhs.mMade + 1);
+	}
+
+
 }

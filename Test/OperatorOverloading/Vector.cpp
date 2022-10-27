@@ -22,6 +22,14 @@ namespace practice
 	Vector Vector::operator*(const Vector& rhs) const
 	{
 		Vector v(mX * rhs.mX, mY * rhs.mY);
+
+		return v;
+	}
+
+	Vector operator*(int lhs, const Vector& rhs)
+	{
+		Vector v(lhs * rhs.mX, lhs * rhs.mY);
+
 		return v;
 	}
 
@@ -32,11 +40,20 @@ namespace practice
 		return v;
 	}
 
-	Vector operator*(int lhs, const Vector& rhs)
+	Vector& Vector::operator+=(const Vector& rhs)
 	{
-		Vector v(lhs * rhs.mX, lhs * rhs.mY);
+		mX += rhs.mX;
+		mY += rhs.mY;
 
-		return v;
+		return *this;
+	}
+
+	Vector& Vector::operator*=(const Vector& rhs)
+	{
+		mX *= rhs.mX;
+		mY *= rhs.mY;
+
+		return *this;
 	}
 
 	Vector& Vector::operator++()
@@ -59,14 +76,32 @@ namespace practice
 	{
 		--mX;
 		--mY;
+
 		return *this;
 	}
 
 	Vector Vector::operator--(int)
 	{
 		Vector v(*this);
+
 		--mX;
 		--mY;
+
 		return v;
+	}
+
+	Vector& Vector::operator+=(int rhs)
+	{
+		mX += rhs;
+		mY += rhs;
+		return *this;
+	}
+
+	Vector& Vector::operator*=(int rhs)
+	{
+		mX *= rhs;
+		mY *= rhs;
+
+		return *this;
 	}
 }

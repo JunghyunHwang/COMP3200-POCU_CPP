@@ -1,6 +1,7 @@
 #include "Bar.h"
 
 Bar::Bar()
+	: mY(0)
 {
 }
 
@@ -8,7 +9,7 @@ Bar::~Bar()
 {
 }
 
-void Bar::PrintBar() const
+void Bar::Print() const
 {
 	std::cout << "Bar" << std::endl;
 }

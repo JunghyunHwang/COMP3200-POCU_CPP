@@ -42,6 +42,14 @@ int main()
 	assert(v8.GetX() == 19);
 	assert(v8.GetY() == 19);
 
+	v8 += 1;
+	assert(v8.GetX() == 20);
+	assert(v8.GetY() == 20);
+
+	v8 *= 0;
+	assert(v8.GetX() == 0);
+	assert(v8.GetY() == 0);
+
 	std::cout << "No prob" << std::endl;
 	std::cout << sizeof(int) << std::endl;
 

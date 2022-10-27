@@ -10,8 +10,8 @@ namespace practice
         Vehicle(int year, const char* name);
         Vehicle(const Vehicle& other);
         virtual ~Vehicle();
-
         Vehicle& operator=(const Vehicle& rhs);
+
         inline int GetYear() const;
         inline const char* GetName() const;
 

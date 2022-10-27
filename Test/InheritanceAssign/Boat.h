@@ -11,7 +11,6 @@ namespace practice
         Boat(int year, const char* name, const char* made);
         Boat(const Boat& other);
         virtual ~Boat();
-
         Boat& operator=(const Boat& rhs);
 
         inline const char* GetMade() const;

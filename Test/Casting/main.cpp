@@ -1,5 +1,6 @@
 #include <cassert>
 #include <iostream>
+#include <iomanip>
 #include <string>
 
 #include "Cat.h"
@@ -20,10 +21,11 @@ int main()
     assert(c4.GetAge() == 3);
     c4.Speak();
 
-    Animal a1 = static_cast<Animal>(c1);
-    a1.Speak();
+    Animal* a1 = static_cast<Animal*>(&c1);
+    a1->Speak();
 
-    Dog d1 = static_cast<Dog>(a1);
+    Dog* d1 = static_cast<Dog*>(a1);
+    d1->Speak();
 
     return 0;
 }

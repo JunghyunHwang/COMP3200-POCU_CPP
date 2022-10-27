@@ -1,4 +1,5 @@
 #include <cassert>
+#include <string>
 #include <iostream>
 #include "Boat.h"
 
@@ -14,33 +15,31 @@ int main()
 
     assert(b3 != b4);
 
-    std::cout << "b1" << std::endl;
-    std::cout << "Year: " << b1->GetYear() << std::endl;
-    std::cout << "Name: " << b1->GetName() << std::endl;
+    assert(b1->GetYear() == 1995);
+    assert(strcmp(b1->GetName(), "Sha") == 0);
+    assert(strcmp(b1->GetMade(), "Korea") == 0);
 
-    std::cout << "b2" << std::endl;
-    std::cout << "Year: " << b2->GetYear() << std::endl;
-    std::cout << "Name: " << b2->GetName() << std::endl;
+    assert(b2->GetYear() == 1997);
+    assert(strcmp(b2->GetName(), "Ark") == 0);
+    assert(strcmp(b2->GetMade(), "Italy") == 0);
 
-    std::cout << "b3" << std::endl;
-    std::cout << "Year: " << b3->GetYear() << std::endl;
-    std::cout << "Name: " << b3->GetName() << std::endl;
+    assert(b3->GetYear() == 2019);
+    assert(strcmp(b3->GetName(), "George") == 0);
+    assert(strcmp(b3->GetMade(), "Korea") == 0);
 
-    std::cout << "b4" << std::endl;
-    std::cout << "Year: " << b4->GetYear() << std::endl;
-    std::cout << "Name: " << b4->GetName() << std::endl;
+    assert(b4->GetYear() == 2019);
+    assert(strcmp(b4->GetName(), "George") == 0);
+    assert(strcmp(b4->GetMade(), "Korea") == 0);
 
      *b2 = *b1;
 
      assert(b1 != b2);
 
-    std::cout << "b1" << std::endl;
-    std::cout << "Year: " << b1->GetYear() << std::endl;
-    std::cout << "Name: " << b1->GetName() << std::endl;
+     assert(b2->GetYear() == 1995);
+     assert(strcmp(b2->GetName(), "Sha") == 0);
+     assert(strcmp(b2->GetMade(), "Korea") == 0);
 
-    std::cout << "b2" << std::endl;
-    std::cout << "Year: " << b2->GetYear() << std::endl;
-    std::cout << "Name: " << b2->GetName() << std::endl;
+     std::cout << "No prob" << std::endl;
 
     return 0;
 }
