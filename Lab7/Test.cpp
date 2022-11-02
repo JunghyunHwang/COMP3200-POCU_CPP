@@ -205,7 +205,7 @@ namespace lab7
 			assert(combinedVector[5] == 6);
 		}
 
-		std::vector<int> v4plusv5 = v4 + v5;   // v4에 중복된 원소가 있을 경우
+		std::vector<int> v4plusv5 = v4 + v5;
 		{
 			std::vector<int>::const_iterator it = v4plusv5.begin();
 

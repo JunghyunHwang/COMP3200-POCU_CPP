@@ -71,8 +71,6 @@ namespace lab7
 	std::vector<T> operator+(const std::vector<T>& v1, const std::vector<T>& v2)
 	{
 		std::vector<T> combined;
-		combined.reserve(v1.size() + v2.size());
-
 		std::set<T> tmp;
 
 		for (size_t i = 0; i < v1.size(); ++i)
@@ -86,6 +84,7 @@ namespace lab7
 		}
 
 		typename std::set<T>::const_iterator it;
+		combined.reserve(tmp.size());
 
 		for (it = tmp.begin(); it != tmp.end(); ++it)
 		{
