@@ -2,6 +2,11 @@
 
 namespace lab7
 {
+	enum eCapacityForMain
+	{
+		DEFAULT_CAPACITY = 16
+	};
+	
 	void TestOfficial()
 	{
 		std::vector<int> v1;
@@ -247,6 +252,36 @@ namespace lab7
 
 		std::cout << v1 << std::endl;
 		std::cout << m1 << std::endl;
+
+		{
+			std::vector<int> vector1;
+			vector1.reserve(eCapacityForMain::DEFAULT_CAPACITY);
+
+			vector1.push_back(1);
+			vector1.push_back(2);
+			vector1.push_back(3);
+			vector1.push_back(4);
+			vector1.push_back(5);
+			vector1.push_back(6);
+
+			std::vector<int> vector2;
+			vector2.reserve(eCapacityForMain::DEFAULT_CAPACITY);
+
+			vector2.push_back(7);
+			vector2.push_back(8);
+			vector2.push_back(9);
+			vector2.push_back(1);
+			vector2.push_back(2);
+			vector2.push_back(3);
+
+			std::vector<int> combinedVector9 = vector1 + vector2;
+			{
+				for (size_t i = 0; i < combinedVector9.size(); ++i)
+				{
+					assert(combinedVector9[i] == i + 1);
+				}
+			}
+		}
 	}
 
 	void TestConvertVectorToMap()
