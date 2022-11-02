@@ -71,24 +71,44 @@ namespace lab7
 	std::vector<T> operator+(const std::vector<T>& v1, const std::vector<T>& v2)
 	{
 		std::vector<T> combined;
-		std::set<T> tmp;
+		combined.reserve(v1.size() + v2.size());
 
 		for (size_t i = 0; i < v1.size(); ++i)
 		{
-			tmp.insert(v1[i]);
+			bool bHasElement = false;
+
+			for (size_t j = 0; j < combined.size(); ++j)
+			{
+				if (combined[j] == v1[i])
+				{
+					bHasElement = true;
+					break;
+				}
+			}
+
+			if (bHasElement == false)
+			{
+				combined.push_back(v1[i]);
+			}
 		}
 
 		for (size_t i = 0; i < v2.size(); ++i)
 		{
-			tmp.insert(v2[i]);
-		}
+			bool bHasElement = false;
 
-		typename std::set<T>::const_iterator it;
-		combined.reserve(tmp.size());
+			for (size_t j = 0; j < combined.size(); ++j)
+			{
+				if (combined[j] == v2[i])
+				{
+					bHasElement = true;
+					break;
+				}
+			}
 
-		for (it = tmp.begin(); it != tmp.end(); ++it)
-		{
-			combined.push_back(*it);
+			if (bHasElement == false)
+			{
+				combined.push_back(v2[i]);
+			}
 		}
 
 		return combined;

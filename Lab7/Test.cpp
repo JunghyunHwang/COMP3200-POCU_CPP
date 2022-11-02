@@ -466,10 +466,10 @@ namespace lab7
 
 		std::vector<char> v3;
 		v3.reserve(5);
-		v3.push_back('a');
-		v3.push_back('a');
 		v3.push_back('b');
 		v3.push_back('b');
+		v3.push_back('a');
+		v3.push_back('a');
 
 		std::vector<char> v4;
 		v4.reserve(5);
@@ -482,11 +482,30 @@ namespace lab7
 		std::vector<char> combinedVector2 = v3 + v4;
 		{
 			assert(combinedVector2.size() == 5);
-			assert(combinedVector2[0] == 'a');
-			assert(combinedVector2[1] == 'b');
+			assert(combinedVector2[0] == 'b');
+			assert(combinedVector2[1] == 'a');
 			assert(combinedVector2[2] == 'c');
 			assert(combinedVector2[3] == 'd');
 			assert(combinedVector2[4] == 'e');
+		}
+
+		std::vector<char> v5;
+		v5.push_back('e');
+		v5.push_back('d');
+		v5.push_back('c');
+
+		std::vector<char> v6;
+		v6.push_back('b');
+		v6.push_back('a');
+
+		std::vector<char> combinedVector3 = v5 + v6;
+		{
+			assert(combinedVector3.size() == 5);
+			assert(combinedVector3[0] == 'e');
+			assert(combinedVector3[1] == 'd');
+			assert(combinedVector3[2] == 'c');
+			assert(combinedVector3[3] == 'b');
+			assert(combinedVector3[4] == 'a');
 		}
 
 		std::map<char, int> m1;
