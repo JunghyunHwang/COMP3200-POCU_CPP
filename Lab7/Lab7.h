@@ -85,8 +85,6 @@ namespace lab7
 			tmp.insert(v2[i]);
 		}
 
-		assert(tmp.size() == combined.capacity());
-
 		typename std::set<T>::const_iterator it;
 
 		for (it = tmp.begin(); it != tmp.end(); ++it)
@@ -101,18 +99,49 @@ namespace lab7
 	std::map<K, V> operator+(const std::map<K, V>& m1, const std::map<K, V>& m2)
 	{
 		std::map<K, V> combined;
+		
+		typename std::map<K, V>::const_iterator it;
+
+		for (it = m1.begin(); it != m1.end(); ++it)
+		{
+			combined.insert(*it);
+		}
+
+
+		for (it = m2.begin(); it != m2.end(); ++it)
+		{
+			combined.insert(*it);
+		}
+
 		return combined;
 	}
 
 	template<typename T>
 	std::ostream& operator<<(std::ostream& os, const std::vector<T>& v)
 	{
+		for (size_t i = 0; i < v.size(); ++i)
+		{
+			os << v[i];
+
+			if (i < v.size() - 1)
+			{
+				os << ", ";
+			}
+		}
+
 		return os;
 	}
 
 	template <typename K, class V>
 	std::ostream& operator<<(std::ostream& os, const std::map<K, V>& m)
 	{
+		typename std::map<K, V>::const_iterator it;
+
+		for (it = m.begin(); it != m.end(); ++it)
+		{
+			os << "{ " << it->first << ", " << it->second << " }" << std::endl;
+		}
+
 		return os;
 	}
 }

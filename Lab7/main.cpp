@@ -7,10 +7,13 @@
 
 int main()
 {
-	lab7::testConvertVectorToMap();
-	lab7::testGetKeysAndGetValues();
-	lab7::testReverse();
-	lab7::testOperator();
+	lab7::TestOfficial();
+	lab7::TestWiki();
+	lab7::TestConvertVectorToMap();
+	lab7::TestGetKeysAndGetValues();
+	lab7::TestReverse();
+	lab7::TestOperator();
+	lab7::TestOutputFormat();
 
 	std::cout << "No prob" << std::endl;
 
