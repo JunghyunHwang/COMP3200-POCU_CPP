@@ -1,4 +1,6 @@
 #pragma once
+
+#include <cassert>
 #include <limits>
 #include <stack>
 
@@ -18,11 +20,17 @@ namespace assignment3
 		inline T GetMin() const;
 		inline T GetSum() const;
 		inline double GetAverage() const;
+		inline double GetVariance() const;
+		inline double GetStandardDeviation() const;
+		inline unsigned int GetCount() const;
 
 	private:
-		T mMax;
-		T mMin;
+		inline bool checkPostcondition() const;
+
+	private:
 		T mSum;
+		T mSquareSum;
+
 		std::stack<T> mMainStack;
 		std::stack<T> mMaxStack;
 		std::stack<T> mMinStack;
@@ -30,30 +38,29 @@ namespace assignment3
 
 	template<typename T>
 	SmartStack<T>::SmartStack()
-		: mMax(std::numeric_limits<T>::min())
-		, mMin(std::numeric_limits<T>::max())
-		, mSum(0)
+		: mSum(0)
+		, mSquareSum(0)
 	{
+		mMaxStack.push(std::numeric_limits<T>::min());
+		mMinStack.push(std::numeric_limits<T>::max());
+
+		assert(checkPostcondition());
 	}
 
 	template<typename T>
 	void SmartStack<T>::Push(const T number)
 	{
 		mMainStack.push(number);
-
-		if (mMax < number)
-		{
-			mMax = number;
-		}
-
-		if (mMin > number)
-		{
-			mMin = number;
-		}
-
-		mMaxStack.push(mMax);
-		mMinStack.push(mMin);
 		mSum += number;
+		mSquareSum = mSquareSum + number * number;
+
+		const T MAX = mMaxStack.top() < number ? number : mMaxStack.top();
+		const T MIN = mMinStack.top() > number ? number : mMinStack.top();
+
+		mMaxStack.push(MAX);
+		mMinStack.push(MIN);
+
+		assert(checkPostcondition());
 	}
 
 	template<typename T>
@@ -64,7 +71,11 @@ namespace assignment3
 		mMainStack.pop();
 		mMaxStack.pop();
 		mMinStack.pop();
+
 		mSum -= result;
+		mSquareSum = mSquareSum - result * result;
+
+		assert(checkPostcondition());
 
 		return result;
 	}
@@ -78,13 +89,23 @@ namespace assignment3
 	template<typename T>
 	T SmartStack<T>::GetMax() const
 	{
-		return mMax;
+		if (mMainStack.size() == 0)
+		{
+			assert(mMaxStack.top() == std::numeric_limits<T>::min());
+		}
+
+		return mMaxStack.top();
 	}
 
 	template<typename T>
 	T SmartStack<T>::GetMin() const
 	{
-		return mMin;
+		if (mMainStack.size() == 0)
+		{
+			assert(mMinStack.top() == std::numeric_limits<T>::max());
+		}
+
+		return mMinStack.top();
 	}
 
 	template<typename T>
@@ -97,5 +118,32 @@ namespace assignment3
 	double SmartStack<T>::GetAverage() const
 	{
 		return mSum / static_cast<double>(mMainStack.size());
+	}
+
+	template<typename T>
+	double SmartStack<T>::GetVariance() const
+	{
+		const double AVERAGE = GetAverage();
+		return mSquareSum / static_cast<double>(mMainStack.size()) - AVERAGE * AVERAGE;
+	}
+
+	template<typename T>
+	double SmartStack<T>::GetStandardDeviation() const
+	{
+		return sqrt(GetVariance());
+	}
+
+	template<typename T>
+	unsigned int SmartStack<T>::GetCount() const
+	{
+		return mMainStack.size();
+	}
+
+	template<typename T>
+	bool SmartStack<T>::checkPostcondition() const
+	{
+		return mMaxStack.size() == mMinStack.size()
+			&& mMainStack.size() == mMaxStack.size() - 1
+			&& mMainStack.size() == mMinStack.size() - 1;
 	}
 }
