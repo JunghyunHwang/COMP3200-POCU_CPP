@@ -66,6 +66,11 @@ namespace assignment3
 	template<typename T>
 	T SmartStack<T>::Pop()
 	{
+		if (mMainStack.size() == 0)
+		{
+			assert(false);
+		}
+
 		T result = mMainStack.top();
 
 		mMainStack.pop();

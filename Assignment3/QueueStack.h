@@ -47,11 +47,6 @@ namespace assignment3
 	template<typename T>
 	void QueueStack<T>::Enqueue(const T number)
 	{
-		if (mMaxStackSize == 0)
-		{
-			return;
-		}
-
 		if (mQueueStack.size() == 0 || mQueueStack.back().GetCount() >= mMaxStackSize)
 		{
 			addStack();
@@ -71,6 +66,11 @@ namespace assignment3
 	template<typename T>
 	T QueueStack<T>::Dequeue()
 	{
+		if (mQueueStack.size() == 0)
+		{
+			assert(false);
+		}
+
 		T result = mQueueStack.front().Pop();
 		--mTotalElementCount;
 		mSum -= result;

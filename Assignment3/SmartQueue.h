@@ -46,7 +46,6 @@ namespace assignment3
 	void SmartQueue<T>::Enqueue(const T number)
 	{
 		mMainQueue.push(number);
-
 		mSum += number;
 		mSquareSum = mSquareSum + number * number;
 
@@ -68,6 +67,11 @@ namespace assignment3
 	template<typename T>
 	T SmartQueue<T>::Dequeue()
 	{
+		if (mMainQueue.size() == 0)
+		{
+			assert(false);
+		}
+
 		T result = mMainQueue.front();
 		
 		mMainQueue.pop();

@@ -295,6 +295,19 @@ namespace assignment3
 		assert(s.Peek() == 5);
 		assert(stInt.Peek() == -2);
 		assert(copiedS.Peek() == -2);
+
+		SmartStack<int> s2;
+		s2.Push(1);
+		s2.Push(1);
+		s2.Push(2);
+		s2.Push(2);
+
+		assert(s2.GetCount() == 4);
+		assert(s2.GetMax() == 2);
+		assert(s2.GetMin() == 1);
+		assert(s2.GetSum() == 6);
+		assert(s2.Peek() == 2);
+		assert(std::abs(s2.GetAverage() - 1.5) <= EPSILON);
 	}
 
 	void TestSmartQueue()
