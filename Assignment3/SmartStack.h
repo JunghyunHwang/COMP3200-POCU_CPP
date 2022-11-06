@@ -53,7 +53,7 @@ namespace assignment3
 		mSquareSum = mSquareSum + number * number;
 
 		const T MAX = mMaxStack.top() < number ? number : mMaxStack.top();
-		const T MIN = mMinstack.top() > number ? number : mMinStack.top();
+		const T MIN = mMinStack.top() > number ? number : mMinStack.top();
 
 		mMaxStack.push(MAX);
 		mMinStack.push(MIN);
