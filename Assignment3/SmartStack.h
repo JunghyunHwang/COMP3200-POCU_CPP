@@ -25,9 +25,6 @@ namespace assignment3
 		inline unsigned int GetCount() const;
 
 	private:
-		inline bool checkStackCount() const;
-
-	private:
 		T mSum;
 		T mSquareSum;
 
@@ -68,8 +65,6 @@ namespace assignment3
 
 		mMaxStack.push(max);
 		mMinStack.push(min);
-
-		checkStackCount();
 	}
 
 	template<typename T>
@@ -88,8 +83,6 @@ namespace assignment3
 
 		mSum -= result;
 		mSquareSum = mSquareSum - result * result;
-
-		checkStackCount();
 		return result;
 	}
 
@@ -150,13 +143,5 @@ namespace assignment3
 	unsigned int SmartStack<T>::GetCount() const
 	{
 		return mMainStack.size();
-	}
-
-	template<typename T>
-	bool SmartStack<T>::checkStackCount() const
-	{
-		return (mMainStack.size() == mMaxStack.size()
-			&& mMaxStack.size() == mMinStack.size()
-			&& mMinStack.size() == mMainStack.size());
 	}
 }
