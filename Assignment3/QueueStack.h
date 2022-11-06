@@ -31,7 +31,6 @@ namespace assignment3
 
 	private:
 		unsigned int mMaxStackSize;
-		unsigned int mTotalElementCount;
 		T mSum;
 		std::queue<SmartStack<T>> mQueueStack;
 	};
@@ -39,7 +38,6 @@ namespace assignment3
 	template<typename T>
 	QueueStack<T>::QueueStack(unsigned int maxStackSize)
 		: mMaxStackSize(maxStackSize)
-		, mTotalElementCount(0)
 		, mSum(0)
 	{
 	}
@@ -58,7 +56,6 @@ namespace assignment3
 		}
 
 		mQueueStack.back().Push(number);
-		++mTotalElementCount;
 		mSum += number;
 	}
 
@@ -77,7 +74,6 @@ namespace assignment3
 		}
 
 		T result = mQueueStack.front().Pop();
-		--mTotalElementCount;
 		mSum -= result;
 
 		if (mQueueStack.front().GetCount() == 0)
@@ -145,7 +141,7 @@ namespace assignment3
 	template<typename T>
 	double QueueStack<T>::GetAverage() const
 	{
-		return mSum / static_cast<double>(mTotalElementCount);
+		return mSum / static_cast<double>(GetCount());
 	}
 
 	template<typename T>
@@ -157,7 +153,23 @@ namespace assignment3
 	template<typename T>
 	unsigned int QueueStack<T>::GetCount() const
 	{
-		return mTotalElementCount;
+		if (mQueueStack.size() == 0)
+		{
+			return 0;
+		}
+
+		std::queue<SmartStack<T>> copiedQueueStack = mQueueStack;
+		unsigned int totalCount = copiedQueueStack.front().GetCount();
+
+		copiedQueueStack.pop();
+
+		while (copiedQueueStack.size() != 0)
+		{
+			totalCount += copiedQueueStack.front().GetCount();
+			copiedQueueStack.pop();
+		}
+
+		return totalCount;
 	}
 
 	template<typename T>

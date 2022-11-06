@@ -25,7 +25,7 @@ namespace assignment3
 		inline unsigned int GetCount() const;
 
 	private:
-		inline bool checkPostcondition() const;
+		inline bool checkStackCount() const;
 
 	private:
 		T mSum;
@@ -43,8 +43,6 @@ namespace assignment3
 	{
 		mMaxStack.push(std::numeric_limits<T>::min());
 		mMinStack.push(std::numeric_limits<T>::max());
-
-		assert(checkPostcondition());
 	}
 
 	template<typename T>
@@ -54,13 +52,24 @@ namespace assignment3
 		mSum += number;
 		mSquareSum = mSquareSum + number * number;
 
-		const T MAX = mMaxStack.top() < number ? number : mMaxStack.top();
-		const T MIN = mMinStack.top() > number ? number : mMinStack.top();
+		T max;
+		T min;
 
-		mMaxStack.push(MAX);
-		mMinStack.push(MIN);
+		if (mMaxStack.size() == 0 && mMinStack.size() == 0)
+		{
+			max = number;
+			min = number;
+		}
+		else
+		{
+			max = mMaxStack.top() < number ? number : mMaxStack.top();
+			min = mMinStack.top() > number ? number : mMinStack.top();
+		}
 
-		assert(checkPostcondition());
+		mMaxStack.push(max);
+		mMinStack.push(min);
+
+		checkStackCount();
 	}
 
 	template<typename T>
@@ -80,8 +89,7 @@ namespace assignment3
 		mSum -= result;
 		mSquareSum = mSquareSum - result * result;
 
-		assert(checkPostcondition());
-
+		checkStackCount();
 		return result;
 	}
 
@@ -96,7 +104,7 @@ namespace assignment3
 	{
 		if (mMainStack.size() == 0)
 		{
-			assert(mMaxStack.top() == std::numeric_limits<T>::min());
+			return std::numeric_limits<T>::min();
 		}
 
 		return mMaxStack.top();
@@ -107,7 +115,7 @@ namespace assignment3
 	{
 		if (mMainStack.size() == 0)
 		{
-			assert(mMinStack.top() == std::numeric_limits<T>::max());
+			return std::numeric_limits<T>::max();
 		}
 
 		return mMinStack.top();
@@ -145,10 +153,10 @@ namespace assignment3
 	}
 
 	template<typename T>
-	bool SmartStack<T>::checkPostcondition() const
+	bool SmartStack<T>::checkStackCount() const
 	{
-		return mMaxStack.size() == mMinStack.size()
-			&& mMainStack.size() == mMaxStack.size() - 1
-			&& mMainStack.size() == mMinStack.size() - 1;
+		return (mMainStack.size() == mMaxStack.size()
+			&& mMaxStack.size() == mMinStack.size()
+			&& mMinStack.size() == mMainStack.size());
 	}
 }
