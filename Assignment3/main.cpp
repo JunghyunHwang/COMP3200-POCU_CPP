@@ -12,6 +12,7 @@ int main()
 	TestOfficial();
 	TestWiki();
 	TestSmartStack();
+	TestSmartQueue();
 	TestQueueStack();
 
 

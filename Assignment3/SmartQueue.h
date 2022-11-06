@@ -23,14 +23,9 @@ namespace assignment3
 		inline unsigned int GetCount() const;
 
 	private:
-		bool checkPostcondition() const;
-
-	private:
 		T mSum;
 		T mSquareSum;
 		std::queue<T> mMainQueue;
-		std::queue<T> mMaxQueue;
-		std::queue<T> mMinQueue;
 	};
 
 	template<typename T>
@@ -38,8 +33,6 @@ namespace assignment3
 		: mSum(0)
 		, mSquareSum(0)
 	{
-		mMaxQueue.push(std::numeric_limits<T>::max());
-		mMinQueue.push(std::numeric_limits<T>::min());
 	}
 
 	template<typename T>
@@ -48,14 +41,6 @@ namespace assignment3
 		mMainQueue.push(number);
 		mSum += number;
 		mSquareSum = mSquareSum + number * number;
-
-		const T MAX = mMaxQueue.back() < number ? number : mMaxQueue.back();
-		const T MIN = mMinQueue.back() > number ? number : mMinQueue.back();
-
-		mMaxQueue.push(MAX);
-		mMinQueue.push(MIN);
-
-		assert(checkPostcondition());
 	}
 
 	template<typename T>
@@ -75,13 +60,10 @@ namespace assignment3
 		T result = mMainQueue.front();
 		
 		mMainQueue.pop();
-		mMaxQueue.pop();
-		mMinQueue.pop();
 
 		mSum -= result;
 		mSquareSum = mSquareSum - result * result;
 
-		assert(checkPostcondition());
 		return result;
 	}
 
@@ -90,10 +72,25 @@ namespace assignment3
 	{
 		if (mMainQueue.size() == 0)
 		{
-			assert(mMaxQueue.back() == std::numeric_limits<T>::min());
+			return std::numeric_limits<T>::min();
 		}
 
-		return mMaxQueue.back();
+		std::queue<T> copied = mMainQueue;
+		T max = copied.front();
+		copied.pop();
+
+		while (copied.size() != 0)
+		{
+			T tmp = copied.front();
+			copied.pop();
+
+			if (max < tmp)
+			{
+				max = tmp;
+			}
+		}
+
+		return max;
 	}
 
 	template<typename T>
@@ -101,10 +98,25 @@ namespace assignment3
 	{
 		if (mMainQueue.size() == 0)
 		{
-			assert(mMinQueue.back() == std::numeric_limits<T>::max());
+			return std::numeric_limits<T>::max();
 		}
 
-		return mMinQueue.back();
+		std::queue<T> copied = mMainQueue;
+		T min = copied.front();
+		copied.pop();
+
+		while (copied.size() != 0)
+		{
+			T tmp = copied.front();
+			copied.pop();
+
+			if (min > tmp)
+			{
+				min = tmp;
+			}
+		}
+
+		return min;
 	}
 
 	template<typename T>
@@ -136,13 +148,5 @@ namespace assignment3
 	unsigned int SmartQueue<T>::GetCount() const
 	{
 		return mMainQueue.size();
-	}
-
-	template<typename T>
-	bool SmartQueue<T>::checkPostcondition() const
-	{
-		return mMaxQueue.size() == mMinQueue.size()
-			&& mMainQueue.size() == mMaxQueue.size() - 1
-			&& mMainQueue.size() == mMinQueue.size() - 1;
 	}
 }
