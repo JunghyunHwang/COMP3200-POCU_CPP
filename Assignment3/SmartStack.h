@@ -25,7 +25,6 @@ namespace assignment3
 		inline unsigned int GetCount() const;
 
 	private:
-		unsigned int mCount;
 		T mSum;
 		T mSquareSum;
 
@@ -36,11 +35,10 @@ namespace assignment3
 
 	template<typename T>
 	SmartStack<T>::SmartStack()
-		: mCount(0)
-		, mSum(0)
+		: mSum(0)
 		, mSquareSum(0)
 	{
-		mMaxStack.push(std::numeric_limits<T>::min());
+		mMaxStack.push(std::numeric_limits<T>::lowest());
 		mMinStack.push(std::numeric_limits<T>::max());
 	}
 
@@ -48,7 +46,6 @@ namespace assignment3
 	void SmartStack<T>::Push(const T number)
 	{
 		mMainStack.push(number);
-		++mCount;
 		mSum += number;
 		mSquareSum = mSquareSum + number * number;
 
@@ -68,7 +65,6 @@ namespace assignment3
 		mMaxStack.pop();
 		mMinStack.pop();
 
-		--mCount;
 		mSum -= result;
 		mSquareSum = mSquareSum - result * result;
 
@@ -102,14 +98,24 @@ namespace assignment3
 	template<typename T>
 	double SmartStack<T>::GetAverage() const
 	{
-		return mSum / static_cast<double>(mCount);
+		if (mMainStack.size() == 0)
+		{
+			return 0;
+		}
+
+		return mSum / static_cast<double>(mMainStack.size());
 	}
 
 	template<typename T>
 	double SmartStack<T>::GetVariance() const
 	{
+		if (mMainStack.size() == 0)
+		{
+			return 0;
+		}
+
 		const double AVERAGE = GetAverage();
-		return mSquareSum / static_cast<double>(mCount) - AVERAGE * AVERAGE;
+		return mSquareSum / static_cast<double>(mMainStack.size()) - AVERAGE * AVERAGE;
 	}
 
 	template<typename T>
@@ -121,6 +127,6 @@ namespace assignment3
 	template<typename T>
 	unsigned int SmartStack<T>::GetCount() const
 	{
-		return mCount;
+		return mMainStack.size();
 	}
 }

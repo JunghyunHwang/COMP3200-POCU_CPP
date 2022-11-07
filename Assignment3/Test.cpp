@@ -6,8 +6,6 @@ namespace assignment3
 
 	void TestOfficial()
 	{
-		const double EPSILON = 0.0009765625;
-
 		SmartStack<float> ss;
 
 		ss.Push(3.4999f);
@@ -46,199 +44,458 @@ namespace assignment3
 		assert(std::abs(ss.GetStandardDeviation() - 4.209) <= EPSILON);
 	}
 
-	void TestWiki()
+	void TestWiki1()
 	{
-		const double EPSILON = 0.0009765625;
+		SmartStack<double> ss;
 
-		// test constructor
-		QueueStack<int> qs(2u);
-		assert(qs.GetCount() == 0u);
-		assert(qs.GetStackCount() == 0u);
-		assert(qs.GetSum() == 0);
-		assert(qs.GetMax() == std::numeric_limits<int>::min());
-		assert(qs.GetMin() == std::numeric_limits<int>::max());
+		ss.Push(3.4);
+		ss.Push(1.2);
+		ss.Push(4.6);
+		ss.Push(3.32);
+		ss.Push(10.2);
+		ss.Push(1.1);
+		ss.Push(-5.9);
+		ss.Push(1.1);
+		ss.Push(-12.4);
+		ss.Push(9.2);
 
-		// test Enqueue()
-		qs.Enqueue(0);
-		assert(qs.Peek() == 0);
-		assert(qs.GetMax() == 0);
-		assert(qs.GetMin() == 0);
-		assert(qs.GetSum() == 0);
-		assert(qs.GetAverage() == 0);
-		assert(qs.GetCount() == 1u);
-		assert(qs.GetStackCount() == 1u);
+		assert(ss.GetCount() == 10U);
+		assert(ss.Peek() == 9.2);
+		assert(ss.GetMax() == 10.2);
+		assert(ss.GetMin() == -12.4);
+		assert(std::abs(ss.GetSum() - 15.82) <= EPSILON);
+		assert(std::abs(ss.GetAverage() - 1.582) <= EPSILON);
+		assert(std::abs(ss.GetVariance() - 39.983) <= EPSILON);
+		assert(std::abs(ss.GetStandardDeviation() - 6.323) <= EPSILON);
+		assert(ss.Peek() == 9.2);
 
-		qs.Enqueue(4);
-		assert(qs.Peek() == 4);
-		assert(qs.GetMax() == 4);
-		assert(qs.GetMin() == 0);
-		assert(qs.GetSum() == 4);
-		assert(qs.GetAverage() == 2);
-		assert(qs.GetCount() == 2u);
-		assert(qs.GetStackCount() == 1u);
+		double popped1 = ss.Pop();
+		double popped2 = ss.Pop();
 
-		qs.Enqueue(-3);
-		assert(qs.Peek() == 4);
-		assert(qs.GetMax() == 4);
-		assert(qs.GetMin() == -3);
-		assert(qs.GetSum() == 1);
-		assert(std::abs(qs.GetAverage() - 0.33333333) <= EPSILON);
-		assert(qs.GetCount() == 3u);
-		assert(qs.GetStackCount() == 2u);
+		assert(popped1 == 9.2);
+		assert(popped2 == -12.4);
+	}
 
-		qs.Enqueue(7);
-		assert(qs.Peek() == 4);
-		assert(qs.GetMax() == 7);
-		assert(qs.GetMin() == -3);
-		assert(qs.GetSum() == 8);
-		assert(qs.GetAverage() == 2);
-		assert(qs.GetCount() == 4u);
-		assert(qs.GetStackCount() == 2u);
+	void TestWiki2()
+	{
+		// Test SmartStack
+		{
+			SmartStack<float> ss;
+			assert(ss.GetCount() == 0u);
+			assert(ss.GetSum() == 0.f);
+			assert(ss.GetMax() == -std::numeric_limits<float>::max());
+			assert(ss.GetMin() == std::numeric_limits<float>::max());
 
-		qs.Enqueue(5);
-		assert(qs.Peek() == 4);
-		assert(qs.GetMax() == 7);
-		assert(qs.GetMin() == -3);
-		assert(qs.GetSum() == 13);
-		assert(qs.GetAverage() == 2.6);
-		assert(qs.GetCount() == 5u);
-		assert(qs.GetStackCount() == 3u);
+			// test Push()
+			ss.Push(0.f);
+			assert(ss.GetCount() == 1u);
+			assert(ss.Peek() == 0.f);
+			assert(ss.GetMax() == 0.f);
+			assert(ss.GetMin() == 0.f);
 
-		// test copy constructor
-		QueueStack<int> qs2(qs);
-		assert(qs2.Peek() == 4);
-		assert(qs2.GetMax() == 7);
-		assert(qs2.GetMin() == -3);
-		assert(qs2.GetSum() == 13);
-		assert(qs2.GetAverage() == 2.6);
-		assert(qs2.GetCount() == 5u);
-		assert(qs2.GetStackCount() == 3u);
+			ss.Push(1.443f);
+			assert(ss.GetCount() == 2u);
+			assert(ss.Peek() == 1.443f);
+			assert(ss.GetMax() == 1.443f);
+			assert(ss.GetMin() == 0.f);
+			assert(std::abs(ss.GetSum() - 1.443f) <= EPSILON);
+			assert(std::abs(ss.GetAverage() - 0.7215) <= EPSILON);
+			assert(std::abs(ss.GetVariance() - 0.52056225) <= EPSILON);
+			assert(std::abs(ss.GetStandardDeviation() - 0.7215) <= EPSILON);
 
-		// test Dequeue()
-		assert(qs.Dequeue() == 4);
-		assert(qs.Peek() == 0);
-		assert(qs.GetMax() == 7);
-		assert(qs.GetMin() == -3);
-		assert(qs.GetSum() == 9);
-		assert(qs.GetAverage() == 2.25);
-		assert(qs.GetCount() == 4u);
-		assert(qs.GetStackCount() == 3u);
+			ss.Push(123.456f);
+			assert(ss.GetCount() == 3u);
+			assert(ss.Peek() == 123.456f);
+			assert(ss.GetMax() == 123.456f);
+			assert(ss.GetMin() == 0.f);
 
-		assert(qs.Dequeue() == 0);
-		assert(qs.Peek() == 7);
-		assert(qs.GetMax() == 7);
-		assert(qs.GetMin() == -3);
-		assert(qs.GetSum() == 9);
-		assert(qs.GetAverage() == 3);
-		assert(qs.GetCount() == 3u);
-		assert(qs.GetStackCount() == 2u);
+			ss.Push(-11.5f);
+			assert(ss.GetCount() == 4u);
+			assert(ss.Peek() == -11.5f);
+			assert(ss.GetMax() == 123.456f);
+			assert(ss.GetMin() == -11.5f);
 
-		assert(qs.Dequeue() == 7);
-		assert(qs.Peek() == -3);
-		assert(qs.GetMax() == 5);
-		assert(qs.GetMin() == -3);
-		assert(qs.GetSum() == 2);
-		assert(qs.GetAverage() == 1);
-		assert(qs.GetCount() == 2u);
-		assert(qs.GetStackCount() == 2u);
+			ss.Push(0.998f);
+			assert(ss.GetCount() == 5u);
+			assert(ss.Peek() == 0.998f);
+			assert(ss.GetMax() == 123.456f);
+			assert(ss.GetMin() == -11.5f);
 
-		qs.Enqueue(-6);
-		assert(qs.Peek() == -3);
-		assert(qs.GetMax() == 5);
-		assert(qs.GetMin() == -6);
-		assert(qs.GetSum() == -4);
-		assert(std::abs(qs.GetAverage() - (-1.33333333)) <= EPSILON);
-		assert(qs.GetCount() == 3u);
-		assert(qs.GetStackCount() == 2u);
+			ss.Push(-4.243f);
+			assert(ss.GetCount() == 6u);
+			assert(ss.Peek() == -4.243f);
+			assert(ss.GetMax() == 123.456f);
+			assert(ss.GetMin() == -11.5f);
+			assert(std::abs(ss.GetSum() - 110.154f) <= EPSILON);
+			assert(std::abs(ss.GetAverage() - 18.359) <= EPSILON);
+			assert(std::abs(ss.GetVariance() - 2228.733) <= EPSILON);
+			assert(std::abs(ss.GetStandardDeviation() - 47.209459) <= EPSILON);
 
-		qs.Enqueue(-8);
-		assert(qs.Peek() == -3);
-		assert(qs.GetMax() == 5);
-		assert(qs.GetMin() == -8);
-		assert(qs.GetSum() == -12);
-		assert(qs.GetAverage() == -3);
-		assert(qs.GetCount() == 4u);
-		assert(qs.GetStackCount() == 3u);
+			// test copy constructor
+			SmartStack<float> ss2(ss);
+			assert(ss2.GetCount() == 6u);
+			assert(ss2.Peek() == -4.243f);
+			assert(ss2.GetMax() == 123.456f);
+			assert(ss2.GetMin() == -11.5f);
+			assert(std::abs(ss2.GetSum() - 110.154f) <= EPSILON);
+			assert(std::abs(ss2.GetAverage() - 18.359) <= EPSILON);
+			assert(std::abs(ss2.GetVariance() - 2228.733) <= EPSILON);
+			assert(std::abs(ss2.GetStandardDeviation() - 47.209459) <= EPSILON);
 
-		qs.Enqueue(10);
-		assert(qs.Peek() == -3);
-		assert(qs.GetMax() == 10);
-		assert(qs.GetMin() == -8);
-		assert(qs.GetSum() == -2);
-		assert(qs.GetAverage() == -0.4);
-		assert(qs.GetCount() == 5u);
-		assert(qs.GetStackCount() == 3u);
+			// test Pop()
+			assert(ss.Pop() == -4.243f);
+			assert(ss.GetCount() == 5u);
+			assert(ss.Peek() == 0.998f);
+			assert(ss.GetMax() == 123.456f);
+			assert(ss.GetMin() == -11.5f);
 
-		assert(qs.Dequeue() == -3);
-		assert(qs.Peek() == -6);
-		assert(qs.GetMax() == 10);
-		assert(qs.GetMin() == -8);
-		assert(qs.GetSum() == 1);
-		assert(qs.GetAverage() == 0.25);
-		assert(qs.GetCount() == 4u);
-		assert(qs.GetStackCount() == 2u);
+			assert(ss.Pop() == 0.998f);
+			assert(ss.GetCount() == 4u);
+			assert(ss.Peek() == -11.5f);
+			assert(ss.GetMax() == 123.456f);
+			assert(ss.GetMin() == -11.5f);
 
-		assert(qs.Dequeue() == -6);
-		assert(qs.Peek() == 5);
-		assert(qs.GetMax() == 10);
-		assert(qs.GetMin() == -8);
-		assert(qs.GetSum() == 7);
-		assert(std::abs(qs.GetAverage() - 2.33333333) <= EPSILON);
-		assert(qs.GetCount() == 3u);
-		assert(qs.GetStackCount() == 2u);
+			assert(ss.Pop() == -11.5f);
+			assert(ss.GetCount() == 3u);
+			assert(ss.Peek() == 123.456f);
+			assert(ss.GetMax() == 123.456f);
+			assert(ss.GetMin() == 0.f);
 
-		assert(qs.Dequeue() == 5);
-		assert(qs.Peek() == 10);
-		assert(qs.GetMax() == 10);
-		assert(qs.GetMin() == -8);
-		assert(qs.GetSum() == 2);
-		assert(qs.GetAverage() == 1);
-		assert(qs.GetCount() == 2u);
-		assert(qs.GetStackCount() == 1u);
+			assert(ss.Pop() == 123.456f);
+			assert(ss.GetCount() == 2u);
+			assert(ss.Peek() == 1.443f);
+			assert(ss.GetMax() == 1.443f);
+			assert(ss.GetMin() == 0.f);
+			assert(std::abs(ss.GetSum() - 1.443f) <= EPSILON);
+			assert(std::abs(ss.GetAverage() - 0.7215) <= EPSILON);
+			assert(std::abs(ss.GetVariance() - 0.52056225) <= EPSILON);
+			assert(std::abs(ss.GetStandardDeviation() - 0.7215) <= EPSILON);
 
-		assert(qs.Dequeue() == 10);
-		assert(qs.Peek() == -8);
-		assert(qs.GetMax() == -8);
-		assert(qs.GetMin() == -8);
-		assert(qs.GetSum() == -8);
-		assert(qs.GetAverage() == -8);
-		assert(qs.GetCount() == 1u);
-		assert(qs.GetStackCount() == 1u);
+			assert(ss.Pop() == 1.443f);
+			assert(ss.GetCount() == 1u);
+			assert(ss.Peek() == 0.f);
+			assert(ss.GetMax() == 0.f);
+			assert(ss.GetMin() == 0.f);
 
-		assert(qs.Dequeue() == -8);
-		assert(qs.GetMax() == std::numeric_limits<int>::min());
-		assert(qs.GetMin() == std::numeric_limits<int>::max());
-		assert(qs.GetSum() == 0);
-		assert(qs.GetCount() == 0u);
-		assert(qs.GetStackCount() == 0u);
+			assert(ss.Pop() == 0.f);
+			assert(ss.GetCount() == 0u);
+			assert(std::abs(ss.GetSum() - 0.f) <= EPSILON);
+			assert(ss.GetMax() == -std::numeric_limits<float>::max());
+			assert(ss.GetMin() == std::numeric_limits<float>::max());
 
-		// test assignment operator
-		assert(qs2.GetMax() != std::numeric_limits<int>::min());
-		assert(qs2.GetMin() != std::numeric_limits<int>::max());
-		assert(qs2.GetSum() != 0);
-		assert(qs2.GetCount() != 0u);
-		assert(qs2.GetStackCount() != 0u);
+			// test assignment operator
+			assert(ss2.GetCount() != 0u);
+			assert(ss2.GetSum() != 0.f);
+			assert(ss2.GetMax() != -std::numeric_limits<float>::max());
+			assert(ss2.GetMin() != std::numeric_limits<float>::max());
 
-		qs2 = qs;
+			ss2 = ss;
 
-		assert(qs2.GetMax() == std::numeric_limits<int>::min());
-		assert(qs2.GetMin() == std::numeric_limits<int>::max());
-		assert(qs2.GetSum() == 0);
-		assert(qs2.GetCount() == 0u);
-		assert(qs2.GetStackCount() == 0u);
+			assert(ss2.GetCount() == 0u);
+			assert(std::abs(ss2.GetSum() - 0.f) <= EPSILON);
+			assert(ss2.GetMax() == -std::numeric_limits<float>::max());
+			assert(ss2.GetMin() == std::numeric_limits<float>::max());
 
-		// test max stack count 0
-		qs = QueueStack<int>(0);
-		qs.Enqueue(1);
-		qs.Enqueue(2);
-		qs.Enqueue(3);
+		}
 
-		assert(qs.GetMax() == std::numeric_limits<int>::min());
-		assert(qs.GetMin() == std::numeric_limits<int>::max());
-		assert(qs.GetSum() == 0);
-		assert(qs.GetCount() == 0u);
-		assert(qs.GetStackCount() == 0u);
+		// Test SmartQueue
+		{
+			SmartQueue<int> sq;
+			assert(sq.GetCount() == 0u);
+			assert(sq.GetSum() == 0);
+			assert(sq.GetMax() == std::numeric_limits<int>::min());
+			assert(sq.GetMin() == std::numeric_limits<int>::max());
 
+			// test Enqueue()
+			sq.Enqueue(0);
+			assert(sq.GetCount() == 1u);
+			assert(sq.Peek() == 0);
+			assert(sq.GetMax() == 0);
+			assert(sq.GetMin() == 0);
+
+			sq.Enqueue(-20);
+			assert(sq.GetCount() == 2u);
+			assert(sq.Peek() == 0);
+			assert(sq.GetMax() == 0);
+			assert(sq.GetMin() == -20);
+
+			sq.Enqueue(3);
+			assert(sq.GetCount() == 3u);
+			assert(sq.Peek() == 0);
+			assert(sq.GetMax() == 3);
+			assert(sq.GetMin() == -20);
+			assert(sq.GetSum() == -17);
+			assert(std::abs(sq.GetAverage() - (-5.666666667)) <= EPSILON);
+			assert(std::abs(sq.GetVariance() - 104.22222) <= EPSILON);
+			assert(std::abs(sq.GetStandardDeviation() - 10.208929) <= EPSILON);
+
+			sq.Enqueue(14);
+			assert(sq.GetCount() == 4u);
+			assert(sq.Peek() == 0);
+			assert(sq.GetMax() == 14);
+			assert(sq.GetMin() == -20);
+
+			sq.Enqueue(11);
+			assert(sq.GetCount() == 5u);
+			assert(sq.Peek() == 0);
+			assert(sq.GetMax() == 14);
+			assert(sq.GetMin() == -20);
+			assert(sq.GetSum() == 8);
+			assert(std::abs(sq.GetAverage() - 1.6) <= EPSILON);
+			assert(std::abs(sq.GetVariance() - 142.64) <= EPSILON);
+			assert(std::abs(sq.GetStandardDeviation() - 11.943199) <= EPSILON);
+
+			// test copy constructor
+			SmartQueue<int> sq2(sq);
+			assert(sq2.GetCount() == 5u);
+			assert(sq2.Peek() == 0);
+			assert(sq2.GetMax() == 14);
+			assert(sq2.GetMin() == -20);
+			assert(sq2.GetSum() == 8);
+			assert(std::abs(sq2.GetAverage() - 1.6) <= EPSILON);
+			assert(std::abs(sq2.GetVariance() - 142.64) <= EPSILON);
+			assert(std::abs(sq2.GetStandardDeviation() - 11.943199) <= EPSILON);
+
+			// test Dequeue()
+			assert(sq.Dequeue() == 0);
+			assert(sq.GetCount() == 4u);
+			assert(sq.Peek() == -20);
+			assert(sq.GetMax() == 14);
+			assert(sq.GetMin() == -20);
+
+			assert(sq.Dequeue() == -20);
+			assert(sq.GetCount() == 3u);
+			assert(sq.Peek() == 3);
+			assert(sq.GetMax() == 14);
+			assert(sq.GetMin() == 3);
+			assert(sq.GetSum() == 28);
+			assert(std::abs(sq.GetAverage() - 9.33333333) <= EPSILON);
+			assert(std::abs(sq.GetVariance() - 21.555556) <= EPSILON);
+			assert(std::abs(sq.GetStandardDeviation() - 4.6427961) <= EPSILON);
+
+			assert(sq.Dequeue() == 3);
+			assert(sq.GetCount() == 2u);
+			assert(sq.Peek() == 14);
+			assert(sq.GetMax() == 14);
+			assert(sq.GetMin() == 11);
+
+			assert(sq.Dequeue() == 14);
+			assert(sq.GetCount() == 1u);
+			assert(sq.Peek() == 11);
+			assert(sq.GetMax() == 11);
+			assert(sq.GetMin() == 11);
+
+			assert(sq.Dequeue() == 11);
+			assert(sq.GetCount() == 0u);
+			assert(sq.GetSum() == 0);
+			assert(sq.GetMax() == std::numeric_limits<int>::min());
+			assert(sq.GetMin() == std::numeric_limits<int>::max());
+
+			// test assignment operator
+			assert(sq2.GetCount() != 0u);
+			assert(sq2.GetSum() != 0);
+			assert(sq2.GetMax() != std::numeric_limits<int>::min());
+			assert(sq2.GetMin() != std::numeric_limits<int>::max());
+
+			sq2 = sq;
+
+			assert(sq2.GetCount() == 0u);
+			assert(sq2.GetSum() == 0);
+			assert(sq2.GetMax() == std::numeric_limits<int>::min());
+			assert(sq2.GetMin() == std::numeric_limits<int>::max());
+		}
+
+		// Test QueuStack
+		{
+			// test constructor
+			QueueStack<int> qs(2u);
+			assert(qs.GetCount() == 0u);
+			assert(qs.GetStackCount() == 0u);
+			assert(qs.GetSum() == 0);
+			assert(qs.GetMax() == std::numeric_limits<int>::min());
+			assert(qs.GetMin() == std::numeric_limits<int>::max());
+
+			// test Enqueue()
+			qs.Enqueue(0);
+			assert(qs.Peek() == 0);
+			assert(qs.GetMax() == 0);
+			assert(qs.GetMin() == 0);
+			assert(qs.GetSum() == 0);
+			assert(qs.GetAverage() == 0);
+			assert(qs.GetCount() == 1u);
+			assert(qs.GetStackCount() == 1u);
+
+			qs.Enqueue(4);
+			assert(qs.Peek() == 4);
+			assert(qs.GetMax() == 4);
+			assert(qs.GetMin() == 0);
+			assert(qs.GetSum() == 4);
+			assert(qs.GetAverage() == 2);
+			assert(qs.GetCount() == 2u);
+			assert(qs.GetStackCount() == 1u);
+
+			qs.Enqueue(-3);
+			assert(qs.Peek() == 4);
+			assert(qs.GetMax() == 4);
+			assert(qs.GetMin() == -3);
+			assert(qs.GetSum() == 1);
+			assert(std::abs(qs.GetAverage() - 0.33333333) <= EPSILON);
+			assert(qs.GetCount() == 3u);
+			assert(qs.GetStackCount() == 2u);
+
+			qs.Enqueue(7);
+			assert(qs.Peek() == 4);
+			assert(qs.GetMax() == 7);
+			assert(qs.GetMin() == -3);
+			assert(qs.GetSum() == 8);
+			assert(qs.GetAverage() == 2);
+			assert(qs.GetCount() == 4u);
+			assert(qs.GetStackCount() == 2u);
+
+			qs.Enqueue(5);
+			assert(qs.Peek() == 4);
+			assert(qs.GetMax() == 7);
+			assert(qs.GetMin() == -3);
+			assert(qs.GetSum() == 13);
+			assert(qs.GetAverage() == 2.6);
+			assert(qs.GetCount() == 5u);
+			assert(qs.GetStackCount() == 3u);
+
+			// test copy constructor
+			QueueStack<int> qs2(qs);
+			assert(qs2.Peek() == 4);
+			assert(qs2.GetMax() == 7);
+			assert(qs2.GetMin() == -3);
+			assert(qs2.GetSum() == 13);
+			assert(qs2.GetAverage() == 2.6);
+			assert(qs2.GetCount() == 5u);
+			assert(qs2.GetStackCount() == 3u);
+
+			// test Dequeue()
+			assert(qs.Dequeue() == 4);
+			assert(qs.Peek() == 0);
+			assert(qs.GetMax() == 7);
+			assert(qs.GetMin() == -3);
+			assert(qs.GetSum() == 9);
+			assert(qs.GetAverage() == 2.25);
+			assert(qs.GetCount() == 4u);
+			assert(qs.GetStackCount() == 3u);
+
+			assert(qs.Dequeue() == 0);
+			assert(qs.Peek() == 7);
+			assert(qs.GetMax() == 7);
+			assert(qs.GetMin() == -3);
+			assert(qs.GetSum() == 9);
+			assert(qs.GetAverage() == 3);
+			assert(qs.GetCount() == 3u);
+			assert(qs.GetStackCount() == 2u);
+
+			assert(qs.Dequeue() == 7);
+			assert(qs.Peek() == -3);
+			assert(qs.GetMax() == 5);
+			assert(qs.GetMin() == -3);
+			assert(qs.GetSum() == 2);
+			assert(qs.GetAverage() == 1);
+			assert(qs.GetCount() == 2u);
+			assert(qs.GetStackCount() == 2u);
+
+			qs.Enqueue(-6);
+			assert(qs.Peek() == -3);
+			assert(qs.GetMax() == 5);
+			assert(qs.GetMin() == -6);
+			assert(qs.GetSum() == -4);
+			assert(std::abs(qs.GetAverage() - (-1.33333333)) <= EPSILON);
+			assert(qs.GetCount() == 3u);
+			assert(qs.GetStackCount() == 2u);
+
+			qs.Enqueue(-8);
+			assert(qs.Peek() == -3);
+			assert(qs.GetMax() == 5);
+			assert(qs.GetMin() == -8);
+			assert(qs.GetSum() == -12);
+			assert(qs.GetAverage() == -3);
+			assert(qs.GetCount() == 4u);
+			assert(qs.GetStackCount() == 3u);
+
+			qs.Enqueue(10);
+			assert(qs.Peek() == -3);
+			assert(qs.GetMax() == 10);
+			assert(qs.GetMin() == -8);
+			assert(qs.GetSum() == -2);
+			assert(qs.GetAverage() == -0.4);
+			assert(qs.GetCount() == 5u);
+			assert(qs.GetStackCount() == 3u);
+
+			assert(qs.Dequeue() == -3);
+			assert(qs.Peek() == -6);
+			assert(qs.GetMax() == 10);
+			assert(qs.GetMin() == -8);
+			assert(qs.GetSum() == 1);
+			assert(qs.GetAverage() == 0.25);
+			assert(qs.GetCount() == 4u);
+			assert(qs.GetStackCount() == 2u);
+
+			assert(qs.Dequeue() == -6);
+			assert(qs.Peek() == 5);
+			assert(qs.GetMax() == 10);
+			assert(qs.GetMin() == -8);
+			assert(qs.GetSum() == 7);
+			assert(std::abs(qs.GetAverage() - 2.33333333) <= EPSILON);
+			assert(qs.GetCount() == 3u);
+			assert(qs.GetStackCount() == 2u);
+
+			assert(qs.Dequeue() == 5);
+			assert(qs.Peek() == 10);
+			assert(qs.GetMax() == 10);
+			assert(qs.GetMin() == -8);
+			assert(qs.GetSum() == 2);
+			assert(qs.GetAverage() == 1);
+			assert(qs.GetCount() == 2u);
+			assert(qs.GetStackCount() == 1u);
+
+			assert(qs.Dequeue() == 10);
+			assert(qs.Peek() == -8);
+			assert(qs.GetMax() == -8);
+			assert(qs.GetMin() == -8);
+			assert(qs.GetSum() == -8);
+			assert(qs.GetAverage() == -8);
+			assert(qs.GetCount() == 1u);
+			assert(qs.GetStackCount() == 1u);
+
+			assert(qs.Dequeue() == -8);
+			assert(qs.GetMax() == std::numeric_limits<int>::min());
+			assert(qs.GetMin() == std::numeric_limits<int>::max());
+			assert(qs.GetSum() == 0);
+			assert(qs.GetCount() == 0u);
+			assert(qs.GetStackCount() == 0u);
+
+			// test assignment operator
+			assert(qs2.GetMax() != std::numeric_limits<int>::min());
+			assert(qs2.GetMin() != std::numeric_limits<int>::max());
+			assert(qs2.GetSum() != 0);
+			assert(qs2.GetCount() != 0u);
+			assert(qs2.GetStackCount() != 0u);
+
+			qs2 = qs;
+
+			assert(qs2.GetMax() == std::numeric_limits<int>::min());
+			assert(qs2.GetMin() == std::numeric_limits<int>::max());
+			assert(qs2.GetSum() == 0);
+			assert(qs2.GetCount() == 0u);
+			assert(qs2.GetStackCount() == 0u);
+
+			// test max stack count 0
+			qs = QueueStack<int>(0);
+			qs.Enqueue(1);
+			qs.Enqueue(2);
+			qs.Enqueue(3);
+
+			assert(qs.GetMax() == std::numeric_limits<int>::min());
+			assert(qs.GetMin() == std::numeric_limits<int>::max());
+			assert(qs.GetSum() == 0);
+			assert(qs.GetCount() == 0u);
+			assert(qs.GetStackCount() == 0u);
+		}
 	}
 
 	void TestSmartStack()
@@ -308,6 +565,38 @@ namespace assignment3
 		assert(s2.GetSum() == 6);
 		assert(s2.Peek() == 2);
 		assert(std::abs(s2.GetAverage() - 1.5) <= EPSILON);
+
+		assert(s2.Pop() == 2);
+		assert(s2.GetCount() == 3);
+		assert(s2.GetMax() == 2);
+		assert(s2.GetMin() == 1);
+		assert(s2.GetSum() == 4);
+		assert(s2.Peek() == 2);
+		assert(std::abs(s2.GetAverage() - 1.333) <= EPSILON);
+
+		assert(s2.Pop() == 2);
+		assert(s2.GetCount() == 2);
+		assert(s2.GetMax() == 1);
+		assert(s2.GetMin() == 1);
+		assert(s2.GetSum() == 2);
+		assert(s2.Peek() == 1);
+		assert(std::abs(s2.GetAverage() - 1) <= EPSILON);
+
+		assert(s2.Pop() == 1);
+		assert(s2.GetCount() == 1);
+		assert(s2.GetMax() == 1);
+		assert(s2.GetMin() == 1);
+		assert(s2.GetSum() == 1);
+		assert(s2.Peek() == 1);
+		assert(std::abs(s2.GetAverage() - 1) <= EPSILON);
+
+		assert(s2.Pop() == 1);
+		assert(s2.GetCount() == 0);
+		assert(s2.GetMax() == std::numeric_limits<int>::min());
+		assert(s2.GetMin() == std::numeric_limits<int>::max());
+		assert(s2.GetSum() == 0);
+		//assert(s2.Peek() == 1);
+		assert(s2.GetAverage() == 0);
 	}
 
 	void TestSmartQueue()

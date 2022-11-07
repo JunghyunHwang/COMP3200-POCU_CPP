@@ -9,7 +9,8 @@
 namespace assignment3
 {
 	void TestOfficial();
-	void TestWiki();
+	void TestWiki1();
+	void TestWiki2();
 	void TestSmartStack();
 	void TestSmartQueue();
 	void TestQueueStack();

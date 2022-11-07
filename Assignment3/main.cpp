@@ -10,7 +10,8 @@ using namespace assignment3;
 int main()
 {
 	TestOfficial();
-	TestWiki();
+	TestWiki1();
+	TestWiki2();
 	TestSmartStack();
 	TestSmartQueue();
 	TestQueueStack();

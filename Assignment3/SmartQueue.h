@@ -23,7 +23,6 @@ namespace assignment3
 		inline unsigned int GetCount() const;
 
 	private:
-		unsigned int mCount;
 		T mSum;
 		T mSquareSum;
 		std::queue<T> mMainQueue;
@@ -40,7 +39,6 @@ namespace assignment3
 	void SmartQueue<T>::Enqueue(const T number)
 	{
 		mMainQueue.push(number);
-		++mCount;
 		mSum += number;
 		mSquareSum = mSquareSum + number * number;
 	}
@@ -60,10 +58,8 @@ namespace assignment3
 		}
 
 		T result = mMainQueue.front();
-		
 		mMainQueue.pop();
 
-		--mCount;
 		mSum -= result;
 		mSquareSum = mSquareSum - result * result;
 
@@ -73,9 +69,9 @@ namespace assignment3
 	template<typename T>
 	T SmartQueue<T>::GetMax() const
 	{
-		if (mCount == 0)
+		if (mMainQueue.size() == 0)
 		{
-			return std::numeric_limits<T>::min();
+			return std::numeric_limits<T>::lowest();
 		}
 
 		std::queue<T> copied = mMainQueue;
@@ -99,7 +95,7 @@ namespace assignment3
 	template<typename T>
 	T SmartQueue<T>::GetMin() const
 	{
-		if (mCount == 0)
+		if (mMainQueue.size() == 0)
 		{
 			return std::numeric_limits<T>::max();
 		}
@@ -125,7 +121,12 @@ namespace assignment3
 	template<typename T>
 	double SmartQueue<T>::GetAverage() const
 	{
-		return mSum / static_cast<double>(mCount);
+		if (mMainQueue.size() == 0)
+		{
+			return 0;
+		}
+
+		return mSum / static_cast<double>(mMainQueue.size());
 	}
 
 	template<typename T>
@@ -137,8 +138,13 @@ namespace assignment3
 	template<typename T>
 	double SmartQueue<T>::GetVariance() const
 	{
+		if (mMainQueue.size() == 0)
+		{
+			return 0;
+		}
+
 		double AVERAGE = GetAverage();
-		return mSquareSum / static_cast<double>(mCount) - AVERAGE * AVERAGE;
+		return mSquareSum / static_cast<double>(mMainQueue.size()) - AVERAGE * AVERAGE;
 	}
 
 	template<typename T>
@@ -150,6 +156,6 @@ namespace assignment3
 	template<typename T>
 	unsigned int SmartQueue<T>::GetCount() const
 	{
-		return mCount;
+		return mMainQueue.size();
 	}
 }

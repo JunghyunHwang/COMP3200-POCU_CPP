@@ -89,7 +89,7 @@ namespace assignment3
 	{
 		if (mQueueStack.size() == 0)
 		{
-			return std::numeric_limits<T>::min();
+			return std::numeric_limits<T>::lowest();
 		}
 
 		std::queue<SmartStack<T>> copiedQueueStack = mQueueStack;
