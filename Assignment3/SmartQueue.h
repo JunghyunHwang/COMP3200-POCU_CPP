@@ -132,7 +132,7 @@ namespace assignment3
 	template<typename T>
 	T SmartQueue<T>::GetSum() const
 	{
-		return mSum;
+		return static_cast<T>(mSum);
 	}
 
 	template<typename T>

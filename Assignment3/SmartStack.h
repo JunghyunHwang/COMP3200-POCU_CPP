@@ -109,7 +109,7 @@ namespace assignment3
 	template<typename T>
 	T SmartStack<T>::GetSum() const
 	{
-		return mSum;
+		return static_cast<T>(mSum);
 	}
 
 	template<typename T>
