@@ -28,8 +28,8 @@ namespace assignment3
 		bool checkStackCount() const;
 
 	private:
-		T mSum;
-		T mSquareSum;
+		double mSum;
+		double mSquareSum;
 
 		std::stack<T> mMainStack;
 		std::stack<T> mMaxStack;
@@ -115,13 +115,13 @@ namespace assignment3
 	template<typename T>
 	double SmartStack<T>::GetAverage() const
 	{
-		return static_cast<double>(mSum) / mMainStack.size();
+		return mSum / mMainStack.size();
 	}
 
 	template<typename T>
 	double SmartStack<T>::GetVariance() const
 	{
-		return (static_cast<double>(mSquareSum) / mMainStack.size() - pow(GetAverage(), 2));
+		return (mSquareSum / mMainStack.size() - pow(GetAverage(), 2));
 	}
 
 	template<typename T>

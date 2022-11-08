@@ -23,8 +23,8 @@ namespace assignment3
 		inline unsigned int GetCount() const;
 
 	private:
-		T mSum;
-		T mSquareSum;
+		double mSum;
+		double mSquareSum;
 		std::queue<T> mMainQueue;
 	};
 
@@ -126,7 +126,7 @@ namespace assignment3
 	template<typename T>
 	double SmartQueue<T>::GetAverage() const
 	{
-		return static_cast<double>(mSum) / mMainQueue.size();
+		return mSum / mMainQueue.size();
 	}
 
 	template<typename T>
@@ -138,7 +138,7 @@ namespace assignment3
 	template<typename T>
 	double SmartQueue<T>::GetVariance() const
 	{
-		return (static_cast<double>(mSquareSum) / mMainQueue.size() - pow(GetAverage(), 2));
+		return (mSquareSum / mMainQueue.size() - pow(GetAverage(), 2));
 	}
 
 	template<typename T>
