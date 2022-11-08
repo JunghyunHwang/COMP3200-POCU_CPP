@@ -16,7 +16,6 @@ int main()
 	TestSmartQueue();
 	TestQueueStack();
 
-
 	std::cout << "No prob" << std::endl;
 	return 0;
 }

@@ -595,8 +595,6 @@ namespace assignment3
 		assert(s2.GetMax() == std::numeric_limits<int>::min());
 		assert(s2.GetMin() == std::numeric_limits<int>::max());
 		assert(s2.GetSum() == 0);
-		//assert(s2.Peek() == 1);
-		assert(s2.GetAverage() == 0);
 	}
 
 	void TestSmartQueue()

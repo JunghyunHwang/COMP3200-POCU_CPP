@@ -98,24 +98,16 @@ namespace assignment3
 	template<typename T>
 	double SmartStack<T>::GetAverage() const
 	{
-		if (mMainStack.size() == 0)
-		{
-			return 0;
-		}
-
 		return mSum / static_cast<double>(mMainStack.size());
 	}
 
 	template<typename T>
 	double SmartStack<T>::GetVariance() const
 	{
-		if (mMainStack.size() == 0)
-		{
-			return 0;
-		}
+		double squareAverage = GetAverage();
+		squareAverage *= static_cast<double>(squareAverage);
 
-		const double AVERAGE = GetAverage();
-		return mSquareSum / static_cast<double>(mMainStack.size()) - AVERAGE * AVERAGE;
+		return mSquareSum / static_cast<double>(mMainStack.size()) - squareAverage;
 	}
 
 	template<typename T>
