@@ -40,8 +40,6 @@ namespace assignment3
 		: mSum(0)
 		, mSquareSum(0)
 	{
-		mMaxStack.push(std::numeric_limits<T>::lowest());
-		mMinStack.push(std::numeric_limits<T>::max());
 	}
 
 	template<typename T>
@@ -51,8 +49,8 @@ namespace assignment3
 		mSum += number;
 		mSquareSum = mSquareSum + number * number;
 
-		const T MAX = mMaxStack.top() < number ? number : mMaxStack.top();
-		const T MIN = mMinStack.top() > number ? number : mMinStack.top();
+		const T MAX = mMaxStack.size() == 0 || mMaxStack.top() < number ? number : mMaxStack.top();
+		const T MIN = mMinStack.size() == 0 || mMinStack.top() > number ? number : mMinStack.top();
 
 		mMaxStack.push(MAX);
 		mMinStack.push(MIN);
@@ -96,12 +94,22 @@ namespace assignment3
 	template<typename T>
 	T SmartStack<T>::GetMax() const
 	{
+		if (mMaxStack.size() == 0)
+		{
+			return std::numeric_limits<T>::lowest();
+		}
+
 		return mMaxStack.top();
 	}
 
 	template<typename T>
 	T SmartStack<T>::GetMin() const
 	{
+		if (mMinStack.size() == 0)
+		{
+			return std::numeric_limits<T>::max();
+		}
+
 		return mMinStack.top();
 	}
 
@@ -134,10 +142,10 @@ namespace assignment3
 	{
 		return mMainStack.size();
 	}
-
+	
 	template<typename T>
 	bool SmartStack<T>::checkStackCount() const
 	{
-		return (mMainStack.size() + 1 == mMaxStack.size() && mMaxStack.size() == mMinStack.size() && mMinStack.size() == mMainStack.size() + 1);
+		return (mMainStack.size() == mMaxStack.size() && mMaxStack.size() == mMinStack.size() && mMinStack.size() == mMainStack.size());
 	}
 }
