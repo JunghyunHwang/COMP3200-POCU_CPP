@@ -30,7 +30,6 @@ namespace assignment3
 	private:
 		double mSum;
 		double mSquareSum;
-
 		std::stack<T> mMainStack;
 		std::stack<T> mMaxStack;
 		std::stack<T> mMinStack;
