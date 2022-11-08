@@ -64,6 +64,11 @@ namespace assignment3
 	template<typename T>
 	T SmartStack<T>::Pop()
 	{
+		if (mMainStack.size() == 0)
+		{
+			assert(false);
+		}
+
 		T result = mMainStack.top();
 
 		mMainStack.pop();
@@ -81,6 +86,11 @@ namespace assignment3
 	template<typename T>
 	T SmartStack<T>::Peek() const
 	{
+		if (mMainStack.size() == 0)
+		{
+			assert(false);
+		}
+
 		return mMainStack.top();
 	}
 
@@ -105,13 +115,13 @@ namespace assignment3
 	template<typename T>
 	double SmartStack<T>::GetAverage() const
 	{
-		return static_cast<double>(mSum) / mMainStack.size();
+		return static_cast<double>(mSum) / static_cast<double>(mMainStack.size());
 	}
 
 	template<typename T>
 	double SmartStack<T>::GetVariance() const
 	{
-		double squareAverage = static_cast<double>(mSquareSum) / mMainStack.size();
+		double squareAverage = static_cast<double>(mSquareSum) / static_cast<double>(mMainStack.size());
 
 		return (squareAverage - pow(GetAverage(), 2));
 	}

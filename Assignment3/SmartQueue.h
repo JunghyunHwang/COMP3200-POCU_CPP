@@ -23,9 +23,6 @@ namespace assignment3
 		inline unsigned int GetCount() const;
 
 	private:
-		bool checkStackCount() const;
-
-	private:
 		T mSum;
 		T mSquareSum;
 		std::queue<T> mMainQueue;
@@ -49,6 +46,11 @@ namespace assignment3
 	template<typename T>
 	T SmartQueue<T>::Peek() const
 	{
+		if (mMainQueue.size() == 0)
+		{
+			assert(false);
+		}
+
 		return mMainQueue.front();
 	}
 
@@ -124,7 +126,7 @@ namespace assignment3
 	template<typename T>
 	double SmartQueue<T>::GetAverage() const
 	{
-		return static_cast<double>(mSum) / mMainQueue.size();
+		return static_cast<double>(mSum) / static_cast<double>(mMainQueue.size());
 	}
 
 	template<typename T>
@@ -136,7 +138,7 @@ namespace assignment3
 	template<typename T>
 	double SmartQueue<T>::GetVariance() const
 	{
-		double squareAverage = static_cast<double>(mSquareSum) / mMainQueue.size();
+		double squareAverage = static_cast<double>(mSquareSum) / static_cast<double>(mMainQueue.size());
 
 		return (squareAverage - pow(GetAverage(), 2));
 	}
