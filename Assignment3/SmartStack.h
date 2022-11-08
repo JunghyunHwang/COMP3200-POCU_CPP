@@ -111,7 +111,9 @@ namespace assignment3
 	template<typename T>
 	double SmartStack<T>::GetVariance() const
 	{
-		return static_cast<double>(mSquareSum) / mMainStack.size() - pow(GetAverage(), 2);
+		double squareAverage = static_cast<double>(mSquareSum) / mMainStack.size();
+
+		return (squareAverage - pow(GetAverage(), 2));
 	}
 
 	template<typename T>
