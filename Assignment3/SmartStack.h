@@ -11,7 +11,9 @@ namespace assignment3
 	{
 	public:
 		SmartStack();
+		SmartStack(const SmartStack<T>& other);
 		virtual ~SmartStack();
+		SmartStack<T>& operator=(const SmartStack<T>& rhs);
 		
 		void Push(const T number);
 		T Pop();
@@ -55,6 +57,36 @@ namespace assignment3
 		delete mMainStack;
 		delete mMaxStack;
 		delete mMinStack;
+	}
+
+	template<typename T>
+	SmartStack<T>::SmartStack(const SmartStack<T>& other)
+		: mSum(other.mSum)
+		, mSquareSum(other.mSquareSum)
+	{
+		mMainStack = new std::stack<T>(*other.mMainStack);
+		mMaxStack = new std::stack<T>(*other.mMaxStack);
+		mMinStack = new std::stack<T>(*other.mMinStack);
+	}
+
+	template<typename T>
+	SmartStack<T>& SmartStack<T>::operator=(const SmartStack<T>& rhs)
+	{
+		if (this == &rhs)
+		{
+			return *this;
+		}
+
+		delete mMainStack;
+		delete mMaxStack;
+		delete mMinStack;
+
+		mSum = rhs.mSum;
+		mSquareSum = rhs.mSquareSum;
+
+		mMainStack = new std::stack<T>(*rhs.mMainStack);
+		mMaxStack = new std::stack<T>(*rhs.mMaxStack);
+		mMinStack = new std::stack<T>(*rhs.mMinStack);
 	}
 
 	template<typename T>
