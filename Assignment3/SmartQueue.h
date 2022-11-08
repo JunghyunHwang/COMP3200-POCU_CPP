@@ -23,6 +23,9 @@ namespace assignment3
 		inline unsigned int GetCount() const;
 
 	private:
+		bool checkStackCount() const;
+
+	private:
 		T mSum;
 		T mSquareSum;
 		std::queue<T> mMainQueue;
