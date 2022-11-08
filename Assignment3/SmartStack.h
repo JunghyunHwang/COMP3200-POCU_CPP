@@ -129,8 +129,6 @@ namespace assignment3
 	template<typename T>
 	bool SmartStack<T>::checkStackCount() const
 	{
-		return (mMainStack.size() + 1 == mMaxStack.size()
-			&& mMaxStack.size() == mMinStack.size()
-			&& mMinStack.size() == mMainStack.size() + 1);
+		return (mMainStack.size() + 1 == mMaxStack.size() && mMaxStack.size() == mMinStack.size() && mMinStack.size() == mMainStack.size() + 1);
 	}
 }
