@@ -1,5 +1,7 @@
 #pragma once
 
+#include <cassert>
+
 namespace lab8
 {
 	template<typename T, size_t N>
@@ -7,41 +9,107 @@ namespace lab8
 	{
 	public:
 		FixedVector();
-		FixedVector(const FixedVector& other);
-		virtual ~FixedVector();
-		FixedVector& operator=(const FixeVector& rhs);
+		FixedVector(const FixedVector& other) = default;
+		virtual ~FixedVector() = default;
+		FixedVector<T, N>& operator=(const FixedVector<T, N>& rhs) = default;
+
+		bool Add(const T& t);
+		bool Remove(const T& t);
+		const T& Get(unsigned int i) const;
+		T& operator[](unsigned int i);
+		int GetIndex(const T& t) const;
+
+		size_t GetSize() const;
+		size_t GetCapacity() const;
 
 	private:
+		enum { NOTFOUND = -1};
 		size_t mSize;
-		size_t mCapacity;
-		T* mMainArray;
+		T mMainArray[N];
 	};
 
 	template<typename T, size_t N>
 	FixedVector<T, N>::FixedVector()
 		: mSize(0)
-		, mCapacity(N)
 	{
-		mMainArray = new T[mCapacity];
 	}
 
 	template<typename T, size_t N>
-	FixedVector<T, N>::~FixedVector()
+	bool FixedVector<T, N>::Add(const T& t)
 	{
-		delete[] mMainArray;
-	}
-
-	template<typename T, size_t N>
-	FixedVector<T, N>::FixedVector(const FixedVector& other)
-		: mSize(other.mSize)
-		, mCapacity(other.mCapacity)
-	{
-		mMainArray = new T[mCapacity];
-
-		for (size_t i = 0; i < other.mSize; ++i)
+		if (mSize >= N)
 		{
-			mMainArray[i] = other.mMainArray[i];
+			assert(false);
+			return false;
 		}
+
+		mMainArray[mSize++] = t;
+
+		return true;
+	}
+
+	template<typename T, size_t N>
+	bool FixedVector<T, N>::Remove(const T& t)
+	{
+		size_t i;
+		
+		for (i = 0; i < mSize; ++i)
+		{
+			if (mMainArray[i] == t)
+			{
+				break;
+			}
+		}
+
+		if (i == mSize)
+		{
+			return false;
+		}
+
+		for (; i < N - 1; ++i)
+		{
+			mMainArray[i] = mMainArray[i + 1];
+		}
+
+		return true;
+	}
+
+	template<typename T, size_t N>
+	const T& FixedVector<T, N>::Get(unsigned int i) const
+	{
+		return mMainArray[i];
+	}
+
+	template<typename T, size_t N>
+	T& FixedVector<T, N>::operator[](unsigned int i)
+	{
+		return mMainArray[i];
+	}
+
+	template<typename T, size_t N>
+	int FixedVector<T, N>::GetIndex(const T& t) const
+	{
+		for (int i = 0; i < mSize; ++i)
+		{
+			if (mMainArray[i] == t)
+			{
+				return i;
+			}
+		}
+
+		return NOTFOUND;
+	}
+
+	template<typename T, size_t N>
+	size_t FixedVector<T, N>::GetSize() const
+	{
+		return mSize;
+	}
+
+	template<typename T, size_t N>
+	size_t FixedVector<T, N>::GetCapacity() const
+	{
+		return N;
 	}
 }
 

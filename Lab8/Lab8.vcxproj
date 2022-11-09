@@ -73,10 +73,12 @@
     <ClCompile Include="FixedBoolVector.cpp" />
     <ClCompile Include="FixedVector.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Test.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FixedBoolVector.h" />
     <ClInclude Include="FixedVector.h" />
+    <ClInclude Include="Test.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
