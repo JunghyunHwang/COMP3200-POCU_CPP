@@ -68,8 +68,8 @@ namespace lab8
 
 			assert(fvc.Remove('e') == true);
 			assert(fvc.GetSize() == 1);
-			assert(fvc.Get(0) == 'e');
-			assert(fvc[0] == 'e');
+			assert(fvc.Get(0) == 'f');
+			assert(fvc[0] == 'f');
 
 			assert(fvc.Remove('f') == true);
 			assert(fvc.GetSize() == 0);
@@ -138,6 +138,75 @@ namespace lab8
 
 			assert(fvi.Remove(6) == true);
 			assert(fvi.GetSize() == 0);
+		}
+	}
+
+	void TestFixedBoolVector()
+	{
+		// Basic test
+		{
+			FixedVector<bool, 3> fvb;
+			assert(fvb.GetSize() == 0);
+			assert(fvb.GetCapacity() == 3);
+
+			assert(fvb.Add(false) == true);
+			assert(fvb.GetSize() == 1);
+			assert(fvb.Add(false) == true);
+			assert(fvb.GetSize() == 2);
+			assert(fvb.Add(false) == true);
+			assert(fvb.GetSize() == 3);
+			assert(fvb.Add(false) == false);
+			assert(fvb.GetSize() == 3);
+
+			assert(fvb.Get(0) == false);
+			assert(fvb.Get(1) == false);
+			assert(fvb.Get(2) == false);
+
+			assert(fvb.GetIndex(true) == -1);
+			assert(fvb.GetIndex(false) == 0);
+		}
+		
+
+		{
+			FixedVector<bool, 65> fvb2;
+
+			for (size_t i = 0; i < 64; ++i)
+			{
+				assert(fvb2.Add(true) == true);
+			}
+
+			assert(fvb2.Add(false) == true);
+			assert(fvb2.Add(true) == false);
+
+			assert(fvb2.GetIndex(false) == 64);
+
+			for (size_t i = 0; i < 64; ++i)
+			{
+				assert(fvb2[i] == true);
+			}
+
+			assert(fvb2[64] == false);
+		}
+
+		{
+			FixedVector<bool, 65> fvb3;
+
+			for (size_t i = 0; i < 64; ++i)
+			{
+				assert(fvb3.Add(false) == true);
+			}
+
+			assert(fvb3.Add(true) == true);
+			assert(fvb3.Add(false) == false);
+
+			assert(fvb3.GetIndex(true) == 64);
+
+			for (size_t i = 0; i < 64; ++i)
+			{
+				assert(fvb3[i] == false);
+			}
+
+			assert(fvb3[64] == true);
 		}
 	}
 }

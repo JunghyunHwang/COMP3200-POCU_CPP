@@ -6,5 +6,6 @@
 namespace lab8
 {
 	void MyTest();
+	void TestFixedBoolVector();
 }
 
