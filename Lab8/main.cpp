@@ -8,17 +8,12 @@ using namespace lab8;
 
 int main()
 {
-	auto start = std::chrono::high_resolution_clock::now();
-
+	TestOfficial();
+	TestWiki1();
+	TestWiki2();
 	MyTest();
 	TestFixedBoolVector();
-
-	auto end = std::chrono::high_resolution_clock::now();
-
-	auto elapseNanoSecond = end - start;
-
-	std::cout << elapseNanoSecond.count() << std::endl;
-
+	
 	std::cout << "No prob" << std::endl;
 
 	system("pause");

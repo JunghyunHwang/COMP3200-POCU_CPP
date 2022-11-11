@@ -194,10 +194,10 @@ namespace lab8
 
 		if (value)
 		{
-			unsigned int mask = mMainArray[mSize / 32];
-			mask = mask | (1 << mSize % 32);
+			unsigned int mask = mMainArray[mSize / BIT_SIZE];
+			mask = mask | (1 << mSize % BIT_SIZE);
 
-			mMainArray[mSize / 32] = mask;
+			mMainArray[mSize / BIT_SIZE] = mask;
 		}
 
 		++mSize;
@@ -205,18 +205,55 @@ namespace lab8
 		return true;
 	}
 
-	/*
-	template<size_t N>
-	bool FixedVector<bool, N>::Remove(const bool value)
+	
+	template<size_t n>
+	bool FixedVector<bool, n>::Remove(const bool value)
 	{
-	}*/
+		int bitIndex = GetIndex(value);
+
+		if (bitIndex == NOT_FOUND)
+		{
+			return false;
+		}
+
+		unsigned int arrayIndex = bitIndex / BIT_SIZE;
+		unsigned int origin = mMainArray[arrayIndex];
+
+		unsigned int lBit = (0xffffffff << bitIndex % BIT_SIZE) & origin;
+		unsigned int rBit = ~(0xffffffff << bitIndex % BIT_SIZE) & origin;
+
+		lBit = lBit >> 1;
+
+		origin = lBit | rBit;
+
+		mMainArray[arrayIndex] = origin;
+
+
+		for (size_t i = arrayIndex; i < mArrayCapacity - 1; ++i)
+		{
+			unsigned int overBit = 1;
+			overBit = (overBit & mMainArray[i + 1]) << 31;
+			mMainArray[i + 1] = mMainArray[i + 1] >> 1;
+
+			if (overBit == 0)
+			{
+				continue;
+			}
+
+			mMainArray[i] |= overBit;
+		}
+
+		--mSize;
+
+		return true;
+	}
 
 	template<size_t N>
 	bool FixedVector<bool, N>::Get(unsigned int i) const
 	{
-		unsigned int bitflag = mMainArray[i / 32];
+		unsigned int bitflag = mMainArray[i / BIT_SIZE];
 
-		bitflag &= (1 << i % 32);
+		bitflag &= (1 << i % BIT_SIZE);
 
 		return bitflag;
 	}
@@ -230,13 +267,13 @@ namespace lab8
 	template<size_t N>
 	int FixedVector<bool, N>::GetIndex(const bool value) const
 	{
-		for (size_t i = 0; i < mArrayCapacity; ++i)
+		for (size_t i = 0; i <= mSize / BIT_SIZE; ++i)
 		{
 			unsigned int bitflag = mMainArray[i];
 
 			for (size_t j = 0; j < BIT_SIZE; ++j)
 			{
-				if (j >= N)
+				if (i * BIT_SIZE + j >= mSize)
 				{
 					return NOT_FOUND;
 				}
