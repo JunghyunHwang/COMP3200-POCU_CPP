@@ -237,10 +237,13 @@ namespace lab8
 
 			if (overBit == 0)
 			{
-				continue;
+				overBit = ~overBit >> 1;
+				mMainArray[i] &= overBit;
 			}
-
-			mMainArray[i] |= overBit;
+			else
+			{
+				mMainArray[i] |= overBit;
+			}
 		}
 
 		--mSize;
