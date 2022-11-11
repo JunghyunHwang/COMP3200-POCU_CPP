@@ -212,7 +212,7 @@ namespace lab8
 	{
 		int bitIndex = GetIndex(value);
 
-		if (bitIndex == NOT_FOUND)
+		if (static_cast<int>(bitIndex) == NOT_FOUND)
 		{
 			return false;
 		}
@@ -229,7 +229,7 @@ namespace lab8
 
 		if (bitIndex != 0)
 		{
-			unsigned int mask = ~(1 << bitIndex % BIT_SIZE - 1);
+			unsigned int mask = ~(1 << (bitIndex % BIT_SIZE - 1));
 			lBits &= mask;
 		}
 
