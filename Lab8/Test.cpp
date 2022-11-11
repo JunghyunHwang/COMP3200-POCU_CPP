@@ -120,7 +120,8 @@ namespace lab8
 		assert(integerVector1.Get(1) == integerArray1[1]);
 		std::cout << "Test FixedVector Get(): PASS" << std::endl;
 		assert(integerVector1[1] == integerArray1[1]);
-		std::cout << "Test FixedVector operator[](): PASS" << std::endl;	integerVector1[0] = integerArray1[1];
+		std::cout << "Test FixedVector operator[](): PASS" << std::endl;
+		integerVector1[0] = integerArray1[1];
 		assert(integerVector1[0] == integerArray1[1]);
 		integerVector1[0] = integerArray1[0];
 		assert(integerVector1[0] == integerArray1[0]);
@@ -141,16 +142,7 @@ namespace lab8
 		std::cout << "Test FixedVector Remove() - empty array: PASS" << std::endl;
 
 		enum { BOOL_VECTOR1_SIZE = 7 };
-		bool boolArray1[] = {
-			true,	/* 0 */
-			true,	/* 1 */
-			true,	/* 2 */
-			true,	/* 3 */
-			false,	/* 4 */
-			false,	/* 5 */
-			true,	/* 6 */
-			true	/* 7 - exceeded data */
-		};
+		bool boolArray1[] = { true,	true, true, true, false, false, true, true };
 		FixedVector<bool, BOOL_VECTOR1_SIZE> boolVector1;
 		assert(boolVector1.GetCapacity() == BOOL_VECTOR1_SIZE);
 		assert(boolVector1.GetSize() == 0);
