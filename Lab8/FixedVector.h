@@ -135,6 +135,8 @@ namespace lab8
 		bool operator[](unsigned int i);
 		int GetIndex(const bool value) const;
 
+		void Clear();
+
 		size_t GetSize() const;
 		size_t GetCapacity() const;
 
@@ -205,9 +207,8 @@ namespace lab8
 		return true;
 	}
 
-	
-	template<size_t n>
-	bool FixedVector<bool, n>::Remove(const bool value)
+	template<size_t N>
+	bool FixedVector<bool, N>::Remove(const bool value)
 	{
 		int bitIndex = GetIndex(value);
 
@@ -219,15 +220,22 @@ namespace lab8
 		unsigned int arrayIndex = bitIndex / BIT_SIZE;
 		unsigned int origin = mMainArray[arrayIndex];
 
-		unsigned int lBit = (0xffffffff << bitIndex % BIT_SIZE) & origin;
-		unsigned int rBit = ~(0xffffffff << bitIndex % BIT_SIZE) & origin;
+		unsigned int lBits = (0xffffffff << bitIndex % BIT_SIZE);
+		unsigned int rBits = ~(0xffffffff << bitIndex % BIT_SIZE);
 
-		lBit = lBit >> 1;
+		lBits &= origin;
+		rBits &= origin;
+		lBits = lBits >> 1;
 
-		origin = lBit | rBit;
+		if (bitIndex != 0)
+		{
+			unsigned int mask = ~(1 << bitIndex % BIT_SIZE - 1);
+			lBits &= mask;
+		}
+
+		origin = lBits | rBits;
 
 		mMainArray[arrayIndex] = origin;
-
 
 		for (size_t i = arrayIndex; i < mArrayCapacity - 1; ++i)
 		{
@@ -249,6 +257,17 @@ namespace lab8
 		--mSize;
 
 		return true;
+	}
+
+	template<size_t N>
+	void FixedVector<bool, N>::Clear()
+	{
+		mSize = 0;
+
+		for (size_t i = 0; i < mArrayCapacity; ++i)
+		{
+			mMainArray[i] = 0;
+		}
 	}
 
 	template<size_t N>

@@ -444,12 +444,12 @@ namespace lab8
 				assert(v1.Add(false));
 			}
 
-			for (size_t i = 0; i < 25; ++i)
+			for (size_t i = 0; i < 26; ++i)
 			{
 				v1.Remove(false);
 			}
 
-			assert(v1.GetIndex(false) >= 0);
+			assert(v1.GetIndex(false) == -1);
 		}
 	}
 	
@@ -680,6 +680,77 @@ namespace lab8
 
 			fvb.Remove(false);
 			assert(fvb[31] == false);
+		}
+
+		{
+			FixedVector<bool, 64> fvb;
+
+			for (size_t i = 0; i < 32; ++i)
+			{
+				fvb.Add(false);
+			}
+
+			fvb.Add(true);
+			fvb.Add(false);
+
+			for (size_t i = 0; i < 32; ++i)
+			{
+				assert(fvb.Remove(false) == true);
+			}
+
+			assert(fvb.Remove(false) == true);
+		}
+
+		{
+			FixedVector<bool, 34> fvb;
+
+			for (size_t i = 0; i < 32; ++i)
+			{
+				assert(fvb.Add(true));
+			}
+
+			assert(fvb.Add(false));
+			assert(fvb.Add(true));
+
+			assert(fvb.Remove(false));
+		}
+
+		{
+			FixedVector<bool, 64> fvb;
+
+			for (size_t i = 0; i < 8; ++i)
+			{
+				for (size_t j = 0; j < 8; ++j)
+				{
+					if (i % 2 == 0)
+					{
+						fvb.Add(false);
+					}
+					else
+					{
+						fvb.Add(true);
+					}
+				}
+			}
+
+			fvb.Remove(true);
+			fvb.Remove(true);
+			fvb.Remove(true);
+			fvb.Remove(true);
+			fvb.Remove(true);
+		}
+
+		// 최상위 비트 문제
+		{
+			FixedVector<bool, 64> fvb;
+			
+			for (size_t i = 0; i < 64; ++i)
+			{
+				fvb.Add(true);
+			}
+
+			assert(fvb.Add(false) == false);
+			assert(fvb.Remove(true) == true);
 		}
 	}
 }
