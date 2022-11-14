@@ -70,7 +70,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Game.cpp" />
+    <ClCompile Include="IceCube.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="ObjectPool.cpp" />
+    <ClCompile Include="Random.cpp" />
+    <ClCompile Include="Test.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Game.h" />
+    <ClInclude Include="IceCube.h" />
+    <ClInclude Include="ObjectPool.h" />
+    <ClInclude Include="Random.h" />
+    <ClInclude Include="Test.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
