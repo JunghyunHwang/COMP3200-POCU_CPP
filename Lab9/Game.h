@@ -3,13 +3,14 @@
 #include <vector>
 #include "IceCube.h"
 #include "Random.h"
+#include "ObjectPool.h"
 
 namespace lab9
 {
 	class Game final
 	{
 	public:
-		Game(unsigned int seed);
+		Game(unsigned int seed, unsigned int poolSizse);
 		Game(const Game& other) = delete;
 		~Game();
 
@@ -17,11 +18,13 @@ namespace lab9
 		void Spawn();
 		void Update();
 		const std::vector<IceCube*>& GetActiveGameObjects() const;
+		ObjectPool<IceCube>& GetObjectPool();
 
 	private:
 		enum { MAX_FRAME_COUNT_TO_LIVE = 100 };
 
 		Random mRandom;
 		std::vector<IceCube*> mActiveGameObjects;
+		ObjectPool<IceCube> mIceCubeObjectPool;
 	};
 }

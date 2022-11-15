@@ -51,8 +51,6 @@ namespace lab9
 			return new T();
 		}
 
-		assert(mObjectPool.size() != 0);
-
 		T* result = mObjectPool.front();
 		mObjectPool.pop();
 		--mSize;

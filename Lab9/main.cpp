@@ -4,6 +4,7 @@ using namespace lab9;
 
 int main()
 {
+	TestOfficial();
 	TestObjectPool();
 
 	return 0;
