@@ -162,15 +162,37 @@ namespace lab10
 	template<typename T>
 	bool DoublyLinkedList<T>::Search(const T& data) const
 	{
+		std::shared_ptr<Node<T>> pNode = mHead;
+
+		while (pNode != nullptr)
+		{
+			if (*pNode->Data == data)
+			{
+				return true;
+			}
+		}
+
 		return false;
 	}
 
 	template<typename T>
 	std::shared_ptr<Node<T>> DoublyLinkedList<T>::operator[](unsigned int index) const
 	{
-		auto x = std::make_unique<T>();
-		std::shared_ptr<Node<T>> temp = std::make_shared<Node<T>>(std::move(x));
-		return temp;
+		if (index >= mSize)
+		{
+			return nullptr;
+		}
+
+		std::shared_ptr<Node<T>> pNode = mHead;
+		unsigned int count = 0;
+
+		while (count++ < index)
+		{
+			assert(pNode != nullptr);
+			pNode = pNode->Next;
+		}
+
+		return pNode;
 	}
 
 	template<typename T>

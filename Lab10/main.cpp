@@ -8,6 +8,8 @@ int main()
 {
 	TestInsert();
 	TestDelete();
+	TestSearch();
+	TestIndex();
 
 	std::cout << "No prob" << std::endl;
 

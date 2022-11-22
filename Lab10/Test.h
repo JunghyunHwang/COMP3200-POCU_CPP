@@ -12,4 +12,6 @@ namespace lab10
 	void TestOfficial();
 	void TestInsert();
 	void TestDelete();
+	void TestSearch();
+	void TestIndex();
 }
