@@ -13,15 +13,12 @@ using namespace lab10;
 int main()
 {
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
-	int* test = new int(2);
 	TestOfficial();
 	TestWiki();
 	TestInsert();
 	TestDelete();
 	TestSearch();
 	TestIndex();
-
-	delete test;
 
 	std::cout << "No prob" << std::endl;
 

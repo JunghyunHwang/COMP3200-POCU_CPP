@@ -74,7 +74,7 @@
     <ClCompile Include="Test.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="DoubleLinkedList.h" />
+    <ClInclude Include="DoublyLinkedList.h" />
     <ClInclude Include="Node.h" />
     <ClInclude Include="Test.h" />
   </ItemGroup>
