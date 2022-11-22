@@ -41,35 +41,6 @@ namespace lab10
 		assert(*node->Data == 10);
 	}
 
-	void TestInsert()
-	{
-		int list1[] = { 1, 3, 4 };
-		int list2[] = { 0, 1, 3, 4 };
-		int list3[] = { 0, 1, 2, 3, 4 };
-		DoublyLinkedList<int> list;
-
-		list.Insert(std::make_unique<int>(1));
-		assert(list.GetLength() == 1);
-
-		list.Insert(std::make_unique<int>(3));
-		assert(list.GetLength() == 2);
-
-		list.Insert(std::make_unique<int>(4));
-		assert(list.GetLength() == 3);
-		list.PrintList(); // 1 -> 3 -> 4
-		list.CheckList(list1);
-
-		list.Insert(std::make_unique<int>(0), 0);
-		assert(list.GetLength() == 4);
-		list.PrintList(); // 0 -> 1 -> 3 -> 4
-		assert(list.CheckList(list2));
-
-		list.Insert(std::make_unique<int>(2), 2);
-		assert(list.GetLength() == 5);
-		list.PrintList(); // 0 -> 1 -> 2 -> 3 -> 4
-		assert(list.CheckList(list3));
-	}
-
 	void TestWiki()
 	{
 		_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
@@ -166,6 +137,35 @@ namespace lab10
 		assert(list[0] == nullptr);
 	}
 
+	void TestInsert()
+	{
+		int list1[] = { 1, 3, 4 };
+		int list2[] = { 0, 1, 3, 4 };
+		int list3[] = { 0, 1, 2, 3, 4 };
+		DoublyLinkedList<int> list;
+
+		list.Insert(std::make_unique<int>(1));
+		assert(list.GetLength() == 1);
+
+		list.Insert(std::make_unique<int>(3));
+		assert(list.GetLength() == 2);
+
+		list.Insert(std::make_unique<int>(4));
+		assert(list.GetLength() == 3);
+		list.PrintList(); // 1 -> 3 -> 4
+		list.CheckList(list1);
+
+		list.Insert(std::make_unique<int>(0), 0);
+		assert(list.GetLength() == 4);
+		list.PrintList(); // 0 -> 1 -> 3 -> 4
+		assert(list.CheckList(list2));
+
+		list.Insert(std::make_unique<int>(2), 2);
+		assert(list.GetLength() == 5);
+		list.PrintList(); // 0 -> 1 -> 2 -> 3 -> 4
+		assert(list.CheckList(list3));
+	}
+
 	void TestDelete()
 	{
 		int list1[] = { 1, };
@@ -202,11 +202,11 @@ namespace lab10
 
 		assert(!list.Search(1));
 
-		list.Insert(sdt::make_unique<int>(1));
-		list.Insert(sdt::make_unique<int>(2));
-		list.Insert(sdt::make_unique<int>(3));
-		list.Insert(sdt::make_unique<int>(4));
-		list.Insert(sdt::make_unique<int>(5));
+		list.Insert(std::make_unique<int>(1));
+		list.Insert(std::make_unique<int>(2));
+		list.Insert(std::make_unique<int>(3));
+		list.Insert(std::make_unique<int>(4));
+		list.Insert(std::make_unique<int>(5));
 
 		assert(list.Search(1));
 		assert(list.Search(2));
@@ -216,7 +216,7 @@ namespace lab10
 		assert(!list.Search(-1));
 		assert(!list.Search(0));
 
-		list.Insert(sdt::make_unique<int>(0), 0);
+		list.Insert(std::make_unique<int>(0), 0);
 		assert(list.Search(0));
 	}
 
@@ -224,19 +224,19 @@ namespace lab10
 	{
 		DoublyLinkedList<int> list;
 
-		list.Insert(sdt::make_unique<int>(1));
-		list.Insert(sdt::make_unique<int>(2));
-		list.Insert(sdt::make_unique<int>(3));
-		list.Insert(sdt::make_unique<int>(4));
-		list.Insert(sdt::make_unique<int>(5));
+		list.Insert(std::make_unique<int>(1));
+		list.Insert(std::make_unique<int>(2));
+		list.Insert(std::make_unique<int>(3));
+		list.Insert(std::make_unique<int>(4));
+		list.Insert(std::make_unique<int>(5));
 
-		assert(list[0].use_count() == 1);
-		assert(list[1].use_count() == 1);
-		assert(list[2].use_count() == 1);
-		assert(list[3].use_count() == 1);
-		assert(list[4].use_count() == 1);
+		std::cout << list[0].use_count() << std::endl;
+		std::cout << list[1].use_count() << std::endl;
+		std::cout << list[2].use_count() << std::endl;
+		std::cout << list[3].use_count() << std::endl;
+		std::cout << list[4].use_count() << std::endl;
 
-		std::shared_ptr<Node<T>> node1 = list[0];
+		std::shared_ptr<Node<int>> node1 = list[0];
 		assert(node1.use_count() == 2);
 	}
 }

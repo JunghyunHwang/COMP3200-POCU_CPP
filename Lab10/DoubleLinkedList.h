@@ -170,6 +170,8 @@ namespace lab10
 			{
 				return true;
 			}
+
+			pNode = pNode->Next;
 		}
 
 		return false;
