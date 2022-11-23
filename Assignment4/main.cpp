@@ -1,13 +1,17 @@
 #include <iostream>
 #include <memory>
 
-#include "TreeNode.h"
+#include "Test.h"
 
 using namespace assignment4;
 
 int main()
 {
-	TreeNode<int> n(std::make_unique<int>(2));
+	std::unique_ptr<int> num = std::make_unique<int>(3);
+
+	std::cout << *num << std::endl;
+	TestInsert();
+
 	std::cout << "No prob" << std::endl;
 	return 0;
 }
