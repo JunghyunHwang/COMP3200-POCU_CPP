@@ -9,4 +9,5 @@ namespace assignment4
 {
 	void TestOfficial();
 	void TestInsert();
+	void TestSearch();
 }

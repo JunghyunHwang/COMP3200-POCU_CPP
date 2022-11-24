@@ -85,4 +85,27 @@ namespace assignment4
 			assert(expected[i] == actual[i]);
 		}
 	}
+
+	void TestSearch()
+	{
+		BinarySearchTree<int> tree;
+
+		assert(!tree.Search(0));
+		assert(!tree.Search(1));
+
+		tree.Insert(std::make_unique<int>(5));
+		tree.Insert(std::make_unique<int>(3));
+		tree.Insert(std::make_unique<int>(8));
+		tree.Insert(std::make_unique<int>(4));
+		tree.Insert(std::make_unique<int>(1));
+		tree.Insert(std::make_unique<int>(11));
+		tree.Insert(std::make_unique<int>(6));
+		tree.Insert(std::make_unique<int>(2));
+
+		assert(tree.Search(5));
+		assert(tree.Search(2));
+		assert(tree.Search(8));
+		assert(tree.Search(11));
+		assert(!tree.Search(-1));
+	}
 }
