@@ -1,5 +1,6 @@
 #pragma once
 
+#include <iostream>
 #include <cassert>
 #include <memory>
 #include <vector>
@@ -24,14 +25,15 @@ namespace assignment4
 		bool Search(const T& data);
 		bool Delete(const T& data);
 		const std::weak_ptr<TreeNode<T>> GetRootNode() const;
+		void Clear();
 
 		static std::vector<T> TraverseInOrder(const std::shared_ptr<TreeNode<T>> startNode);
 
 	private:
 		void insertRecursive(std::shared_ptr<TreeNode<T>> rootNode, std::unique_ptr<T> data);
 		std::shared_ptr<TreeNode<T>> searchOrNullRecursive(std::shared_ptr<TreeNode<T>> rootNode, const T& data);
-		std::shared_ptr<TreeNode<T>> getSmallerLeafNodeRecursive(std::shared_ptr<TreeNode<T>> startNode);
-		std::shared_ptr<TreeNode<T>> getGreaterLeafNodeRecursive(std::shared_ptr<TreeNode<T>> startNode);
+		std::shared_ptr<TreeNode<T>> getSmallerSwapNodeRecursive(std::shared_ptr<TreeNode<T>> startNode);
+		std::shared_ptr<TreeNode<T>> getGreaterSwapNodeRecursive(std::shared_ptr<TreeNode<T>> startNode);
 		
 		static void traverseRecursive(std::vector<T>& outNodes, const std::shared_ptr<TreeNode<T>> currentNode);
 
@@ -41,8 +43,15 @@ namespace assignment4
 	};
 
 	template<typename T>
+	void BinarySearchTree<T>::Clear()
+	{
+		mRoot = nullptr;
+	}
+
+	template<typename T>
 	void BinarySearchTree<T>::Insert(std::unique_ptr<T> data)
 	{
+		assert(data != nullptr);
 		if (mRoot == nullptr)
 		{
 			std::shared_ptr<TreeNode<T>> node = std::make_shared<TreeNode<T>>(std::move(data));
@@ -112,12 +121,12 @@ namespace assignment4
 
 		if (*rootNode->Data > data)
 		{
-			return searchRecursive(rootNode->Left, data);
+			return searchOrNullRecursive(rootNode->Left, data);
 		}
 
 		if (*rootNode->Data < data)
 		{
-			return searchRecursive(rootNode->Right, data);
+			return searchOrNullRecursive(rootNode->Right, data);
 		}
 	}
 
@@ -134,7 +143,7 @@ namespace assignment4
 		{
 			std::shared_ptr<TreeNode<T>> parentNode = foundNode->Parent.lock();
 
-			if (parentNode->Left >= foundNode)
+			if (*parentNode->Data >= *foundNode->Data)
 			{
 				parentNode->Left = nullptr;
 			}
@@ -147,99 +156,112 @@ namespace assignment4
 		}
 
 		std::shared_ptr<TreeNode<T>> parentNode = foundNode->Parent.lock();
-		std::shared_ptr<TreeNode<T>> leafNode;
+		std::shared_ptr<TreeNode<T>> swapNode;
 
 		if (foundNode->Left != nullptr)
 		{
-			leafNode = getSmallerLeafNodeRecursive(foundNode->Left); // return 하기 전에 부모 노드에 return
-			assert(leafNode != nullptr);
-			assert(*foundNode->Data >= *leafNode->Data);
+			swapNode = getSmallerSwapNodeRecursive(foundNode->Left);
+			assert(swapNode != nullptr);
+			assert(*foundNode->Data >= *swapNode->Data);
 		}
 		else
 		{
-			leafNode = getGreaterLeafNodeRecursive(foundNode->Right);
-			assert(leafNode != nullptr);
-			assert(*foundNode->Data < *leafNode->Data);
+			swapNode = getGreaterSwapNodeRecursive(foundNode->Right);
+			assert(swapNode != nullptr);
+			assert(*foundNode->Data < *swapNode->Data);
+		}
+
+		swapNode->Left = foundNode->Left;
+		swapNode->Right = foundNode->Right;
+
+		if (swapNode->Left != nullptr)
+		{
+			swapNode->Left->Parent = swapNode;
+		}
+
+		if (swapNode->Right != nullptr)
+		{
+			swapNode->Right->Parent = swapNode;
+		}
+
+		if (parentNode == nullptr)
+		{
+			mRoot = swapNode;
+			return true;
 		}
 		
-		assert(leafNode->Left == nullptr);
-		assert(leafNode->Right == nullptr);
+		swapNode->Parent = parentNode;
 
-		leafNode->Left = foundNode->Left;
-		leafNode->Right = foundNode->Right;
-		leafNode->Parent = parentNode;
-
-		if (*parentNode->Data >= *leafNode->Data)
+		if (*parentNode->Data >= *swapNode->Data)
 		{
-			parentNode->Left = leafNode;
+			parentNode->Left = swapNode;
 		}
 		else
 		{
-			parentNode->Right = leafNode;
+			parentNode->Right = swapNode;
 		}
 
 		return true;
 	}
 
 	template<typename T>
-	std::shared_ptr<TreeNode<T>> BinarySearchTree<T>::getSmallerLeafNodeRecursive(std::shared_ptr<TreeNode<T>> startNode)
+	std::shared_ptr<TreeNode<T>> BinarySearchTree<T>::getSmallerSwapNodeRecursive(std::shared_ptr<TreeNode<T>> startNode)
 	{
-		if (startNode->Left == nullptr && startNode->Right == nullptr)
+		if (startNode->Right == nullptr)
 		{
 			std::shared_ptr<TreeNode<T>> parent = startNode->Parent.lock();
 
-			if (parent->Left == startNode)
+			if (*parent->Data >= *startNode->Data)
 			{
-				parent->Left = nullptr;
+				parent->Left = startNode->Left;
 			}
 			else
 			{
-				parent->Right = nullptr;
+				parent->Right = startNode->Left;
+			}
+
+			if (startNode->Left != nullptr)
+			{
+				startNode->Left->Parent = parent;
 			}
 
 			return startNode;
 		}
 
-		if (startNode->Right == nullptr)
-		{
-			return getSmallerLeafNodeRecursive(startNode->Left);
-		}
-		else
-		{
-			return getSmallerLeafNodeRecursive(startNode->Right);
-		}
+		return getSmallerSwapNodeRecursive(startNode->Right);
 	}
 
 	template<typename T>
-	std::shared_ptr<TreeNode<T>> BinarySearchTree<T>::getGreaterLeafNodeRecursive(std::shared_ptr<TreeNode<T>> startNode)
+	std::shared_ptr<TreeNode<T>> BinarySearchTree<T>::getGreaterSwapNodeRecursive(std::shared_ptr<TreeNode<T>> startNode)
 	{
-		if (startNode->Left == nullptr && startNode->Right == nullptr)
+		if (startNode->Left == nullptr)
 		{
-			if (parent->Left == startNode)
+			std::shared_ptr<TreeNode<T>> parent = startNode->Parent.lock();
+
+			if (*parent->Data >= *startNode->Data)
 			{
-				parent->Left = nullptr;
+				parent->Left = startNode->Right;
 			}
 			else
 			{
-				parent->Right = nullptr;
+				parent->Right = startNode->Right;
 			}
-			
+
+			if (startNode->Right != nullptr)
+			{
+				startNode->Right->Parent = parent;
+			}
+
 			return startNode;
 		}
 
-		if (startNode->Left == nullptr)
-		{
-			return getGreaterLeafNodeRecursive(startNode->Right);
-		}
-		else
-		{
-			return getGreaterLeafNodeRecursive(startNode->Left);
-		}
+		return getGreaterSwapNodeRecursive(startNode->Left);
 	}
 
 	template<typename T>
 	std::vector<T> BinarySearchTree<T>::TraverseInOrder(const std::shared_ptr<TreeNode<T>> startNode)
 	{
+		assert(startNode != nullptr);
 		std::vector<T> v;
 		traverseRecursive(v, startNode);
 

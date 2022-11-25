@@ -7,10 +7,12 @@ using namespace assignment4;
 
 int main()
 {
-	std::unique_ptr<int> num = std::make_unique<int>(3);
-
-	std::cout << *num << std::endl;
+	TestOfficial();
 	TestInsert();
+	TestSearch();
+	TestNormalTree();
+	TestOnlyLeftTree();
+	TestOnlyRightTree();
 
 	std::cout << "No prob" << std::endl;
 	return 0;

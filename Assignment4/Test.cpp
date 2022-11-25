@@ -77,7 +77,6 @@ namespace assignment4
 		expected.push_back(11);
 
 		std::weak_ptr<TreeNode<int>> rootNode = tree.GetRootNode();
-
 		std::vector<int> actual = tree.TraverseInOrder(rootNode.lock());
 
 		for (size_t i = 0; i < expected.size(); ++i)
@@ -107,5 +106,419 @@ namespace assignment4
 		assert(tree.Search(8));
 		assert(tree.Search(11));
 		assert(!tree.Search(-1));
+	}
+
+	void TestDelete()
+	{
+
+	}
+
+	void TestNormalTree()
+	{
+		BinarySearchTree<int> tree;
+		std::vector<int> expected;
+		std::vector<int> actual;
+		std::shared_ptr<TreeNode<int>> rootNode;
+
+		expected.reserve(64);
+		expected.reserve(64);
+
+		assert(!tree.Search(0));
+		assert(!tree.Search(1));
+
+		tree.Insert(std::make_unique<int>(11));
+		tree.Insert(std::make_unique<int>(6));
+		tree.Insert(std::make_unique<int>(14));
+		tree.Insert(std::make_unique<int>(12));
+		tree.Insert(std::make_unique<int>(20));
+		tree.Insert(std::make_unique<int>(2));
+		tree.Insert(std::make_unique<int>(9));
+		tree.Insert(std::make_unique<int>(13));
+		tree.Insert(std::make_unique<int>(18));
+		tree.Insert(std::make_unique<int>(1));
+		tree.Insert(std::make_unique<int>(25));
+		tree.Insert(std::make_unique<int>(5));
+		tree.Insert(std::make_unique<int>(8));
+		tree.Insert(std::make_unique<int>(10));
+		tree.Insert(std::make_unique<int>(3));
+
+		{
+			expected.push_back(1);
+			expected.push_back(2);
+			expected.push_back(3);
+			expected.push_back(5);
+			expected.push_back(6);
+			expected.push_back(8);
+			expected.push_back(9);
+			expected.push_back(10);
+			expected.push_back(11);
+			expected.push_back(12);
+			expected.push_back(13);
+			expected.push_back(14);
+			expected.push_back(18);
+			expected.push_back(20);
+			expected.push_back(25);
+
+			rootNode = tree.GetRootNode().lock();
+			actual = tree.TraverseInOrder(rootNode);
+
+			for (size_t i = 0; i < expected.size(); ++i)
+			{
+				assert(expected[i] == actual[i]);
+			}
+		}
+
+		{
+			expected.clear();
+			actual.clear();
+
+			expected.push_back(1);
+			expected.push_back(2);
+			expected.push_back(3);
+			expected.push_back(5);
+			expected.push_back(6);
+			expected.push_back(8);
+			expected.push_back(9);
+			expected.push_back(10);
+
+			actual = tree.TraverseInOrder(rootNode->Left);
+
+			for (size_t i = 0; i < expected.size(); ++i)
+			{
+				assert(expected[i] == actual[i]);
+			}
+		}
+
+		{
+			expected.clear();
+			actual.clear();
+			
+			expected.push_back(12);
+			expected.push_back(13);
+			expected.push_back(14);
+			expected.push_back(18);
+			expected.push_back(20);
+			expected.push_back(25);
+
+			actual = tree.TraverseInOrder(rootNode->Right);
+
+			for (size_t i = 0; i < expected.size(); ++i)
+			{
+				assert(expected[i] == actual[i]);
+			}
+		}
+
+		{
+			expected.clear();
+			actual.clear();
+
+			expected.push_back(1);
+			expected.push_back(2);
+			expected.push_back(3);
+			expected.push_back(5);
+
+			actual = tree.TraverseInOrder(rootNode->Left->Left);
+
+			for (size_t i = 0; i < expected.size(); ++i)
+			{
+				assert(expected[i] == actual[i]);
+			}
+		}
+
+		{
+			expected.clear();
+			actual.clear();
+
+			expected.push_back(8);
+			expected.push_back(9);
+			expected.push_back(10);
+
+			actual = tree.TraverseInOrder(rootNode->Left->Right);
+
+			for (size_t i = 0; i < expected.size(); ++i)
+			{
+				assert(expected[i] == actual[i]);
+			}
+		}
+
+		{
+			expected.clear();
+			actual.clear();
+
+			expected.push_back(12);
+			expected.push_back(13);
+
+			actual = tree.TraverseInOrder(rootNode->Right->Left);
+
+			for (size_t i = 0; i < expected.size(); ++i)
+			{
+				assert(expected[i] == actual[i]);
+			}
+		}
+
+		{
+			expected.clear();
+			actual.clear();
+
+			expected.push_back(18);
+			expected.push_back(20);
+			expected.push_back(25);
+
+			actual = tree.TraverseInOrder(rootNode->Right->Right);
+
+			for (size_t i = 0; i < expected.size(); ++i)
+			{
+				assert(expected[i] == actual[i]);
+			}
+		}
+
+		assert(tree.Search(11));
+		assert(tree.Search(6));
+		assert(tree.Search(14));
+		assert(tree.Search(12));
+		assert(tree.Search(20));
+		assert(tree.Search(2));
+		assert(tree.Search(9));
+		assert(tree.Search(13));
+		assert(tree.Search(18));
+		assert(tree.Search(1));
+		assert(tree.Search(25));
+		assert(tree.Search(5));
+		assert(tree.Search(8));
+		assert(tree.Search(10));
+		assert(tree.Search(3));
+		assert(!tree.Search(100));
+
+		assert(tree.Delete(6));
+		assert(tree.Delete(3));
+		assert(tree.Delete(9));
+
+		assert(!tree.Search(6));
+		assert(!tree.Search(3));
+		assert(!tree.Search(9));
+
+		assert(tree.Delete(20));
+		assert(tree.Delete(10));
+		assert(tree.Delete(12));
+		assert(tree.Delete(11));
+
+		assert(!tree.Search(20));
+		assert(!tree.Search(10));
+		assert(!tree.Search(12));
+		assert(!tree.Search(11));
+	}
+
+	void TestOnlyRightTree()
+	{
+		BinarySearchTree<int> tree;
+		std::vector<int> expected;
+		std::vector<int> actual;
+		std::shared_ptr<TreeNode<int>> rootNode;
+
+		expected.reserve(64);
+		actual.reserve(64);
+
+		tree.Insert(std::make_unique<int>(1));
+		tree.Insert(std::make_unique<int>(2));
+		tree.Insert(std::make_unique<int>(3));
+		tree.Insert(std::make_unique<int>(4));
+		tree.Insert(std::make_unique<int>(5));
+		tree.Insert(std::make_unique<int>(6));
+		tree.Insert(std::make_unique<int>(7));
+		tree.Insert(std::make_unique<int>(8));
+		tree.Insert(std::make_unique<int>(9));
+		tree.Insert(std::make_unique<int>(10));
+
+		rootNode = tree.GetRootNode().lock();
+
+		{
+			expected.push_back(1);
+			expected.push_back(2);
+			expected.push_back(3);
+			expected.push_back(4);
+			expected.push_back(5);
+			expected.push_back(6);
+			expected.push_back(7);
+			expected.push_back(8);
+			expected.push_back(9);
+			expected.push_back(10);
+
+			actual = tree.TraverseInOrder(rootNode);
+
+			for (size_t i = 0; i < expected.size(); ++i)
+			{
+				assert(expected[i] == actual[i]);
+			}
+		}
+
+		{
+			expected.clear();
+			actual.clear();
+
+			expected.push_back(2);
+			expected.push_back(3);
+			expected.push_back(4);
+			expected.push_back(5);
+			expected.push_back(6);
+			expected.push_back(7);
+			expected.push_back(8);
+			expected.push_back(9);
+			expected.push_back(10);
+
+			actual = tree.TraverseInOrder(rootNode->Right);
+
+			for (size_t i = 0; i < expected.size(); ++i)
+			{
+				assert(expected[i] == actual[i]);
+			}
+		}
+
+		{
+			expected.clear();
+			actual.clear();
+
+			expected.push_back(3);
+			expected.push_back(4);
+			expected.push_back(5);
+			expected.push_back(6);
+			expected.push_back(7);
+			expected.push_back(8);
+			expected.push_back(9);
+			expected.push_back(10);
+
+			actual = tree.TraverseInOrder(rootNode->Right->Right);
+
+			for (size_t i = 0; i < expected.size(); ++i)
+			{
+				assert(expected[i] == actual[i]);
+			}
+		}
+
+		assert(tree.Search(10));
+		assert(tree.Search(9));
+		assert(tree.Search(8));
+		assert(tree.Search(7));
+		assert(tree.Search(6));
+		assert(tree.Search(5));
+		assert(tree.Search(4));
+		assert(tree.Search(3));
+		assert(tree.Search(2));
+		assert(tree.Search(1));
+		assert(!tree.Search(-1));
+
+		assert(tree.Delete(1));
+		assert(tree.Delete(10));
+		assert(tree.Delete(5));
+
+		assert(!tree.Search(1));
+		assert(!tree.Search(10));
+		assert(!tree.Search(5));
+	}
+
+	void TestOnlyLeftTree()
+	{
+		BinarySearchTree<int> tree;
+		std::vector<int> expected;
+		std::vector<int> actual;
+		std::shared_ptr<TreeNode<int>> rootNode;
+
+		expected.reserve(64);
+		actual.reserve(64);
+
+		tree.Insert(std::make_unique<int>(10));
+		tree.Insert(std::make_unique<int>(9));
+		tree.Insert(std::make_unique<int>(8));
+		tree.Insert(std::make_unique<int>(7));
+		tree.Insert(std::make_unique<int>(6));
+		tree.Insert(std::make_unique<int>(5));
+		tree.Insert(std::make_unique<int>(4));
+		tree.Insert(std::make_unique<int>(3));
+		tree.Insert(std::make_unique<int>(2));
+		tree.Insert(std::make_unique<int>(1));
+
+		rootNode = tree.GetRootNode().lock();
+
+		{
+			expected.push_back(1);
+			expected.push_back(2);
+			expected.push_back(3);
+			expected.push_back(4);
+			expected.push_back(5);
+			expected.push_back(6);
+			expected.push_back(7);
+			expected.push_back(8);
+			expected.push_back(9);
+			expected.push_back(10);
+
+			actual = tree.TraverseInOrder(rootNode);
+
+			for (size_t i = 0; i < expected.size(); ++i)
+			{
+				assert(expected[i] == actual[i]);
+			}
+		}
+
+		{
+			expected.clear();
+			actual.clear();
+
+			expected.push_back(1);
+			expected.push_back(2);
+			expected.push_back(3);
+			expected.push_back(4);
+			expected.push_back(5);
+			expected.push_back(6);
+			expected.push_back(7);
+			expected.push_back(8);
+			expected.push_back(9);
+
+			actual = tree.TraverseInOrder(rootNode->Left);
+
+			for (size_t i = 0; i < expected.size(); ++i)
+			{
+				assert(expected[i] == actual[i]);
+			}
+		}
+
+		{
+			expected.clear();
+			actual.clear();
+
+			expected.push_back(1);
+			expected.push_back(2);
+			expected.push_back(3);
+			expected.push_back(4);
+			expected.push_back(5);
+			expected.push_back(6);
+			expected.push_back(7);
+			expected.push_back(8);
+
+			actual = tree.TraverseInOrder(rootNode->Left->Left);
+
+			for (size_t i = 0; i < expected.size(); ++i)
+			{
+				assert(expected[i] == actual[i]);
+			}
+		}
+
+		assert(tree.Search(10));
+		assert(tree.Search(9));
+		assert(tree.Search(8));
+		assert(tree.Search(7));
+		assert(tree.Search(6));
+		assert(tree.Search(5));
+		assert(tree.Search(4));
+		assert(tree.Search(3));
+		assert(tree.Search(2));
+		assert(tree.Search(1));
+		assert(!tree.Search(-1));
+
+		assert(tree.Delete(1));
+		assert(tree.Delete(10));
+		assert(tree.Delete(5));
+
+		assert(!tree.Search(1));
+		assert(!tree.Search(10));
+		assert(!tree.Search(5));
 	}
 }

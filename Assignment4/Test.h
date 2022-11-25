@@ -10,4 +10,8 @@ namespace assignment4
 	void TestOfficial();
 	void TestInsert();
 	void TestSearch();
+	void TestDelete();
+	void TestNormalTree();
+	void TestOnlyRightTree();
+	void TestOnlyLeftTree();
 }
