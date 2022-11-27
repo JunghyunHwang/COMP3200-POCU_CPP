@@ -118,11 +118,13 @@ namespace assignment4
 		{
 			return rootNode;
 		}
-		else if (*rootNode->Data > data)
+
+		if (*rootNode->Data > data)
 		{
 			return searchOrNullRecursive(rootNode->Left, data);
 		}
-		else
+
+		if (*rootNode->Data < data)
 		{
 			return searchOrNullRecursive(rootNode->Right, data);
 		}
