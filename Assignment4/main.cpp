@@ -11,6 +11,7 @@ int main()
 	TestWiki();
 	TestInsert();
 	TestSearch();
+	TestRootDelete();
 	TestNormalTree();
 	TestOnlyLeftTree();
 	TestOnlyRightTree();

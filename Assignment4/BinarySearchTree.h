@@ -195,6 +195,10 @@ namespace assignment4
 		if (parentNode == nullptr)
 		{
 			mRoot = swapNode;
+
+			std::shared_ptr<TreeNode<T>> tmp = nullptr;
+			swapNode->Parent = tmp;
+
 			return true;
 		}
 		
@@ -269,7 +273,6 @@ namespace assignment4
 	template<typename T>
 	std::vector<T> BinarySearchTree<T>::TraverseInOrder(const std::shared_ptr<TreeNode<T>> startNode)
 	{
-		assert(startNode != nullptr);
 		std::vector<T> v;
 		traverseRecursive(v, startNode);
 

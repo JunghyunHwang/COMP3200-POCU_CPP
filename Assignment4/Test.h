@@ -11,7 +11,7 @@ namespace assignment4
 	void TestWiki();
 	void TestInsert();
 	void TestSearch();
-	void TestDelete();
+	void TestRootDelete();
 	void TestNormalTree();
 	void TestOnlyRightTree();
 	void TestOnlyLeftTree();
