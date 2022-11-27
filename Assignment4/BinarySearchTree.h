@@ -118,13 +118,11 @@ namespace assignment4
 		{
 			return rootNode;
 		}
-
-		if (*rootNode->Data > data)
+		else if (*rootNode->Data > data)
 		{
 			return searchOrNullRecursive(rootNode->Left, data);
 		}
-
-		if (*rootNode->Data < data)
+		else (*rootNode->Data < data)
 		{
 			return searchOrNullRecursive(rootNode->Right, data);
 		}
@@ -142,12 +140,6 @@ namespace assignment4
 		else if (foundNode->Left == nullptr && foundNode->Right == nullptr)
 		{
 			std::shared_ptr<TreeNode<T>> parentNode = foundNode->Parent.lock();
-
-			if (parentNode == nullptr)
-			{
-				mRoot = nullptr;
-				return true;
-			}
 
 			if (*parentNode->Data >= *foundNode->Data)
 			{
