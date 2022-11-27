@@ -8,6 +8,7 @@ using namespace assignment4;
 int main()
 {
 	TestOfficial();
+	TestWiki();
 	TestInsert();
 	TestSearch();
 	TestNormalTree();

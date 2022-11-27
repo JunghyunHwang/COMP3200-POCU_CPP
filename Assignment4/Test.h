@@ -8,6 +8,7 @@
 namespace assignment4
 {
 	void TestOfficial();
+	void TestWiki();
 	void TestInsert();
 	void TestSearch();
 	void TestDelete();
