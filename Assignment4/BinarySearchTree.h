@@ -122,7 +122,7 @@ namespace assignment4
 		{
 			return searchOrNullRecursive(rootNode->Left, data);
 		}
-		else (*rootNode->Data < data)
+		else
 		{
 			return searchOrNullRecursive(rootNode->Right, data);
 		}
