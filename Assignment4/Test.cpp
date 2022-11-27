@@ -182,6 +182,10 @@ namespace assignment4
 		assert(!tree.Search(0));
 		assert(!tree.Search(1));
 
+		tree.Insert(std::make_unique<int>(100));
+		assert(tree.Search(100));
+		assert(tree.Delete(100));
+
 		tree.Insert(std::make_unique<int>(11));
 		tree.Insert(std::make_unique<int>(6));
 		tree.Insert(std::make_unique<int>(14));

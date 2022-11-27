@@ -131,17 +131,26 @@ namespace assignment4
 	template<typename T>
 	bool BinarySearchTree<T>::Delete(const T& data)
 	{
-		std::shared_ptr<TreeNode<T>> foundNode = searchOrNullRecursive(mRoot, data);
+		std::shared_ptr<TreeNode<T>> deleteNode = searchOrNullRecursive(mRoot, data);
 
-		if (foundNode == nullptr)
+		if (deleteNode == nullptr)
 		{
 			return false;
 		}
-		else if (foundNode->Left == nullptr && foundNode->Right == nullptr)
-		{
-			std::shared_ptr<TreeNode<T>> parentNode = foundNode->Parent.lock();
 
-			if (*parentNode->Data >= *foundNode->Data)
+		if (deleteNode->Left == nullptr && deleteNode->Right == nullptr)
+		{
+			if (deleteNode == mRoot)
+			{
+				assert(deleteNode->Parent.lock() == nullptr);
+
+				mRoot = nullptr;
+				return true;
+			}
+
+			std::shared_ptr<TreeNode<T>> parentNode = deleteNode->Parent.lock();
+
+			if (*parentNode->Data >= *deleteNode->Data)
 			{
 				parentNode->Left = nullptr;
 			}
@@ -153,24 +162,23 @@ namespace assignment4
 			return true;
 		}
 
-		std::shared_ptr<TreeNode<T>> parentNode = foundNode->Parent.lock();
 		std::shared_ptr<TreeNode<T>> swapNode;
 
-		if (foundNode->Left != nullptr)
+		if (deleteNode->Left != nullptr)
 		{
-			swapNode = getSmallerSwapNodeRecursive(foundNode->Left);
+			swapNode = getSmallerSwapNodeRecursive(deleteNode->Left);
 			assert(swapNode != nullptr);
-			assert(*foundNode->Data >= *swapNode->Data);
+			assert(*deleteNode->Data >= *swapNode->Data);
 		}
 		else
 		{
-			swapNode = getGreaterSwapNodeRecursive(foundNode->Right);
+			swapNode = getGreaterSwapNodeRecursive(deleteNode->Right);
 			assert(swapNode != nullptr);
-			assert(*foundNode->Data < *swapNode->Data);
+			assert(*deleteNode->Data < *swapNode->Data);
 		}
 
-		swapNode->Left = foundNode->Left;
-		swapNode->Right = foundNode->Right;
+		swapNode->Left = deleteNode->Left;
+		swapNode->Right = deleteNode->Right;
 
 		if (swapNode->Left != nullptr)
 		{
@@ -181,6 +189,8 @@ namespace assignment4
 		{
 			swapNode->Right->Parent = swapNode;
 		}
+
+		std::shared_ptr<TreeNode<T>> parentNode = deleteNode->Parent.lock();
 
 		if (parentNode == nullptr)
 		{
@@ -273,6 +283,18 @@ namespace assignment4
 		{
 			return;
 		}
+
+#ifdef _DEBUG
+		if (currentNode->Left != nullptr)
+		{
+			assert(currentNode->Left->Parent.lock() == currentNode);
+		}
+
+		if (currentNode->Right != nullptr)
+		{
+			assert(currentNode->Right->Parent.lock() == currentNode);
+		}
+#endif
 
 		traverseRecursive(outNodes, currentNode->Left);
 		outNodes.push_back(*currentNode->Data);
