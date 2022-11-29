@@ -187,13 +187,13 @@ namespace lab10
 		}
 
 		std::shared_ptr<Node<T>> pNode = mHead;
-		unsigned int count = 0;
 
-		while (count++ < index)
+		for (int i = 0; i < index; ++i)
 		{
-			assert(pNode != nullptr);
 			pNode = pNode->Next;
 		}
+
+		assert(pNode != nullptr);
 
 		return pNode;
 	}

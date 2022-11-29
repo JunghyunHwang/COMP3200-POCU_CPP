@@ -164,7 +164,7 @@ namespace assignment4
 		assert(!tree.Search(-1));
 	}
 
-	void TestRootDelete()
+	void TestDeleteRootNode()
 	{
 		BinarySearchTree<int> tree;
 		std::vector<int> expected;
