@@ -88,7 +88,9 @@ namespace lab11
 		}
 
 		mCapacity = rhs.mCapacity;
-		mData.reset(std::move(rhs.mData));
+
+		mData = nullptr;
+		mData = std::move(rhs.mData);
 
 		rhs.mCapacity = 0;
 		rhs.mData = nullptr;
