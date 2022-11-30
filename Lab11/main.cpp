@@ -6,7 +6,9 @@ using namespace lab11;
 
 int main()
 {
-	TestConstructor();
+	TestOfficial();
+	MyTest();
+	TestMoveConstructor();
 
 	std::cout << "No prob" << std::endl;
 	return 0;

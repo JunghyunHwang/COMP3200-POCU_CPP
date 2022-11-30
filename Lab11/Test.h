@@ -8,5 +8,6 @@
 namespace lab11
 {
 	void TestOfficial();
-	void TestConstructor();
+	void MyTest();
+	void TestMoveConstructor();
 }
