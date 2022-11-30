@@ -23,45 +23,42 @@ namespace lab11
 
 	private:
 		unsigned int mCapacity;
-		std::unique_ptr<T[]> mDatas;
+		std::unique_ptr<T[]> mData;
 	};
 
 	template<typename T>
 	Storage<T>::Storage(unsigned int length)
 		: mCapacity(length)
+		, mData(std::make_unique<T[]>(mCapacity))
 	{
-		mDatas = std::make_unique<T[]>(mCapacity);
-
-		memset(mDatas.get(), 0, mCapacity * sizeof(T));
+		memset(mData.get(), 0, mCapacity * sizeof(T));
 	}
 
 	template<typename T>
 	Storage<T>::Storage(unsigned int length, const T& initialValue)
 		: mCapacity(length)
+		, mData(std::make_unique<T[]>(mCapacity))
 	{
-		mDatas = std::make_unique<T[]>(mCapacity);
-
 		for (size_t i = 0; i < mCapacity; ++i)
 		{
-			mDatas[i] = initialValue;
+			mData[i] = initialValue;
 		}
 	}
 
 	template<typename T>
 	Storage<T>::Storage(const Storage<T>& other)
-		:  mCapacity(other.mCapacity)
+		: mCapacity(other.mCapacity)
+		, mData(std::make_unique<T[]>(mCapacity))
 	{
-		mDatas = std::make_unique<T[]>(mCapacity);
-		memcpy(mDatas.get(), other.mDatas.get(), mCapacity * sizeof(T));
+		memcpy(mData.get(), other.mData.get(), mCapacity * sizeof(T));
 	}
 
 	template<typename T>
 	Storage<T>::Storage(Storage&& other)
 		: mCapacity(other.mCapacity)
+		, mData(std::move(other.mData))
 	{
-		mDatas = std::move(other.mDatas);
-
-		other.mDatas = nullptr;
+		other.mData = nullptr;
 		other.mCapacity = 0;
 	}
 
@@ -75,9 +72,9 @@ namespace lab11
 
 		mCapacity = rhs.mCapacity;
 
-		mDatas = nullptr;
-		mDatas = std::make_unique<T[]>(mCapacity);
-		memcpy(mDatas.get(), rhs.mDatas.get(), mCapacity * sizeof(T));
+		mData = nullptr;
+		mData = std::make_unique<T[]>(mCapacity);
+		memcpy(mData.get(), rhs.mData.get(), mCapacity * sizeof(T));
 
 		return *this;
 	}
@@ -91,12 +88,10 @@ namespace lab11
 		}
 
 		mCapacity = rhs.mCapacity;
-
-		mDatas = nullptr;
-		mDatas = std::move(rhs.mDatas);
+		mData.reset(std::move(rhs.mData));
 
 		rhs.mCapacity = 0;
-		rhs.mDatas = nullptr;
+		rhs.mData = nullptr;
 
 		return *this;
 	}
@@ -109,7 +104,7 @@ namespace lab11
 			return false;
 		}
 
-		mDatas[index] = data;
+		mData[index] = data;
 
 		return true;
 	}
@@ -117,7 +112,7 @@ namespace lab11
 	template<typename T>
 	const std::unique_ptr<T[]>& Storage<T>::GetData() const
 	{
-		return mDatas;
+		return mData;
 	}
 
 	template<typename T>
