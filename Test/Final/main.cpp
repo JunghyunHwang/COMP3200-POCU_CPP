@@ -8,15 +8,14 @@
 
 using namespace test;
 
-constexpr int Factorial(const int n)
+template<typename T>
+constexpr T square(T a)
 {
-	return n <= 1 ? 1 : n * Factorial(n - 1);
+	return a * a;
 }
 
 int main()
 {
-	int value = 3;
-	int result1 = Factorial(value);
-
-	constexpr int result3 = Factorial(10); // OK
+	const int value = 3;
+	constexpr int result = square<int>(value);
 }

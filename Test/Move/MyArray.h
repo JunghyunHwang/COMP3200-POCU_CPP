@@ -67,7 +67,7 @@ namespace test
 
 		mSize = rhs.mSize;
 		mCapacity = rhs.mCapacity;
-		
+
 		mData = nullptr;
 		mData = std::make_unique<T[]>(mCapacity);
 
@@ -95,7 +95,7 @@ namespace test
 		mSize = rhs.mSize;
 		mCapacity = rhs.mCapacity;
 		mData = std::move(rhs.mData);
-
+		
 		rhs.mSize = 0;
 		rhs.mCapacity = 0;
 	}
