@@ -53,7 +53,8 @@ namespace test
 			assert(arr2[i] == i + 1);
 		}
 
-		MyArray<int> arr3 = std::move(arr2);
+		MyArray<int> arr3;
+		arr3 = std::move(arr2);
 		assert(arr2.GetSize() == 0);
 		assert(arr2.GetCapacity() == 0);
 		assert(arr3.GetSize() == 5);

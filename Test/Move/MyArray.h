@@ -95,7 +95,7 @@ namespace test
 		mSize = rhs.mSize;
 		mCapacity = rhs.mCapacity;
 		mData = std::move(rhs.mData);
-		
+
 		rhs.mSize = 0;
 		rhs.mCapacity = 0;
 	}
@@ -107,7 +107,7 @@ namespace test
 		{
 			mCapacity *= 2;
 			auto tmp = std::make_unique<T[]>(mCapacity);
-
+			
 			memcpy(tmp.get(), mData.get(), sizeof(T) * mSize);
 			mData = std::move(tmp);
 		}
@@ -131,7 +131,7 @@ namespace test
 	{
 		return mSize;
 	}
-
+	
 	template<typename T>
 	unsigned int MyArray<T>::GetCapacity() const
 	{

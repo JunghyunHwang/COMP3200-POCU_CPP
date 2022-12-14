@@ -10,7 +10,7 @@ namespace test
 	{
 	}
 
-	bool Student::operator<(const Student& rhs) const
+	/*bool Student::operator<(const Student& rhs) const
 	{
 		if (mName == rhs.mName)
 		{
@@ -18,5 +18,10 @@ namespace test
 		}
 
 		return mName < rhs.mName;
+	}*/
+
+	bool Student::operator==(const Student& other) const
+	{
+		return (mName == other.mName && mId == other.mId);
 	}
 }

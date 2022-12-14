@@ -12,7 +12,8 @@ namespace test
 
 		Student(const Student& other) = default;
 		Student& operator=(const Student& rhs) = default;
-		bool operator<(const Student& rhs) const;
+		//bool operator<(const Student& rhs) const;
+		bool operator==(const Student& other) const;
 
 		inline unsigned int GetId() const;
 		inline std::string GetName() const;

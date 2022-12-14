@@ -1,4 +1,5 @@
-#include <iostream>
+#include <cassert>
+#include <memory>
 
 #include "Test.h"
 
@@ -6,7 +7,7 @@ using namespace test;
 
 int main()
 {
-	TestMemberFunctionComparer();
+	TestDoublyLinkedList();
 
 	return 0;
 }
