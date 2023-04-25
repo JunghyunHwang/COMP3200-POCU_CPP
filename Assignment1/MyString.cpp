@@ -222,6 +222,8 @@ namespace assignment1
 			*pInterleave++ = *pS++;
 		}
 
+		*pInterleave = '\0';
+
 		delete[] mStr;
 		mStr = interleaveResult;
 		mSize += INPUT_LENGTH;

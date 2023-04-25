@@ -151,7 +151,7 @@ namespace assignment1
 	void testRemoveAt()
 	{
 		MyString s1("You didn't love when you had me");
-		
+
 		assert(s1.RemoveAt(200) == false);
 
 		assert(s1.RemoveAt(8));
@@ -159,13 +159,13 @@ namespace assignment1
 
 		assert(s1.RemoveAt(s1.GetLength() - 1));
 		assert(strcmp(s1.GetCString(), "You didnt love when you had m") == 0);
-		
+
 		assert(s1.RemoveAt(0));
 		assert(strcmp(s1.GetCString(), "ou didnt love when you had m") == 0);
 
 		assert(s1.RemoveAt(s1.GetLength() - 1));
 		assert(strcmp(s1.GetCString(), "ou didnt love when you had ") == 0);
-		
+
 		assert(s1.RemoveAt(0));
 		assert(strcmp(s1.GetCString(), "u didnt love when you had ") == 0);
 
@@ -224,7 +224,7 @@ namespace assignment1
 	void testSwitchCase()
 	{
 		MyString s1("Hello");
-		
+
 		s1.ToUpper();
 		assert(strcmp(s1.GetCString(), "HELLO") == 0);
 
