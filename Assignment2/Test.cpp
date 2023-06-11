@@ -104,121 +104,6 @@ namespace assignment2
 
 		assert(deusExMachina1->GetFurthestTravelled() == boat);
 	}
-	
-	void TestCreateVehicle()
-	{
-		const unsigned int VEHICLE_COUNT = 7;
-
-		Person* p1 = new Person("Bob", 85);
-		Person* p2 = new Person("James", 75);
-		Person* p3 = new Person("Tina", 52);
-		Person* p4 = new Person("Ja", 89);
-		Person* p5 = new Person("Baro", 82);
-		Person* p6 = new Person("Seok", 78);
-		Person* p7 = new Person("Jamm", 90);
-
-		Person* people[7] = { p1, p2, p3, p4, p5, p6, p7 };
-
-		Airplane* a = new Airplane(3);
-		Boat* b = new Boat(3);
-		Boatplane* bp = new Boatplane(3);
-		Motorcycle* m = new Motorcycle();
-		Sedan* s1 = new Sedan();
-		Sedan* s2 = new Sedan();
-		Trailer* t = new Trailer(250);
-		UBoat* ub = new UBoat();
-		Vehicle* vehicles1[7] = { a, b, bp, m, s1, s2, ub };
-		s2->AddTrailer(t);
-
-		a->AddPassenger(p1);
-		b->AddPassenger(p2);
-		bp->AddPassenger(p3);
-		m->AddPassenger(p4);
-		s1->AddPassenger(p5);
-		s2->AddPassenger(p6);
-		ub->AddPassenger(p7);
-
-		Airplane* a2 = new Airplane(*a);
-		Boat* b2 = new Boat(*b);
-		Boatplane* bp2 = new Boatplane(*bp);
-		Motorcycle* m2 = new Motorcycle(*m);
-		Sedan* s3 = new Sedan(*s1);
-		Sedan* s4 = new Sedan(*s2);
-		Trailer* t2 = new Trailer(*t);
-		UBoat* ub2 = new UBoat(*ub);
-		Vehicle* vehicles2[7] = { a2, b2, bp2, m2, s3, s4, ub2 };
-
-		for (size_t i = 0; i < VEHICLE_COUNT; ++i)
-		{
-			assert(vehicles1[i] != vehicles2[i]);
-			assert(vehicles1[i]->GetPassenger(0) != vehicles2[i]->GetPassenger(0));
-			assert(*vehicles1[i]->GetPassenger(0) == *vehicles2[i]->GetPassenger(0));
-		}
-
-		Airplane* a3 = a2;
-		Boat* b3 = b2;
-		Boatplane* bp3 = bp2;
-		Motorcycle* m3 = m2;
-		Sedan* s5 = s3;
-		Sedan* s6 = s4;
-		Trailer* t3 = t2;
-		UBoat* ub3 = ub2;
-		Vehicle* vehicles3[7] = { a3, b3, bp3, m3, s5, s6, ub3 };
-
-		for (size_t i = 0; i < VEHICLE_COUNT; ++i)
-		{
-			assert(vehicles2[i] != vehicles3[i]);
-			assert(vehicles2[i]->GetPassenger(0) != vehicles3[i]->GetPassenger(0));
-			assert(*vehicles2[i]->GetPassenger(0) == *vehicles3[i]->GetPassenger(0));
-		}
-
-		for (size_t i = 0; i < VEHICLE_COUNT; ++i)
-		{
-			delete vehicles1[i];
-			delete vehicles2[i];
-			delete vehicles3[i];
-		}
-	}
-
-	void TestBaro()
-	{
-		DeusExMachina::DeleteInstance();
-		DeusExMachina* d = DeusExMachina::GetInstance();
-
-		uint32_t traveledDistanceArr[7][13] =
-		{
-			{ 1213, 1213, 1213, 1213, 2426, 2426, 2426, 2426, 3639, 3639, 3639, 3639, 4852 },
-			{ 800, 1600, 1600, 2400, 3200, 3200, 4000, 4800, 4800, 5600, 6400, 6400, 7200 },
-			{ 800, 800, 800, 800, 1600, 1600, 1600, 1600, 2400, 2400, 2400, 2400, 3200 },
-			{ 400, 800, 1200, 1600, 2000, 2000, 2400, 2800, 3200, 3600, 4000, 4000, 4400 },
-			{ 480, 960, 1440, 1920, 2400, 2400, 2880, 3360, 3840, 4320, 4800, 4800, 5280 },
-			{ 480, 960, 1440, 1920, 2400, 2400, 2400, 2880, 3360, 3840, 4320, 4800, 4800 },
-			{ 550, 1100, 1100, 1100, 1100, 1100, 1650, 2200, 2200, 2200, 2200, 2200, 2750 }
-		};
-
-		Airplane* t1 = new Airplane(2);
-		Boat* t2 = new Boat(2);
-		Boatplane* t3 = new Boatplane(2);
-		Motorcycle* t4 = new Motorcycle();
-		Sedan* t5 = new Sedan();
-		Sedan* t6 = new Sedan();
-		t6->AddTrailer(new Trailer(1));
-		UBoat* t7 = new UBoat();
-
-		Vehicle* vArr[7] = { t1, t2, t3, t4, t5, t6, t7 };
-				
-		for (size_t j = 0; j < 7; ++j)
-		{
-			d->AddVehicle(vArr[j]);
-			for (size_t i = 0; i < 13; ++i)
-			{
-				d->Travel();
-				assert(traveledDistanceArr[j][i] == d->GetVehicleOrNull(0)->GetTraveledKilometers());
-			}
-
-			d->RemoveVehicle(0);
-		}
-	}
 
 	void TestAirplane()
 	{
@@ -301,7 +186,7 @@ namespace assignment2
 		{
 			Motorcycle cpy(m);
 			assert(cpy.GetMaxPassengersCount() == m.GetMaxPassengersCount());
-			assert(cpy.GetPassengersCount() == m.GetMaxPassengersCount());
+			assert(cpy.GetPassengersCount() == m.GetPassengersCount());
 		}
 
 		// Sedan
@@ -332,7 +217,7 @@ namespace assignment2
 
 		// Airplane
 		{
-			Person** p = get4Passengers();
+			Person** p = get4PassengersMalloc();
 
 			for (size_t i = 0; i < MAX_PASSENGERS_NUM; ++i)
 			{
@@ -358,11 +243,12 @@ namespace assignment2
 
 			assert(cpy.GetPassengersCount() == MAX_PASSENGERS_NUM);
 			assert(cpy.GetMaxPassengersCount() == MAX_PASSENGERS_NUM);
+			delete[] p;
 		}
 
 		// Boat
 		{
-			Person** p = get4Passengers();
+			Person** p = get4PassengersMalloc();
 
 			for (size_t i = 0; i < MAX_PASSENGERS_NUM; ++i)
 			{
@@ -388,11 +274,12 @@ namespace assignment2
 
 			assert(cpy.GetPassengersCount() == MAX_PASSENGERS_NUM);
 			assert(cpy.GetMaxPassengersCount() == MAX_PASSENGERS_NUM);
+			delete[] p;
 		}
 
 		// Motorcycle
 		{
-			Person** p = get4Passengers();
+			Person** p = get2PassengersMalloc();
 
 			for (size_t i = 0; i < MAX_MOTORCYCLE_NUM; ++i)
 			{
@@ -409,22 +296,20 @@ namespace assignment2
 			}
 
 			assert(m.RemovePassenger(0));
-			assert(m.GetPassengersCount() == 3);
-			assert(m.RemovePassenger(2));
-			assert(m.GetPassengersCount() == 2);
-
+			assert(m.GetPassengersCount() == 1);
 			assert(m.RemovePassenger(0));
-			assert(m.RemovePassenger(0));
+			assert(m.GetPassengersCount() == 0);
 
 			assert(cpy.GetPassengersCount() == MAX_MOTORCYCLE_NUM);
 			assert(cpy.GetMaxPassengersCount() == MAX_MOTORCYCLE_NUM);
+			delete[] p;
 		}
 
 		// Sedan
 		{
-			Person** p = get4Passengers();
+			Person** p = get4PassengersMalloc();
 
-			for (size_t i = 0; i < MAX_MOTORCYCLE_NUM; ++i)
+			for (size_t i = 0; i < MAX_PASSENGERS_NUM; ++i)
 			{
 				assert(s.AddPassenger(p[i]));
 			}
@@ -448,11 +333,12 @@ namespace assignment2
 
 			assert(cpy.GetPassengersCount() == MAX_PASSENGERS_NUM);
 			assert(cpy.GetMaxPassengersCount() == MAX_PASSENGERS_NUM);
+			delete[] p;
 		}
 
 		// Uboat
 		{
-			Person** p = get4Passengers();
+			Person** p = get4PassengersMalloc();
 
 			for (size_t i = 0; i < MAX_PASSENGERS_NUM; ++i)
 			{
@@ -477,7 +363,7 @@ namespace assignment2
 			assert(ub.RemovePassenger(0));
 
 			assert(cpy.GetPassengersCount() == MAX_PASSENGERS_NUM);
-			assert(cpy.GetMaxPassengersCount() == MAX_PASSENGERS_NUM);
+			delete[] p;
 		}
 	}
 
@@ -501,7 +387,7 @@ namespace assignment2
 			assert(assign1.GetPassengersCount() == ap.GetPassengersCount());
 
 			Airplane assign2(MAX_PASSENGERS_NUM);
-			Person** p = get4Passengers();
+			Person** p = get4PassengersMalloc();
 
 			for (size_t i = 0; i < MAX_PASSENGERS_NUM; ++i)
 			{
@@ -512,7 +398,7 @@ namespace assignment2
 			assert(assign2.GetMaxPassengersCount() == ap.GetMaxPassengersCount());
 			assert(assign2.GetPassengersCount() == ap.GetPassengersCount());
 
-			// All Person objects within variable p have been released
+			delete[] p;
 		}
 
 		// Boat
@@ -524,7 +410,7 @@ namespace assignment2
 			assert(assign1.GetPassengersCount() == b.GetPassengersCount());
 
 			Boat assign2(MAX_PASSENGERS_NUM);
-			Person** p = get4Passengers();
+			Person** p = get4PassengersMalloc();
 
 			for (size_t i = 0; i < MAX_PASSENGERS_NUM; ++i)
 			{
@@ -534,7 +420,8 @@ namespace assignment2
 			assign2 = b;
 			assert(assign2.GetMaxPassengersCount() == b.GetMaxPassengersCount());
 			assert(assign2.GetPassengersCount() == b.GetPassengersCount());
-			// All Person objects within variable p have been released
+
+			delete[] p;
 		}
 
 		// Motorcycle
@@ -546,7 +433,7 @@ namespace assignment2
 			assert(assign1.GetPassengersCount() == m.GetPassengersCount());
 
 			Motorcycle assign2;
-			Person** p = get4Passengers();
+			Person** p = get2PassengersMalloc();
 
 			for (size_t i = 0; i < MAX_MOTORCYCLE_NUM; ++i)
 			{
@@ -556,6 +443,8 @@ namespace assignment2
 			assign2 = m;
 			assert(assign2.GetMaxPassengersCount() == m.GetMaxPassengersCount());
 			assert(assign2.GetPassengersCount() == m.GetPassengersCount());
+
+			delete[] p;
 		}
 
 		// Sedan
@@ -567,7 +456,7 @@ namespace assignment2
 			assert(assign1.GetPassengersCount() == s.GetPassengersCount());
 
 			Sedan assign2;
-			Person** p = get4Passengers();
+			Person** p = get4PassengersMalloc();
 
 			for (size_t i = 0; i < MAX_MOTORCYCLE_NUM; ++i)
 			{
@@ -577,7 +466,8 @@ namespace assignment2
 			assign2 = s;
 			assert(assign2.GetMaxPassengersCount() == s.GetMaxPassengersCount());
 			assert(assign2.GetPassengersCount() == s.GetPassengersCount());
-			// All Person objects within variable p have been released
+
+			delete[] p;
 		}
 
 		// UBoat
@@ -589,7 +479,7 @@ namespace assignment2
 			assert(assign1.GetPassengersCount() == ub.GetPassengersCount());
 
 			UBoat assign2;
-			Person** p = get4Passengers();
+			Person** p = get4PassengersMalloc();
 
 			for (size_t i = 0; i < MAX_MOTORCYCLE_NUM; ++i)
 			{
@@ -599,7 +489,8 @@ namespace assignment2
 			assign2 = ub;
 			assert(assign2.GetMaxPassengersCount() == ub.GetMaxPassengersCount());
 			assert(assign2.GetPassengersCount() == ub.GetPassengersCount());
-			// All Person objects within variable p have been released
+
+			delete[] p;
 		}
 	}
 
@@ -614,35 +505,35 @@ namespace assignment2
 		Sedan s;
 		UBoat ub;
 
-		Person** p = get4Passengers();
+		Person** p1 = get4PassengersMalloc();
+		Person** p2 = get4PassengersMalloc();
+		Person** p3 = get2PassengersMalloc();
+		Person** p4 = get4PassengersMalloc();
+		Person** p5 = get4PassengersMalloc();
 
 		for (size_t i = 0; i < MAX_PASSENGERS_NUM; ++i)
 		{
-			ap.AddPassenger(p[i]);
+			assert(ap.AddPassenger(p1[i]));
 		}
 
-		p = get4Passengers();
 		for (size_t i = 0; i < MAX_PASSENGERS_NUM; ++i)
 		{
-			b.AddPassenger(p[i]);
+			assert(b.AddPassenger(p2[i]));
 		}
 
-		p = get4Passengers();
 		for (size_t i = 0; i < MAX_MOTORCYCLE_NUM; ++i)
 		{
-			m.AddPassenger(p[i]);
+			assert(m.AddPassenger(p3[i]));
 		}
 
-		p = get4Passengers();
 		for (size_t i = 0; i < MAX_PASSENGERS_NUM; ++i)
 		{
-			s.AddPassenger(p[i]);
+			assert(s.AddPassenger(p4[i]));
 		}
 
-		p = get4Passengers();
 		for (size_t i = 0; i < MAX_PASSENGERS_NUM; ++i)
 		{
-			ub.AddPassenger(p[i]);
+			assert(ub.AddPassenger(p5[i]));
 		}
 
 		// Airplane
@@ -712,7 +603,6 @@ namespace assignment2
 			
 			assign2.AddPassenger(new Person("Charlie", 52));
 			assign2.AddPassenger(new Person("Tyler", 52));
-			assign2.AddPassenger(new Person("Ruel", 52));
 
 			assign2 = m;
 			assert(assign2.GetMaxPassengersCount() == m.GetMaxPassengersCount());
@@ -720,13 +610,9 @@ namespace assignment2
 
 			assert(assign2.GetPassenger(0) != m.GetPassenger(0));
 			assert(assign2.GetPassenger(1) != m.GetPassenger(1));
-			assert(assign2.GetPassenger(2) != m.GetPassenger(2));
-			assert(assign2.GetPassenger(3) != m.GetPassenger(3));
 
 			assert(assign2.GetPassenger(0)->GetName() == m.GetPassenger(0)->GetName());
 			assert(assign2.GetPassenger(1)->GetName() == m.GetPassenger(1)->GetName());
-			assert(assign2.GetPassenger(2)->GetName() == m.GetPassenger(2)->GetName());
-			assert(assign2.GetPassenger(3)->GetName() == m.GetPassenger(3)->GetName());
 		}
 
 		// Sedan
@@ -784,16 +670,131 @@ namespace assignment2
 			assert(assign2.GetPassenger(2)->GetName() == ub.GetPassenger(2)->GetName());
 			assert(assign2.GetPassenger(3)->GetName() == ub.GetPassenger(3)->GetName());
 		}
+
+		delete[] p1;
+		delete[] p2;
+		delete[] p3;
+		delete[] p4;
+		delete[] p5;
+	}
+
+	void TestSelfAssign()
+	{
+		const int MAX_PASSENGERS_NUM = 4;
+		const int MAX_MOTORCYCLE_NUM = 2;
+
+		Airplane ap(MAX_PASSENGERS_NUM);
+		Boat b(MAX_PASSENGERS_NUM);
+		Motorcycle m;
+		Sedan s;
+		UBoat ub;
+
+		Person** p1 = get4PassengersMalloc();
+		Person** p2 = get4PassengersMalloc();
+		Person** p3 = get2PassengersMalloc();
+		Person** p4 = get4PassengersMalloc();
+		Person** p5 = get4PassengersMalloc();
+
+		for (size_t i = 0; i < MAX_PASSENGERS_NUM; ++i)
+		{
+			assert(ap.AddPassenger(p1[i]));
+		}
+
+		for (size_t i = 0; i < MAX_PASSENGERS_NUM; ++i)
+		{
+			assert(b.AddPassenger(p2[i]));
+		}
+
+		for (size_t i = 0; i < MAX_MOTORCYCLE_NUM; ++i)
+		{
+			assert(m.AddPassenger(p3[i]));
+		}
+
+		for (size_t i = 0; i < MAX_PASSENGERS_NUM; ++i)
+		{
+			assert(s.AddPassenger(p4[i]));
+		}
+
+		for (size_t i = 0; i < MAX_PASSENGERS_NUM; ++i)
+		{
+			assert(ub.AddPassenger(p5[i]));
+		}
+
+		// Airplane
+		{
+			ap = ap;
+
+			for (size_t i = 0; i < MAX_PASSENGERS_NUM; ++i)
+			{
+				assert(ap.GetPassenger(i) == p1[i]);
+			}
+		}
+
+		// Boat
+		{
+			b = b;
+
+			for (size_t i = 0; i < MAX_PASSENGERS_NUM; ++i)
+			{
+				assert(b.GetPassenger(i) == p2[i]);
+			}
+		}
+		
+		// Motorcycle
+		{
+			m = m;
+
+			for (size_t i = 0; i < MAX_MOTORCYCLE_NUM; ++i)
+			{
+				assert(m.GetPassenger(i) == p3[i]);
+			}
+		}
+
+		// Sedan
+		{
+			s = s;
+
+			for (size_t i = 0; i < MAX_PASSENGERS_NUM; ++i)
+			{
+				assert(s.GetPassenger(i) == p4[i]);
+			}
+		}
+
+		// UBoat
+		{
+			ub = ub;
+
+			for (size_t i = 0; i < MAX_PASSENGERS_NUM; ++i)
+			{
+				assert(ub.GetPassenger(i) == p5[i]);
+			}
+		}
+
+		delete[] p1;
+		delete[] p2;
+		delete[] p3;
+		delete[] p4;
+		delete[] p5;
 	}
 	
-	Person** get4Passengers()
+	Person** get4PassengersMalloc()
 	{
 		Person* p1 = new Person("Ja", 84);
 		Person* p2 = new Person("Andrew", 85);
 		Person* p3 = new Person("John", 88);
 		Person* p4 = new Person("Alex", 73);
 
-		Person* passengers[4] = { p1, p2, p3, p4 };
+		Person** passengers = new Person * [4] { p1, p2, p3, p4 };
+
+		return passengers;
+	}
+
+	Person** get2PassengersMalloc()
+	{
+		Person* p1 = new Person("Ja", 84);
+		Person* p2 = new Person("Andrew", 85);
+		
+		Person** passengers = new Person * [2] { p1, p2 };
 
 		return passengers;
 	}

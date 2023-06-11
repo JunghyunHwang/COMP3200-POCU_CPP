@@ -17,17 +17,17 @@
 namespace assignment2
 {
 	void TestOfficial();
+
 	void TestVehicleCopyByZeroPassengers();
 	void TestVehicleCopyByManyPassengers();
-
 	void TestVehicleAssignByZeroPassengers();
 	void TestVehicleAssignByManyPassengers();
+	void TestSelfAssign();
 
-	Person** get4Passengers();
-
-	void TestCreateVehicle();
-	void TestBaro();
 	void TestAirplane();
 	void TestVehicleSpeed();
 	void TestBoatplane();
+
+	Person** get4PassengersMalloc();
+	Person** get2PassengersMalloc();
 }

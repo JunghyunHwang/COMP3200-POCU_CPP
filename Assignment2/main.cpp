@@ -11,6 +11,7 @@ int main()
 	TestVehicleCopyByManyPassengers();
 	TestVehicleAssignByZeroPassengers();
 	TestVehicleAssignByManyPassengers();
+	TestSelfAssign();
 
 	std::cout << "No prob" << std::endl;
 
