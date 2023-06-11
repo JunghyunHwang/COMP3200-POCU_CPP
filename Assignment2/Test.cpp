@@ -273,6 +273,531 @@ namespace assignment2
 		}
 	}
 
+	void TestVehicleCopyByZeroPassengers()
+	{
+		const int MAX_PASSENGERS_NUM = 4;
+		
+		Airplane ap(MAX_PASSENGERS_NUM);
+		Boat b(MAX_PASSENGERS_NUM);
+		Motorcycle m;
+		Sedan s;
+		UBoat ub;
+
+		// Airplane
+		{
+			Airplane cpy(ap);
+			assert(cpy.GetMaxPassengersCount() == ap.GetMaxPassengersCount());
+			assert(cpy.GetPassengersCount() == ap.GetPassengersCount());
+		}
+
+		// Boat
+		{
+			Boat cpy(b);
+			assert(cpy.GetMaxPassengersCount() == b.GetMaxPassengersCount());
+			assert(cpy.GetPassengersCount() == b.GetPassengersCount());
+		}
+
+		// Motorcycle
+		{
+			Motorcycle cpy(m);
+			assert(cpy.GetMaxPassengersCount() == m.GetMaxPassengersCount());
+			assert(cpy.GetPassengersCount() == m.GetMaxPassengersCount());
+		}
+
+		// Sedan
+		{
+			Sedan cpy(s);
+			assert(cpy.GetMaxPassengersCount() == s.GetMaxPassengersCount());
+			assert(cpy.GetPassengersCount() == s.GetPassengersCount());
+		}
+
+		// Uboat
+		{
+			UBoat cpy(ub);
+			assert(cpy.GetMaxPassengersCount() == ub.GetMaxPassengersCount());
+			assert(cpy.GetPassengersCount() == ub.GetPassengersCount());
+		}
+	}
+
+	void TestVehicleCopyByManyPassengers()
+	{
+		const int MAX_PASSENGERS_NUM = 4;
+		const int MAX_MOTORCYCLE_NUM = 2;
+		
+		Airplane ap(MAX_PASSENGERS_NUM);
+		Boat b(MAX_PASSENGERS_NUM);
+		Motorcycle m;
+		Sedan s;
+		UBoat ub;
+
+		// Airplane
+		{
+			Person** p = get4Passengers();
+
+			for (size_t i = 0; i < MAX_PASSENGERS_NUM; ++i)
+			{
+				assert(ap.AddPassenger(p[i]));
+			}
+
+			Airplane cpy(ap);
+			assert(cpy.GetMaxPassengersCount() == ap.GetMaxPassengersCount());
+			assert(cpy.GetPassengersCount() == ap.GetPassengersCount());
+			
+			for (size_t i = 0; i < MAX_PASSENGERS_NUM; ++i)
+			{
+				assert(ap.GetPassenger(i) != cpy.GetPassenger(i));
+			}
+
+			assert(ap.RemovePassenger(0));
+			assert(ap.GetPassengersCount() == 3);
+			assert(ap.RemovePassenger(2));
+			assert(ap.GetPassengersCount() == 2);
+
+			assert(ap.RemovePassenger(0));
+			assert(ap.RemovePassenger(0));
+
+			assert(cpy.GetPassengersCount() == MAX_PASSENGERS_NUM);
+			assert(cpy.GetMaxPassengersCount() == MAX_PASSENGERS_NUM);
+		}
+
+		// Boat
+		{
+			Person** p = get4Passengers();
+
+			for (size_t i = 0; i < MAX_PASSENGERS_NUM; ++i)
+			{
+				assert(b.AddPassenger(p[i]));
+			}
+
+			Boat cpy(b);
+			assert(cpy.GetMaxPassengersCount() == b.GetMaxPassengersCount());
+			assert(cpy.GetPassengersCount() == b.GetPassengersCount());
+			
+			for (size_t i = 0; i < MAX_PASSENGERS_NUM; ++i)
+			{
+				assert(b.GetPassenger(i) != cpy.GetPassenger(i));
+			}
+
+			assert(b.RemovePassenger(0));
+			assert(b.GetPassengersCount() == 3);
+			assert(b.RemovePassenger(2));
+			assert(b.GetPassengersCount() == 2);
+
+			assert(b.RemovePassenger(0));
+			assert(b.RemovePassenger(0));
+
+			assert(cpy.GetPassengersCount() == MAX_PASSENGERS_NUM);
+			assert(cpy.GetMaxPassengersCount() == MAX_PASSENGERS_NUM);
+		}
+
+		// Motorcycle
+		{
+			Person** p = get4Passengers();
+
+			for (size_t i = 0; i < MAX_MOTORCYCLE_NUM; ++i)
+			{
+				assert(m.AddPassenger(p[i]));
+			}
+
+			Motorcycle cpy(m);
+			assert(cpy.GetMaxPassengersCount() == m.GetMaxPassengersCount());
+			assert(cpy.GetPassengersCount() == m.GetPassengersCount());
+			
+			for (size_t i = 0; i < MAX_MOTORCYCLE_NUM; ++i)
+			{
+				assert(m.GetPassenger(i) != cpy.GetPassenger(i));
+			}
+
+			assert(m.RemovePassenger(0));
+			assert(m.GetPassengersCount() == 3);
+			assert(m.RemovePassenger(2));
+			assert(m.GetPassengersCount() == 2);
+
+			assert(m.RemovePassenger(0));
+			assert(m.RemovePassenger(0));
+
+			assert(cpy.GetPassengersCount() == MAX_MOTORCYCLE_NUM);
+			assert(cpy.GetMaxPassengersCount() == MAX_MOTORCYCLE_NUM);
+		}
+
+		// Sedan
+		{
+			Person** p = get4Passengers();
+
+			for (size_t i = 0; i < MAX_MOTORCYCLE_NUM; ++i)
+			{
+				assert(s.AddPassenger(p[i]));
+			}
+
+			Sedan cpy(s);
+			assert(cpy.GetMaxPassengersCount() == s.GetMaxPassengersCount());
+			assert(cpy.GetPassengersCount() == s.GetPassengersCount());
+			
+			for (size_t i = 0; i < MAX_PASSENGERS_NUM; ++i)
+			{
+				assert(s.GetPassenger(i) != cpy.GetPassenger(i));
+			}
+
+			assert(s.RemovePassenger(0));
+			assert(s.GetPassengersCount() == 3);
+			assert(s.RemovePassenger(2));
+			assert(s.GetPassengersCount() == 2);
+
+			assert(s.RemovePassenger(0));
+			assert(s.RemovePassenger(0));
+
+			assert(cpy.GetPassengersCount() == MAX_PASSENGERS_NUM);
+			assert(cpy.GetMaxPassengersCount() == MAX_PASSENGERS_NUM);
+		}
+
+		// Uboat
+		{
+			Person** p = get4Passengers();
+
+			for (size_t i = 0; i < MAX_PASSENGERS_NUM; ++i)
+			{
+				assert(ub.AddPassenger(p[i]));
+			}
+
+			UBoat cpy(ub);
+			assert(cpy.GetMaxPassengersCount() == ub.GetMaxPassengersCount());
+			assert(cpy.GetPassengersCount() == ub.GetPassengersCount());
+			
+			for (size_t i = 0; i < MAX_PASSENGERS_NUM; ++i)
+			{
+				assert(ub.GetPassenger(i) != cpy.GetPassenger(i));
+			}
+
+			assert(ub.RemovePassenger(0));
+			assert(ub.GetPassengersCount() == 3);
+			assert(ub.RemovePassenger(2));
+			assert(ub.GetPassengersCount() == 2);
+
+			assert(ub.RemovePassenger(0));
+			assert(ub.RemovePassenger(0));
+
+			assert(cpy.GetPassengersCount() == MAX_PASSENGERS_NUM);
+			assert(cpy.GetMaxPassengersCount() == MAX_PASSENGERS_NUM);
+		}
+	}
+
+	void TestVehicleAssignByZeroPassengers()
+	{
+		const int MAX_PASSENGERS_NUM = 4;
+		const int MAX_MOTORCYCLE_NUM = 2;
+		
+		Airplane ap(MAX_PASSENGERS_NUM);
+		Boat b(MAX_PASSENGERS_NUM);
+		Motorcycle m;
+		Sedan s;
+		UBoat ub;
+
+		// Airplane
+		{
+			Airplane assign1(MAX_PASSENGERS_NUM + 1);
+			
+			assign1 = ap;
+			assert(assign1.GetMaxPassengersCount() == ap.GetMaxPassengersCount());
+			assert(assign1.GetPassengersCount() == ap.GetPassengersCount());
+
+			Airplane assign2(MAX_PASSENGERS_NUM);
+			Person** p = get4Passengers();
+
+			for (size_t i = 0; i < MAX_PASSENGERS_NUM; ++i)
+			{
+				assert(assign2.AddPassenger(p[i]));
+			}
+
+			assign2 = ap;
+			assert(assign2.GetMaxPassengersCount() == ap.GetMaxPassengersCount());
+			assert(assign2.GetPassengersCount() == ap.GetPassengersCount());
+
+			// All Person objects within variable p have been released
+		}
+
+		// Boat
+		{
+			Boat assign1(MAX_PASSENGERS_NUM + 1);
+			
+			assign1 = b;
+			assert(assign1.GetMaxPassengersCount() == b.GetMaxPassengersCount());
+			assert(assign1.GetPassengersCount() == b.GetPassengersCount());
+
+			Boat assign2(MAX_PASSENGERS_NUM);
+			Person** p = get4Passengers();
+
+			for (size_t i = 0; i < MAX_PASSENGERS_NUM; ++i)
+			{
+				assert(assign2.AddPassenger(p[i]));
+			}
+
+			assign2 = b;
+			assert(assign2.GetMaxPassengersCount() == b.GetMaxPassengersCount());
+			assert(assign2.GetPassengersCount() == b.GetPassengersCount());
+			// All Person objects within variable p have been released
+		}
+
+		// Motorcycle
+		{
+			Motorcycle assign1;
+			
+			assign1 = m;
+			assert(assign1.GetMaxPassengersCount() == m.GetMaxPassengersCount());
+			assert(assign1.GetPassengersCount() == m.GetPassengersCount());
+
+			Motorcycle assign2;
+			Person** p = get4Passengers();
+
+			for (size_t i = 0; i < MAX_MOTORCYCLE_NUM; ++i)
+			{
+				assert(assign2.AddPassenger(p[i]));
+			}
+
+			assign2 = m;
+			assert(assign2.GetMaxPassengersCount() == m.GetMaxPassengersCount());
+			assert(assign2.GetPassengersCount() == m.GetPassengersCount());
+		}
+
+		// Sedan
+		{
+			Sedan assign1;
+			
+			assign1 = s;
+			assert(assign1.GetMaxPassengersCount() == s.GetMaxPassengersCount());
+			assert(assign1.GetPassengersCount() == s.GetPassengersCount());
+
+			Sedan assign2;
+			Person** p = get4Passengers();
+
+			for (size_t i = 0; i < MAX_MOTORCYCLE_NUM; ++i)
+			{
+				assert(assign2.AddPassenger(p[i]));
+			}
+
+			assign2 = s;
+			assert(assign2.GetMaxPassengersCount() == s.GetMaxPassengersCount());
+			assert(assign2.GetPassengersCount() == s.GetPassengersCount());
+			// All Person objects within variable p have been released
+		}
+
+		// UBoat
+		{
+			UBoat assign1;
+			
+			assign1 = ub;
+			assert(assign1.GetMaxPassengersCount() == ub.GetMaxPassengersCount());
+			assert(assign1.GetPassengersCount() == ub.GetPassengersCount());
+
+			UBoat assign2;
+			Person** p = get4Passengers();
+
+			for (size_t i = 0; i < MAX_MOTORCYCLE_NUM; ++i)
+			{
+				assert(assign2.AddPassenger(p[i]));
+			}
+
+			assign2 = ub;
+			assert(assign2.GetMaxPassengersCount() == ub.GetMaxPassengersCount());
+			assert(assign2.GetPassengersCount() == ub.GetPassengersCount());
+			// All Person objects within variable p have been released
+		}
+	}
+
+	void TestVehicleAssignByManyPassengers()
+	{
+		const int MAX_PASSENGERS_NUM = 4;
+		const int MAX_MOTORCYCLE_NUM = 2;
+		
+		Airplane ap(MAX_PASSENGERS_NUM);
+		Boat b(MAX_PASSENGERS_NUM);
+		Motorcycle m;
+		Sedan s;
+		UBoat ub;
+
+		Person** p = get4Passengers();
+
+		for (size_t i = 0; i < MAX_PASSENGERS_NUM; ++i)
+		{
+			ap.AddPassenger(p[i]);
+		}
+
+		p = get4Passengers();
+		for (size_t i = 0; i < MAX_PASSENGERS_NUM; ++i)
+		{
+			b.AddPassenger(p[i]);
+		}
+
+		p = get4Passengers();
+		for (size_t i = 0; i < MAX_MOTORCYCLE_NUM; ++i)
+		{
+			m.AddPassenger(p[i]);
+		}
+
+		p = get4Passengers();
+		for (size_t i = 0; i < MAX_PASSENGERS_NUM; ++i)
+		{
+			s.AddPassenger(p[i]);
+		}
+
+		p = get4Passengers();
+		for (size_t i = 0; i < MAX_PASSENGERS_NUM; ++i)
+		{
+			ub.AddPassenger(p[i]);
+		}
+
+		// Airplane
+		{
+			Airplane assign1(MAX_PASSENGERS_NUM);
+			assign1 = ap;
+			assert(assign1.GetMaxPassengersCount() == ap.GetMaxPassengersCount());
+			assert(assign1.GetPassengersCount() == ap.GetPassengersCount());
+
+			Airplane assign2(MAX_PASSENGERS_NUM);
+			
+			assign2.AddPassenger(new Person("Charlie", 52));
+			assign2.AddPassenger(new Person("Tyler", 52));
+			assign2.AddPassenger(new Person("Ruel", 52));
+
+			assign2 = ap;
+			assert(assign2.GetMaxPassengersCount() == ap.GetMaxPassengersCount());
+			assert(assign2.GetPassengersCount() == ap.GetPassengersCount());
+
+			assert(assign2.GetPassenger(0) != ap.GetPassenger(0));
+			assert(assign2.GetPassenger(1) != ap.GetPassenger(1));
+			assert(assign2.GetPassenger(2) != ap.GetPassenger(2));
+			assert(assign2.GetPassenger(3) != ap.GetPassenger(3));
+
+			assert(assign2.GetPassenger(0)->GetName() == ap.GetPassenger(0)->GetName());
+			assert(assign2.GetPassenger(1)->GetName() == ap.GetPassenger(1)->GetName());
+			assert(assign2.GetPassenger(2)->GetName() == ap.GetPassenger(2)->GetName());
+			assert(assign2.GetPassenger(3)->GetName() == ap.GetPassenger(3)->GetName());
+		}
+
+		// Boat
+		{
+			Boat assign1(MAX_PASSENGERS_NUM);
+			assign1 = b;
+			assert(assign1.GetMaxPassengersCount() == b.GetMaxPassengersCount());
+			assert(assign1.GetPassengersCount() == b.GetPassengersCount());
+
+			Boat assign2(MAX_PASSENGERS_NUM);
+			
+			assign2.AddPassenger(new Person("Charlie", 52));
+			assign2.AddPassenger(new Person("Tyler", 52));
+			assign2.AddPassenger(new Person("Ruel", 52));
+
+			assign2 = b;
+			assert(assign2.GetMaxPassengersCount() == b.GetMaxPassengersCount());
+			assert(assign2.GetPassengersCount() == b.GetPassengersCount());
+
+			assert(assign2.GetPassenger(0) != b.GetPassenger(0));
+			assert(assign2.GetPassenger(1) != b.GetPassenger(1));
+			assert(assign2.GetPassenger(2) != b.GetPassenger(2));
+			assert(assign2.GetPassenger(3) != b.GetPassenger(3));
+
+			assert(assign2.GetPassenger(0)->GetName() == b.GetPassenger(0)->GetName());
+			assert(assign2.GetPassenger(1)->GetName() == b.GetPassenger(1)->GetName());
+			assert(assign2.GetPassenger(2)->GetName() == b.GetPassenger(2)->GetName());
+			assert(assign2.GetPassenger(3)->GetName() == b.GetPassenger(3)->GetName());
+		}
+
+		// Motorcycle
+		{
+			Motorcycle assign1;
+			assign1 = m;
+			assert(assign1.GetMaxPassengersCount() == m.GetMaxPassengersCount());
+			assert(assign1.GetPassengersCount() == m.GetPassengersCount());
+
+			Motorcycle assign2;
+			
+			assign2.AddPassenger(new Person("Charlie", 52));
+			assign2.AddPassenger(new Person("Tyler", 52));
+			assign2.AddPassenger(new Person("Ruel", 52));
+
+			assign2 = m;
+			assert(assign2.GetMaxPassengersCount() == m.GetMaxPassengersCount());
+			assert(assign2.GetPassengersCount() == m.GetPassengersCount());
+
+			assert(assign2.GetPassenger(0) != m.GetPassenger(0));
+			assert(assign2.GetPassenger(1) != m.GetPassenger(1));
+			assert(assign2.GetPassenger(2) != m.GetPassenger(2));
+			assert(assign2.GetPassenger(3) != m.GetPassenger(3));
+
+			assert(assign2.GetPassenger(0)->GetName() == m.GetPassenger(0)->GetName());
+			assert(assign2.GetPassenger(1)->GetName() == m.GetPassenger(1)->GetName());
+			assert(assign2.GetPassenger(2)->GetName() == m.GetPassenger(2)->GetName());
+			assert(assign2.GetPassenger(3)->GetName() == m.GetPassenger(3)->GetName());
+		}
+
+		// Sedan
+		{
+			Sedan assign1;
+			assign1 = s;
+			assert(assign1.GetMaxPassengersCount() == s.GetMaxPassengersCount());
+			assert(assign1.GetPassengersCount() == s.GetPassengersCount());
+
+			Sedan assign2;
+			
+			assign2.AddPassenger(new Person("Charlie", 52));
+			assign2.AddPassenger(new Person("Tyler", 52));
+			assign2.AddPassenger(new Person("Ruel", 52));
+
+			assign2 = s;
+			assert(assign2.GetMaxPassengersCount() == s.GetMaxPassengersCount());
+			assert(assign2.GetPassengersCount() == s.GetPassengersCount());
+
+			assert(assign2.GetPassenger(0) != s.GetPassenger(0));
+			assert(assign2.GetPassenger(1) != s.GetPassenger(1));
+			assert(assign2.GetPassenger(2) != s.GetPassenger(2));
+			assert(assign2.GetPassenger(3) != s.GetPassenger(3));
+
+			assert(assign2.GetPassenger(0)->GetName() == s.GetPassenger(0)->GetName());
+			assert(assign2.GetPassenger(1)->GetName() == s.GetPassenger(1)->GetName());
+			assert(assign2.GetPassenger(2)->GetName() == s.GetPassenger(2)->GetName());
+			assert(assign2.GetPassenger(3)->GetName() == s.GetPassenger(3)->GetName());
+		}
+
+		// UBoat
+		{
+			UBoat assign1;
+			assign1 = ub;
+			assert(assign1.GetMaxPassengersCount() == ub.GetMaxPassengersCount());
+			assert(assign1.GetPassengersCount() == ub.GetPassengersCount());
+
+			UBoat assign2;
+			
+			assign2.AddPassenger(new Person("Charlie", 52));
+			assign2.AddPassenger(new Person("Tyler", 52));
+			assign2.AddPassenger(new Person("Ruel", 52));
+
+			assign2 = ub;
+			assert(assign2.GetMaxPassengersCount() == ub.GetMaxPassengersCount());
+			assert(assign2.GetPassengersCount() == ub.GetPassengersCount());
+
+			assert(assign2.GetPassenger(0) != ub.GetPassenger(0));
+			assert(assign2.GetPassenger(1) != ub.GetPassenger(1));
+			assert(assign2.GetPassenger(2) != ub.GetPassenger(2));
+			assert(assign2.GetPassenger(3) != ub.GetPassenger(3));
+
+			assert(assign2.GetPassenger(0)->GetName() == ub.GetPassenger(0)->GetName());
+			assert(assign2.GetPassenger(1)->GetName() == ub.GetPassenger(1)->GetName());
+			assert(assign2.GetPassenger(2)->GetName() == ub.GetPassenger(2)->GetName());
+			assert(assign2.GetPassenger(3)->GetName() == ub.GetPassenger(3)->GetName());
+		}
+	}
+	
+	Person** get4Passengers()
+	{
+		Person* p1 = new Person("Ja", 84);
+		Person* p2 = new Person("Andrew", 85);
+		Person* p3 = new Person("John", 88);
+		Person* p4 = new Person("Alex", 73);
+
+		Person* passengers[4] = { p1, p2, p3, p4 };
+
+		return passengers;
+	}
+
 	void TestVehicleSpeed()
 	{
 		Person* p1 = new Person("Bob", 85);

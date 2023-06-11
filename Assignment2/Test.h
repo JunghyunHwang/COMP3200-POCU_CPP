@@ -17,6 +17,14 @@
 namespace assignment2
 {
 	void TestOfficial();
+	void TestVehicleCopyByZeroPassengers();
+	void TestVehicleCopyByManyPassengers();
+
+	void TestVehicleAssignByZeroPassengers();
+	void TestVehicleAssignByManyPassengers();
+
+	Person** get4Passengers();
+
 	void TestCreateVehicle();
 	void TestBaro();
 	void TestAirplane();
